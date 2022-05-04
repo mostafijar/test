@@ -42,10 +42,10 @@ class UpdateRequestPlaceForPocInfo extends Migration
                 Schema::table('requests', function (Blueprint $table) {
                     $table->unsignedInteger('goods_type_id')->after('user_id')->nullable();
 
-                    $table->foreign('goods_type_id')
-                    ->references('id')
-                    ->on('goods_types')
-                    ->onDelete('cascade');
+                    // $table->foreign('goods_type_id')
+                    // ->references('id')
+                    // ->on('goods_types')
+                    // ->onDelete('cascade');
 
                 });
             }
