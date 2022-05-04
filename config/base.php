@@ -180,7 +180,7 @@ return [
     'country' => [
         'upload' => [
             'flag' => [
-                'path' => 'uploads/country/flags/',
+                'path' => 'images/country/flags/',
                 'image' => [
                     'min_resolution' => 100,
                     'store_resolution' => 150,

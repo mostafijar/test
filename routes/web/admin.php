@@ -89,7 +89,7 @@ Route::middleware('auth:web')->group(function () {
         Route::get('toggle_approve/{driver}', 'DriverController@toggleApprove');
         Route::get('toggle_available/{driver}', 'DriverController@toggleAvailable');
         Route::get('delete/{driver}', 'DriverController@delete');
-        Route::get('document/view/{driver}', 'DriverDocumentController@index')->name('companyDriverDocumentView');
+        // Route::get('document/view/{driver}', 'DriverDocumentController@index')->name('companyDriverDocumentView');
         // Route::get('upload/document/{driver}/{needed_document}', 'DriverDocumentController@documentUploadView');
         // Route::post('upload/document/{driver}/{needed_document}', 'DriverDocumentController@uploadDocument')->name('companyUpdateDriverDocument');
         // Route::post('approve/documents', 'DriverDocumentController@approveDriverDocument')->name('companyApproveDriverDocument');
@@ -159,18 +159,18 @@ Route::middleware('auth:web')->group(function () {
         Route::get('/driver_profile_dashboard', 'AdminViewController@driverPrfDashboard')->name('driver_profile_dashboard');
         Route::get('/driver_profile_dashboard_view/{driver}', 'AdminViewController@driverPrfDashboardView');
 
-        Route::group(['prefix' => 'company',  'middleware' => 'permission:view-companies'], function () {
-            // prefix('company')->group(function () {
-            Route::get('/', 'CompanyController@index');
-            Route::get('/fetch', 'CompanyController@getAllCompany');
-            Route::get('by/admin', 'CompanyController@byAdmin');
-            Route::get('/create', 'CompanyController@create');
-            Route::post('store', 'CompanyController@store');
-            Route::get('edit/{company}', 'CompanyController@getById');
-            Route::post('update/{company}', 'CompanyController@update');
-            Route::get('toggle_status/{company}', 'CompanyController@toggleStatus');
-            Route::get('delete/{company}', 'CompanyController@delete');
-        });
+        // Route::group(['prefix' => 'company',  'middleware' => 'permission:view-companies'], function () {
+        //     // prefix('company')->group(function () {
+        //     Route::get('/', 'CompanyController@index');
+        //     Route::get('/fetch', 'CompanyController@getAllCompany');
+        //     Route::get('by/admin', 'CompanyController@byAdmin');
+        //     Route::get('/create', 'CompanyController@create');
+        //     Route::post('store', 'CompanyController@store');
+        //     Route::get('edit/{company}', 'CompanyController@getById');
+        //     Route::post('update/{company}', 'CompanyController@update');
+        //     Route::get('toggle_status/{company}', 'CompanyController@toggleStatus');
+        //     Route::get('delete/{company}', 'CompanyController@delete');
+        // });
 
         Route::group(['prefix' => 'drivers'], function () {
             // prefix('drivers')->group(function () {

@@ -61,7 +61,7 @@ class Country extends Model
         if (empty($value)) {
             return null;
         }
-        return Storage::disk(env('FILESYSTEM_DRIVER'))->url(file_path($this->uploadPath(), $value));
+        return Storage::disk('public')->url(file_path($this->uploadPath(), $value));
     }
 
     /**

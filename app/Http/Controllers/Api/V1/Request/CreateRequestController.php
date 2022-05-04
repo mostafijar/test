@@ -42,6 +42,11 @@ class CreateRequestController extends BaseController
     * @bodyParam vehicle_type string required id of zone_type_id
     * @bodyParam payment_opt tinyInteger required type of ride whther cash or card, wallet('0 => card,1 => cash,2 => wallet)
     * @bodyParam pick_address string required pickup address of the trip request
+    * @bodyParam pickup_poc_name string optionl pickup poc name of the trip pick address
+    * @bodyParam pickup_poc_mobile string optionl pickup poc mobile of the trip pick address
+    * @bodyParam drop_poc_name string optionl drop poc name of the trip drop address
+    * @bodyParam drop_poc_mobile string optionl drop poc mobile of the trip drop address
+    * @bodyParam goods_type_id integer required goods types of the request
     * @bodyParam drop_address string required drop address of the trip request
     * @bodyParam is_later tinyInteger sometimes it represent the schedule rides param must be 1.
     * @bodyParam trip_start_time timestamp sometimes it represent the schedule rides param must be datetime format:Y-m-d H:i:s.
