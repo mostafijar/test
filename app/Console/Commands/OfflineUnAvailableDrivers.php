@@ -52,7 +52,7 @@ class OfflineUnAvailableDrivers extends Command
                 $updatable_offline_date_time = Carbon::createFromTimestamp($driver_updated_at->timestamp);
                 $mysql_driver = Driver::where('id', $driver['id'])->first();
                 // Check if the driver is on trip
-                if($mysql_driver && $mysql_driver->currentRide){
+                if($mysql_driver && $mysql_driver->requestDetail()->where('is_completed',false)->where('is_cancelled',false)->exists()){
                     goto end;
                 }
                 // Get last online record
