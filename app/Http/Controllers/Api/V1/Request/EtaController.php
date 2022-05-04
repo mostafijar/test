@@ -128,7 +128,7 @@ class EtaController extends ApiController
         $socket_data->success_message  = PushEnums::DROP_CHANGED;
         $socket_data->result = $request_result;
 
-        dispatch(new NotifyViaMqtt('ontrip_'.$request_detail->driverDetail->id, json_encode($socket_data), $request_detail->driverDetail->id));
+        dispatch(new NotifyViaMqtt('delivery_ontrip_'.$request_detail->driverDetail->id, json_encode($socket_data), $request_detail->driverDetail->id));
 
         return $this->respondSuccess(null,'drop_changed_successfully');
 

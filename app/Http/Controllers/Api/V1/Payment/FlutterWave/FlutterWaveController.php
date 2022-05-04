@@ -143,7 +143,7 @@ class FlutterWaveController extends ApiController
                 $title = trans('push_notifications.amount_credited_to_your_wallet_title');
                 $body = trans('push_notifications.amount_credited_to_your_wallet_body');
 
-                dispatch(new NotifyViaMqtt('add_money_to_wallet_status'.$user_id, json_encode($socket_data), $user_id));
+                dispatch(new NotifyViaMqtt('delivery_add_money_to_wallet_status'.$user_id, json_encode($socket_data), $user_id));
                 
                 $user->notify(new AndroidPushNotification($title, $body));
 

@@ -155,7 +155,7 @@ class DispatcherCreateRequestController extends BaseController
         $driver = Driver::find($first_meta_driver);
        
         // Send notify via Mqtt
-        dispatch(new NotifyViaMqtt('create_request_'.$driver->id, json_encode($mqtt_object), $driver->id));
+        dispatch(new NotifyViaMqtt('delivery_create_request_'.$driver->id, json_encode($mqtt_object), $driver->id));
 
         foreach ($selected_drivers as $key => $selected_driver) {
             $request_detail->requestMeta()->create($selected_driver);

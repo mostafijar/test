@@ -58,7 +58,7 @@ class NoDriverFoundNotifyJob implements ShouldQueue
 
                 // dispatch(new NotifyViaSocket('transfer_msg', $socket_message));
 
-                dispatch(new NotifyViaMqtt('trip_status_'.$user->id, json_encode($socket_data), $user->id));
+                dispatch(new NotifyViaMqtt('delivery_trip_status_'.$user->id, json_encode($socket_data), $user->id));
 
                 $user->notify(new AndroidPushNotification($title, $body));
             }

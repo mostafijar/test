@@ -127,7 +127,7 @@ class ChatController extends BaseController
         $socket_data->success_message  = PushEnums::NEW_MESSAGE;
         $socket_data->data = $chats;
 
-        dispatch(new NotifyViaMqtt('new_message_' . $driver->id, json_encode($socket_data), $driver->id));
+        dispatch(new NotifyViaMqtt('delivery_new_message_' . $driver->id, json_encode($socket_data), $driver->id));
 
 
         $title = 'New Message From ' . $driver->name;

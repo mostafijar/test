@@ -65,7 +65,7 @@ class DriverArrivedController extends BaseController
         // $socket_message = structure_for_socket($user->id, 'user', $socket_data, 'trip_status');
         // dispatch(new NotifyViaSocket('transfer_msg', $socket_message));
         
-        dispatch(new NotifyViaMqtt('trip_status_'.$user->id, json_encode($socket_data), $user->id));
+        dispatch(new NotifyViaMqtt('delivery_trip_status_'.$user->id, json_encode($socket_data), $user->id));
         $user->notify(new AndroidPushNotification($title, $body));
         dispatch_notify:
         return $this->respondSuccess(null, 'driver_arrived');

@@ -153,7 +153,7 @@ class UserCancelRequestController extends BaseController
             // dispatch(new NotifyViaSocket('transfer_msg', $socket_message));
             
             // Send data via Mqtt
-            dispatch(new NotifyViaMqtt('request_handler_'.$driver->id, json_encode($socket_data), $driver->id));
+            dispatch(new NotifyViaMqtt('delivery_request_handler_'.$driver->id, json_encode($socket_data), $driver->id));
 
             $notifiable_driver->notify(new AndroidPushNotification($title, $body));
         }
