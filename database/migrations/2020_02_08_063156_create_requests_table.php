@@ -19,7 +19,7 @@ class CreateRequestsTable extends Migration
             $table->boolean('is_later')->default(0);
             $table->integer('attempt_for_schedule')->default(0);
             $table->unsignedInteger('user_id')->nullable();
-            $table->unsignedInteger('goods_type_id')->nullable();
+            // $table->unsignedInteger('goods_type_id')->nullable();
             $table->uuid('service_location_id');
             $table->uuid('zone_type_id')->nullable();
             $table->unsignedInteger('driver_id')->nullable();
@@ -57,10 +57,10 @@ class CreateRequestsTable extends Migration
                     ->on('users')
                     ->onDelete('cascade');
 
-            $table->foreign('goods_type_id')
-                    ->references('id')
-                    ->on('goods_types')
-                    ->onDelete('cascade');
+            // $table->foreign('goods_type_id')
+            //         ->references('id')
+            //         ->on('goods_types')
+            //         ->onDelete('cascade');
 
             $table->foreign('promo_id')
                     ->references('id')
