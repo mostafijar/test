@@ -26,7 +26,8 @@ Route::namespace('Common')->group(function () {
         Route::get('car/makes', 'CarMakeAndModelController@getCarMakes');
         // Get Car models
         Route::get('car/models/{make_id}', 'CarMakeAndModelController@getCarModels');
-
+        Route::get('goods-types', 'GoodsTypesController@index');
+        
         Route::middleware('auth')->group(function () {
             // List Cancallation Reasons
             Route::get('cancallation/reasons', 'CancellationReasonsController@index');
