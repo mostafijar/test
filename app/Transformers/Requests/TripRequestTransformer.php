@@ -10,6 +10,7 @@ use App\Transformers\User\AdHocUserTransformer;
 use App\Transformers\Requests\RequestBillTransformer;
 use Carbon\Carbon;
 use App\Base\Constants\Masters\PaymentType;
+use App\Transformers\Requests\RequestStopsTransformer;
 
 
 class TripRequestTransformer extends Transformer
@@ -20,7 +21,16 @@ class TripRequestTransformer extends Transformer
      * @var array
      */
     protected $availableIncludes = [
-        'driverDetail','userDetail','requestBill'
+        'driverDetail','userDetail','requestBill','requestStops'
+    ];  
+
+    /**
+     * Resources that can be included in default.
+     *
+     * @var array
+     */
+    protected $defaultIncludes = [
+       'requestStops'
     ];
 
     /**
@@ -196,6 +206,21 @@ class TripRequestTransformer extends Transformer
 
         return $requestBill
         ? $this->item($requestBill, new RequestBillTransformer)
+        : $this->null();
+    }
+
+     /**
+    * Include the stops of the request.
+    *
+    * @param RequestModel $request
+    * @return \League\Fractal\Resource\Item|\League\Fractal\Resource\NullResource
+    */
+    public function includeRequestStops(RequestModel $request)
+    {
+        $requestStops = $request->requestStops;
+
+        return $requestStops
+        ? $this->collection($requestStops, new RequestStopsTransformer)
         : $this->null();
     }
 }

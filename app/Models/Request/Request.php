@@ -68,6 +68,16 @@ class Request extends Model
     }
 
     /**
+     * The Request Stops associated with the request's id.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function requestStops()
+    {
+        return $this->hasMany(RequestStop::class, 'request_id', 'id');
+    }
+    
+    /**
      * The Request Adhoc user associated with the request's id.
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasOne

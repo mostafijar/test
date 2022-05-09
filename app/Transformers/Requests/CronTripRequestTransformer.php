@@ -19,7 +19,16 @@ class CronTripRequestTransformer extends Transformer
      * @var array
      */
     protected $availableIncludes = [
-        'userDetail'
+        'userDetail','requestStops'
+    ];
+
+     /**
+     * Resources that can be included in default.
+     *
+     * @var array
+     */
+    protected $defaultIncludes = [
+       'requestStops'
     ];
 
     /**
@@ -121,6 +130,22 @@ class CronTripRequestTransformer extends Transformer
 
         return $params;
     }
+
+    /**
+    * Include the stops of the request.
+    *
+    * @param RequestModel $request
+    * @return \League\Fractal\Resource\Item|\League\Fractal\Resource\NullResource
+    */
+    public function includeRequestStops(RequestModel $request)
+    {
+        $requestStops = $request->requestStops;
+
+        return $requestStops
+        ? $this->collection($requestStops, new RequestStopsTransformer)
+        : $this->null();
+    }
+    
     /**
      * Include the user of the request.
      *
