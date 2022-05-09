@@ -47,6 +47,7 @@ class CreateRequestController extends BaseController
     * @bodyParam drop_poc_name string optionl drop poc name of the trip drop address
     * @bodyParam drop_poc_mobile string optionl drop poc mobile of the trip drop address
     * @bodyParam goods_type_id integer required goods types of the request
+    * @bodyParam goods_type_quantity string required goods type's quantity of the request
     * @bodyParam drop_address string required drop address of the trip request
     * @bodyParam is_later tinyInteger sometimes it represent the schedule rides param must be 1.
     * @bodyParam trip_start_time timestamp sometimes it represent the schedule rides param must be datetime format:Y-m-d H:i:s.
@@ -131,7 +132,9 @@ class CreateRequestController extends BaseController
             'promo_id'=>$request->promocode_id,
             'requested_currency_code'=>$currency_code,
             'service_location_id'=>$service_location->id,
-            'ride_otp'=>rand(1111, 9999)
+            'ride_otp'=>rand(1111, 9999),
+            'goods_type_id'=>$request->goods_type_id,
+            'goods_type_quantity'=>$request->goods_type_quantity
         ];
 
         if($request->has('rental_pack_id') && $request->rental_pack_id){

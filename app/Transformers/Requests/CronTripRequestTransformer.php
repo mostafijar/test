@@ -87,7 +87,9 @@ class CronTripRequestTransformer extends Transformer
             'show_otp_feature'=>true,
             'request_eta_amount'=>$request->request_eta_amount,
             'show_request_eta_amount'=>true,
-            'if_dispatch'=>$request->if_dispatch
+            'if_dispatch'=>$request->if_dispatch,
+            'goods_type'=>$request->goodsTypeDetail->goods_type_name,
+            'goods_type_quantity'=>$request->goods_type_quantity
 
         ];
 

@@ -364,7 +364,7 @@ class DriverController extends BaseController
 
 
         }
-        $driver->use()->delete();
+        $driver->user()->delete();
 
         $message = trans('succes_messages.driver_deleted_succesfully');
 

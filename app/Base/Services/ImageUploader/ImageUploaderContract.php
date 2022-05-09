@@ -42,6 +42,14 @@ interface ImageUploaderContract
 
     public function saveSystemAdminLogo();
 
+    
+    /**
+    * Save the request delivery proof documents.
+    *
+    * @return string Returns the saved filename
+    */
+    public function saveRequestDeliveryProof();
+
 
     public function file(UploadedFile $file);
 

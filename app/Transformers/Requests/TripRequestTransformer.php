@@ -11,6 +11,7 @@ use App\Transformers\Requests\RequestBillTransformer;
 use Carbon\Carbon;
 use App\Base\Constants\Masters\PaymentType;
 use App\Transformers\Requests\RequestStopsTransformer;
+use App\Transformers\Requests\RequestProofsTransformer;
 
 
 class TripRequestTransformer extends Transformer
@@ -21,7 +22,7 @@ class TripRequestTransformer extends Transformer
      * @var array
      */
     protected $availableIncludes = [
-        'driverDetail','userDetail','requestBill','requestStops'
+        'driverDetail','userDetail','requestBill','requestStops','requestProofs'
     ];  
 
     /**
@@ -90,7 +91,9 @@ class TripRequestTransformer extends Transformer
             'show_request_eta_amount'=>true,
             'ride_user_rating'=>0,
             'ride_driver_rating'=>0,
-            'if_dispatch'=>false
+            'if_dispatch'=>false,
+            'goods_type'=>$request->goodsTypeDetail->goods_type_name,
+            'goods_type_quantity'=>$request->goods_type_quantity
         ];
 
         if (!$request->is_later) {
@@ -223,4 +226,21 @@ class TripRequestTransformer extends Transformer
         ? $this->collection($requestStops, new RequestStopsTransformer)
         : $this->null();
     }
+
+
+    /**
+    * Include the proof of the request.
+    *
+    * @param RequestModel $request
+    * @return \League\Fractal\Resource\Item|\League\Fractal\Resource\NullResource
+    */
+    public function includeRequestProofs(RequestModel $request)
+    {
+        $requestProofs = $request->requestProofs;
+
+        return $requestProofs
+        ? $this->collection($requestProofs, new RequestProofsTransformer)
+        : $this->null();
+    }
+
 }

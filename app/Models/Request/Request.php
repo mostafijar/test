@@ -15,6 +15,7 @@ use App\Models\Traits\HasActiveCompanyKey;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use App\Models\Admin\CancellationReason;
 use App\Models\Master\PackageType;
+use App\Models\Master\GoodsType;
 
 class Request extends Model
 {
@@ -31,7 +32,7 @@ class Request extends Model
      *
      * @var array
      */
-    protected $fillable = ['request_number','is_later','user_id','driver_id','trip_start_time','arrived_at','accepted_at','completed_at','cancelled_at','is_driver_started','is_driver_arrived','is_trip_start','is_completed','is_cancelled','reason','cancel_method','total_distance','total_time','payment_opt','is_paid','user_rated','driver_rated','promo_id','timezone','unit','if_dispatch','zone_type_id','requested_currency_code','custom_reason','attempt_for_schedule','service_location_id','company_key','dispatcher_id','book_for_other_contact','book_for_other','ride_otp','is_rental','rental_package_id','is_out_station','request_eta_amount'];
+    protected $fillable = ['request_number','is_later','user_id','driver_id','trip_start_time','arrived_at','accepted_at','completed_at','cancelled_at','is_driver_started','is_driver_arrived','is_trip_start','is_completed','is_cancelled','reason','cancel_method','total_distance','total_time','payment_opt','is_paid','user_rated','driver_rated','promo_id','timezone','unit','if_dispatch','zone_type_id','requested_currency_code','custom_reason','attempt_for_schedule','service_location_id','company_key','dispatcher_id','book_for_other_contact','book_for_other','ride_otp','is_rental','rental_package_id','is_out_station','request_eta_amount','goods_type_id','goods_type_quantity'];
 
     /**
     * The accessors to append to the model's array form.
@@ -379,9 +380,24 @@ class Request extends Model
         return $this->belongsTo(ServiceLocation::class,'service_location_id','id');
     }
 
+
+    public function goodsTypeDetail(){
+        return $this->belongsTo(GoodsType::class,'goods_type_id','id');
+    }
+
     public function cancelReason()
     {
          return $this->hasOne(CancellationReason::class, 'id', 'reason');
        
+    }
+
+    /**
+     * The Request proof associated with the request's id.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function requestProofs()
+    {
+        return $this->hasMany(RequestDeliveryProof::class, 'request_id', 'id');
     }
 }

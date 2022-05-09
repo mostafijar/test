@@ -229,6 +229,26 @@ return [
     ],
 
 
+     /**
+    |--------------------------------------------------------------------------
+    | Request specific configurations
+    |--------------------------------------------------------------------------
+     */
+
+    'request' => [
+        'upload' => [
+            'delivery-proof' => [
+                'path' => 'uploads/request/delivery-proof/',
+                'image' => [
+                    'min_resolution' => 100,
+                    'store_resolution' => 1024,
+                    'max_file_size_kb' => 10000,
+                ],
+            ],
+
+        ],
+    ],
+
     /**
     |--------------------------------------------------------------------------
     | Default common configurations

@@ -55,6 +55,8 @@ Route::prefix('request')->namespace('Request')->middleware('auth')->group(functi
         Route::post('cancel/by-driver', 'DriverCancelRequestController@cancelRequest');
         // End Request
         Route::post('end', 'DriverEndRequestController@endRequest');
+        // Upload Delivery Proof
+        Route::post('upload-proof','DriverDeliveryProofController@uploadDocument');
     });
 
     // History

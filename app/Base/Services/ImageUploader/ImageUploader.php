@@ -154,6 +154,31 @@ class ImageUploader implements ImageUploaderContract
         return $filename;
     }
 
+     /**
+     * Save the request delivery proof documents.
+     *
+     * @return string Returns the saved filename
+     */
+    public function saveRequestDeliveryProof()
+    {
+        $this->validateFile();
+
+        $config = $this->config('request.upload.delivery-proof');
+
+        $this->setDefaultResize(data_get($config, 'image.store_resolution'));
+
+        $image = $this->encodeImage();
+
+        $filename = $this->hashGenerator->extension($this->format)->make();
+
+        $filePath = file_path(data_get($config, 'path'), $filename);
+
+        Storage::put($filePath, $image);
+
+        return $filename;
+    }
+
+
     /**
      * Save the user profile picture.
      *
