@@ -468,5 +468,9 @@ return array(
     'stripe-live-secret Key'=>'Stripe Live Secret Key',
     'enable-razor-pay'=>'Enable Razor Pay',
     'enable-paymob'=>'Enable Paymob',
-    'goods_type_name '=>'Goods Type Name'
+    'goods_type_name '=>'Goods Type Name',
+    'maximum_weight_can_carry'=>'Maximum Weight Can Carry',
+    'enter_maximum_weight_can_carry'=>'Enter Maximum Weight Can Carry(eg:1 ton, 500KG,etc)',
+    'size'=>'Size',
+    'enter_size'=>'Enter Size(eg: 7ft x 4.5ft x 5.5ft)'
 );

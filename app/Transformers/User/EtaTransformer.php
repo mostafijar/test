@@ -47,6 +47,8 @@ class EtaTransformer extends Transformer
             'description'=> $zone_type->vehicleType->description,
             'short_description'=> $zone_type->vehicleType->short_description,
             'supported_vehicles'=> $zone_type->vehicleType->supported_vehicles,
+            'maimum_weight'=> $zone_type->vehicleType->capacity,
+            'size'=> $zone_type->vehicleType->size,
             'payment_type'=>$zone_type->payment_type,
             'is_default'=>false,
         ];
