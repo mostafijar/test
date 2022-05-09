@@ -103,7 +103,8 @@ class VehicleTypeController extends BaseController
      */
     public function store(CreateVehicleTypeRequest $request)
     {
-        $created_params = $request->only(['name', 'capacity','is_accept_share_ride','description','supported_vehicles','short_description']);
+        $created_params = $request->only(['name', 'capacity','is_accept_share_ride','description','supported_vehicles','short_description','size']);
+
         if ($uploadedFile = $this->getValidatedUpload('icon', $request)) {
             $created_params['icon'] = $this->imageUploader->file($uploadedFile)
                 ->saveVehicleTypeImage();
@@ -148,7 +149,7 @@ class VehicleTypeController extends BaseController
     public function update(UpdateVehicleTypeRequest $request, VehicleType $vehicle_type)
     {
         $this->validateAdmin();
-        $created_params = $request->only(['name', 'capacity','is_accept_share_ride','description','supported_vehicles','short_description']);
+        $created_params = $request->only(['name', 'capacity','is_accept_share_ride','description','supported_vehicles','short_description','size']);
 
         if ($uploadedFile = $this->getValidatedUpload('icon', $request)) {
             $created_params['icon'] = $this->imageUploader->file($uploadedFile)
