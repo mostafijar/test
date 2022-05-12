@@ -175,6 +175,7 @@
                 </div>
             </div>
 
+            @if(!auth()->user()->hasRole('owner'))
             <div class="col-sm-6 col-md-3">
                 <div class="card overflow-hidden" style="min-width: 12rem">
                     <div class="bg-holder bg-card"
@@ -191,6 +192,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
 
         @if(!auth()->user()->hasRole('owner'))

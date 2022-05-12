@@ -33,8 +33,6 @@ class CreateOwnersTable extends Migration
             $table->integer('no_of_vehicles');
             $table->string('tax_number');
             $table->string('bank_name')->nullable();
-            $table->string('iban');
-            $table->string('bic')->nullable();
             $table->boolean('active')->default(true);
             $table->boolean('approve')->default(false);
 

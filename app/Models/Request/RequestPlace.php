@@ -18,7 +18,7 @@ class RequestPlace extends Model
      *
      * @var array
      */
-    protected $fillable = ['request_id','pick_lat','pick_lng','drop_lat','drop_lng','pick_address','drop_address','active','request_path'];
+    protected $fillable = ['request_id','pick_lat','pick_lng','drop_lat','drop_lng','pick_address','drop_address','active','request_path','pickup_poc_name','pickup_poc_mobile','drop_poc_name','drop_poc_mobile'];
 
     /**
      * The relationships that can be loaded with query string filtering includes.
