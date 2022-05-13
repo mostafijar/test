@@ -121,12 +121,12 @@
 
     
              @if(auth()->user()->can('manage-fleet'))
-           <!--  <li class="{{ $main_menu == 'manage_fleet' ? 'active' : ''}}">
+            <li class="{{ $main_menu == 'manage_fleet' ? 'active' : ''}}">
                 <a href="{{ route('viewFleet') }}">
                     <i class="fa fa-bus"></i>
                     <span> {{ trans('pages_names.manage_fleet') }} </span>
                 </a>
-            </li> -->
+            </li>
             @endif
 
       @if(auth()->user()->can('admin'))
@@ -233,12 +233,12 @@
             <a href="{{url($route)}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.driver_details')</a>
           </li>
           @endif
-          @if(auth()->user()->can('view-drivers'))
+          @if(auth()->user()->can('view-drivers') && !auth()->user()->hasRole('owner'))
           <li class="{{ 'driver_ratings' == $sub_menu ? 'active' : '' }}">
             <a href="{{url('/driver-ratings')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.driver_ratings')</a>
           </li>
           @endif
-          @if(auth()->user()->can('view-drivers'))
+          @if(auth()->user()->can('view-drivers') && !auth()->user()->hasRole('owner'))
           <li class="{{ 'withdrawal_requests' == $sub_menu ? 'active' : '' }}">
             <a href="{{url('/withdrawal-requests-lists')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.withdrawal_requests')</a>
           </li>

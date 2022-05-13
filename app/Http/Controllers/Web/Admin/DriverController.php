@@ -519,8 +519,12 @@ class DriverController extends BaseController
                 })->orderBy('created_at','desc')->paginate(20);
 
             }else{
+
                 $admin_data =auth()->user()->admin;
 
+                if(access()->hasRole(RoleSlug::OWNER)){
+                $admin_data =auth()->user()->owner;
+                }
                $history = WalletWithdrawalRequest::whereHas('driverDetail.user',function($query){
                 $query->companyKey();
                 })->whereHas('driverDetail',function($query)use($admin_data){
