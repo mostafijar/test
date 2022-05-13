@@ -69,6 +69,21 @@ abstract class BaseRequest extends FormRequest
 
         return $this->allowedImages() . "|dimensions:min_width={$minResolution},min_height={$minResolution}" . "|max:{$maxFileSizeKb}";
     }
+
+    /**
+     * Request Delivery Document file upload rule.
+     *
+     * @return string
+     */
+    protected function requestDeliveryProofRule()
+    {
+        $minResolution = $this->config('request.upload.delivery-proof.image.min_resolution', 100);
+
+        $maxFileSizeKb = $this->config('request.upload.delivery-proof.image.max_file_size_kb', 500);
+
+        return $this->allowedImages() . "|dimensions:min_width={$minResolution},min_height={$minResolution}" . "|max:{$maxFileSizeKb}";
+    }
+    
     /**
      * Driver Document file upload rule.
      *
