@@ -44,18 +44,26 @@ class StripeController extends ApiController
      */
     public function createStripeIntent(Request $request){
 
-        if(env('STRIPE_ENVIRONMENT')=='sandbox'){
 
-        $test_environment = true;
+        if(get_settings(Settings::STRIPE_ENVIRONMENT)=='test'){
 
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            $secret_key = get_settings(Settings::STRIPE_TEST_SECRET_KEY);
+
+            \Stripe\Stripe::setApiKey($secret_key);
+
+            $test_environment = true;
+
 
         }else{
-        \Stripe\Stripe::setApiKey(env('STRIPE_LIVE_KEY'));
 
-        $test_environment = false;
-            
+            $secret_key = get_settings(Settings::STRIPE_LIVE_SECRET_KEY);
+
+            \Stripe\Stripe::setApiKey($secret_key);
+
+            $test_environment = false;
+
         }
+
 
         $user = auth()->user();
 

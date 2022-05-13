@@ -240,6 +240,11 @@ class PaymentController extends BaseController
 
         $enable_stripe = false;
         
+        if(get_settings(Settings::STRIPE_ENVIRONMENT)=='test'){
+
+            $stripe_environment = 'test';
+
+        }
         if(get_settings(Settings::ENABLE_STRIPE)==1){
 
             $enable_stripe = true;
@@ -294,7 +299,8 @@ class PaymentController extends BaseController
             'cash_free'=>$enable_cashfree,
             'flutter_wave'=>$enable_flutter_wave,
             'paymob'=>$enable_paymob,
-            'bank_info_exists'=>$bank_info_exists]);
+            'bank_info_exists'=>$bank_info_exists,
+            'stripe_environment'=>$stripe_environment]);
 
         // return $this->respondSuccess($result, 'wallet_history_listed');
     }
