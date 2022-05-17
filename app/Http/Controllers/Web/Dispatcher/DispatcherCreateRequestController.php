@@ -303,7 +303,7 @@ class DispatcherCreateRequestController extends BaseController
             'payment_opt'=>$request->payment_opt,
             'unit'=>$unit,
             'requested_currency_code'=>$currency_code,
-            'goods_type_id'=>$request->goods_type_id,
+            'goods_type_id'=>(integer)$request->goods_type_id,
             'service_location_id'=>$service_location->id];
 
         // store request details to db
