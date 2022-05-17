@@ -195,6 +195,24 @@
                                         </div>
                                     </div>
 
+                                    <div class="card p-3 mb-3 book">
+    <div class="row">
+
+        <div class="col-12">
+            <h6 class="box-title">Goods Type</h6>
+        </div>
+        <div class="col-md-12">
+            <select class="form-select form-select-sm required_for_valid"
+                aria-label=".form-select-sm example" id="goods-type"
+                name="goods-type">
+                <option selected disabled>Select</option>
+            </select>
+            <span class="text-danger"
+                id="error-goods-type">{{ $errors->first('goods-type') }}</span>
+        </div>
+    </div>
+</div>
+
                                     <div class="card p-3 mb-3 book date-option d-none">
                                         <div class="row">
                                             <div class="mb-3">
@@ -404,6 +422,7 @@
                                             </div>
                                         </div>
                                     </div>
+
 
                                     {{-- <p class="mb-0">
                                     <a data-fancybox data-animation-duration="500" data-src="#animatedModal" href="javascript:;" class="btn btn-primary">Success!</a>
@@ -908,6 +927,20 @@ return false;
                     }
                 }
 
+                // Fetch goods type - api
+fetch('{{ url('api/v1/common/goods-types') }}')
+.then(response => response.json())
+.then(result => {
+var typeSelect = document.getElementById('goods-type');
+if (result.success) {
+var goods = result.data;
+goods.forEach(element => {
+typeSelect.options[typeSelect.options.length] = new Option(
+element.goods_type_name, element.id);
+});
+}
+});
+
 
                 // Truck body type - Open Closed Any
                 let truckTypeDiv = document.getElementsByClassName("truckType");
@@ -1112,6 +1145,8 @@ return false;
 
                 function createTripRequest() {
                     var typeId = $('#vehicles').find("div.active").attr('data-id');
+                    var goodsTypeId = $('#goods-type').find(":selected").val();
+
                     // var fareTypeId = $('.addPackageBtn').find('span.removePackage').attr('id');
                     var pickAdd = $('#pickup').val();
                     var dropAdd = $('#drop').val();
@@ -1133,6 +1168,7 @@ return false;
                         'pick_lng': pickUpLng,
                         'drop_lat': dropLat,
                         'drop_lng': dropLng,
+                        'goods_type_id': goodsTypeId,
                         'pick_address': pickAdd,
                         'drop_address': dropAdd,
                         'pickup_poc_name': sender.name,
