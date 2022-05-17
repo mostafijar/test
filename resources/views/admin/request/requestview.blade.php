@@ -219,7 +219,7 @@ max-height: 200px;
 
                 <div class="box-body">
 
-                    <img class="max-h" src="{{ $item->requestProofs()->first() }}" alt="">
+                    <img class="max-h" src="{{ $item->requestProofs()->first()->proof_image }}" alt="">
 
                 </div>
 
