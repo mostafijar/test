@@ -198,9 +198,9 @@
           </li>
           @endif
           @if(auth()->user()->can('list-airports'))
-          <li class="{{ 'airport' == $sub_menu ? 'active' : '' }}">
+         <!--  <li class="{{ 'airport' == $sub_menu ? 'active' : '' }}">
             <a href="{{url('/airport')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.airport')</a>
-          </li>
+          </li> -->
           @endif
         </ul>
       </li>

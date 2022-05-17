@@ -37,7 +37,7 @@
         }
 
         body {
-            background-image: url(assets/images/bg.jpg) !important;
+            background-image: url(assets/images/login.jpg) !important;
             background-size: cover !important;
         }
 

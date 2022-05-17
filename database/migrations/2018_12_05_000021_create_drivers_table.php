@@ -32,9 +32,9 @@ class CreateDriversTable extends Migration
             // $table->string('social_unique_id')->nullable();
             // $table->enum('login_method',['manual','facebook','google'])->nullable();
             // $table->enum('login_by',['ios','andriod'])->nullable();
-            $table->uuid('vehicle_type');
-            $table->unsignedInteger('car_make');
-            $table->unsignedInteger('car_model');
+            $table->uuid('vehicle_type')->nullable();
+            $table->unsignedInteger('car_make')->nullable();
+            $table->unsignedInteger('car_model')->nullable();
             $table->string('car_color')->nullable();
             $table->string('car_number')->nullable();
             $table->integer('today_trip_count')->default(0);

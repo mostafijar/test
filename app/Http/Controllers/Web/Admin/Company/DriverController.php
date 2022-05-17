@@ -143,7 +143,8 @@ class DriverController extends BaseController
      */
     public function store(CreateDriverRequest $request)
     {
-        $created_params = $request->only(['name','mobile','email','address','state','city','country','gender','car_color','car_number']);
+        $created_params = $request->only(['name','mobile','email','address','state','city','country','gender']);
+        
         $created_params['owner_id'] = auth()->user()->owner->id;
         $created_params['service_location_id'] = auth()->user()->owner->service_location_id; 
         $created_params['postal_code'] = $request->postal_code;
@@ -160,8 +161,8 @@ class DriverController extends BaseController
             return redirect()->back()->withErrors(['mobile'=>'Provided mobile has already been taken'])->withInput();
         }
         
-        DB::beginTransaction();
-        try {
+        // DB::beginTransaction();
+        // try {
             $user = $this->user->create(['name'=>$request->input('name'),
                 'email'=>$request->input('email'),
                 'mobile'=>$request->input('mobile'),
@@ -187,12 +188,12 @@ class DriverController extends BaseController
             $message = trans('succes_messages.driver_added_succesfully');
     
             cache()->tags('drivers_list')->flush();
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            // dd($th);
-            return back()->with('warning','Something went wrong!')->withInput();    
-        }
-        DB::commit();
+        // } catch (\Throwable $th) {
+        //     DB::rollBack();
+        //     // dd($th);
+        //     return back()->with('warning','Something went wrong!')->withInput();    
+        // }
+        // DB::commit();
 
         return redirect('company/drivers')->with('success', $message);
     }

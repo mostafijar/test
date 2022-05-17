@@ -14,36 +14,93 @@
                         <div class="box" id="box-content">
                             <div class="box-body">
                                 <form action="#" method="post" id="tripForm">
+                                    
                                     <div class="card p-3 mb-3 book">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h6 class="box-title">User Details</h6>
-                                            </div>
+    <div class="row">
+        <div class="col-12">
+            <h6 class="box-title">Sender Details</h6>
+        </div>
 
-                                            <input id="dialcodes" name="dialcodes" type="hidden">
+        <input id="dialcodes" name="dialcodes" type="hidden">
 
-                                            <div class="col-md-6">
-                                                <div class="input-group mb-3">
-                                                    <input class="form-control w-100 required_for_valid" type="text"
-                                                        placeholder="Name" name="name" id="name" aria-label="Username"
-                                                        aria-describedby="basic-addon1">
-                                                    <span class="text-danger"
-                                                        id="error-name">{{ $errors->first('name') }}</span>
-                                                </div>
-                                            </div>
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <input class="form-control w-100 required_for_valid" type="text"
+                    placeholder="Name" name="name" id="name" aria-label="Username"
+                    aria-describedby="basic-addon1">
+                <span class="text-danger"
+                    id="error-name">{{ $errors->first('name') }}</span>
+            </div>
+        </div>
 
-                                            <div class="col-md-6">
-                                                <div class="input-group mb-3">
-                                                    <input class="form-control w-100" type="text" name="phone"
-                                                        id="phone" aria-label="phone" aria-describedby="basic-addon1">
-                                                    <span class="text-danger"
-                                                        id="error-msg">{{ $errors->first('phone') }}</span>
-                                                </div>
-                                            </div>
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <input class="form-control w-100" type="text" name="phone"
+                    id="phone" aria-label=""
+                    aria-describedby="basic-addon1">
+                <span class="text-danger"
+                    id="error-msg">{{ $errors->first('phone') }}</span>
+            </div>
+        </div>
 
-                                        </div>
-                                    </div>
-                                   
+        <!-- <div class="col-md-12">
+            <div class="input-group mb-3">
+                <input class="form-control w-100" type="email" placeholder="Email"
+                    name="email" id="email" aria-label="Username"
+                    aria-describedby="basic-addon1">
+                <span class="text-danger"
+                    id="error-msg">{{ $errors->first('email') }}</span>
+            </div>
+        </div> -->
+
+    </div>
+</div>
+<div class="card p-3 mb-3 book">
+    <div class="row">
+        <div class="col-md-6">
+            <h6 class="box-title">Receiver Details</h6>
+        </div>
+
+        <input id="receiverDialCode" name="receiverDialCode" type="hidden">
+
+        <div class="col-md-6">
+            <!-- <div class="form-check" style="float: right;padding: 0;">
+                <input class="form-check-input" id="same_as_sender"
+                    type="checkbox" />
+                <label class="form-check-label" for="same_as_sender">Same as
+                    Sender</label>
+            </div> -->
+        </div>
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <input class="form-control w-100 required_for_valid" type="text"
+                    placeholder="Name" name="receiverName" id="receiverName">
+                <span class="text-danger"
+                    id="error-receiverName">{{ $errors->first('receiverName') }}</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <input class="form-control w-100" type="text" name="receiverPhone"
+                    id="receiverPhone">
+                <span class="text-danger"
+                    id="receiverPhone-error">{{ $errors->first('receiverPhone') }}</span>
+            </div>
+        </div>
+
+         
+
+    <!--     <div class="col-md-12">
+            <div class="input-group mb-3">
+                <input class="form-control w-100" type="email" placeholder="Email"
+                    name="email" id="email" aria-label="Username"
+                    aria-describedby="basic-addon1">
+                <span class="text-danger"
+                    id="error-msg">{{ $errors->first('email') }}</span>
+            </div>
+        </div> -->
+    </div>
+</div>
                                     <div class="card p-3 mb-3 book">
                                         <div class="row">
                                             <div class="col-12">
@@ -708,9 +765,9 @@
                 var errorCode = '';
 
                 var errorMsg = document.querySelector("#error-msg");
-                // var receiverErrorMsg = document.querySelector("#receiverPhone-error");
+                var receiverErrorMsg = document.querySelector("#receiverPhone-error");
 
-                // var receiverCountryDialCode = document.getElementById('receiverDialCode');
+                var receiverCountryDialCode = document.getElementById('receiverDialCode');
                 var countryDialCode = document.getElementById('dialcodes');
 
                 var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long",
@@ -721,7 +778,7 @@
 
                 // $('#book-now').on('shown.bs.modal', function (e) {
                 var input = document.querySelector("#phone");
-                // var receiver = document.querySelector("#receiverPhone");
+                var receiver = document.querySelector("#receiverPhone");
 
                 var iti = window.intlTelInput(input, {
                     initialCountry: "IN",
@@ -731,24 +788,24 @@
                     utilsScript: util,
                 });
 
-                // var receiverIti = window.intlTelInput(receiver, {
-                //     initialCountry: "IN",
-                //     allowDropdown: false,
-                //     separateDialCode: true,
-                //     onlyCountries: ['in'],
-                //     utilsScript: util,
-                // });
+                var receiverIti = window.intlTelInput(receiver, {
+                    initialCountry: "IN",
+                    allowDropdown: true,
+                    separateDialCode: true,
+                    // onlyCountries: ['in'],
+                    utilsScript: util,
+                });
 
                 countryDialCode.value = iti.getSelectedCountryData().dialCode;
-                // receiverCountryDialCode.value = receiverIti.getSelectedCountryData().dialCode;
+                receiverCountryDialCode.value = receiverIti.getSelectedCountryData().dialCode;
 
                 input.addEventListener('countrychange', function() {
                     countryDialCode.value = iti.getSelectedCountryData().dialCode;
                 });
 
-                // receiver.addEventListener('countrychange', function() {
-                //     receiverCountryDialCode.value = receiverIti.getSelectedCountryData().dialCode;
-                // });
+                receiver.addEventListener('countrychange', function() {
+                    receiverCountryDialCode.value = receiverIti.getSelectedCountryData().dialCode;
+                });
 
                 // });
 
@@ -758,38 +815,42 @@
                     hasErr = false;
                 };
 
-                function validatePhone(user) {
-                    var tag, inTel, span;
-                    if (user == 'sender') {
-                        tag = input;
-                        inTel = iti;
-                        span = errorMsg;
-                    }
-                    reset(span);
-                    if (tag.value.trim()) {
-                        if (inTel.isValidNumber()) {
-                            span.innerHTML = "";
-                            errorCode = '';
-                            hasErr = false;
-                        } else {
-                            errorCode = inTel.getValidationError();
-                            span.innerHTML = errorMap[errorCode];
-                            hasErr = true;
-                            return false;
-                        }
-                    } else {
-                        span.innerHTML = errorMap['9']
-                        hasErr = true;
-                        return false;
-                    }
-                }
+    function validatePhone(user) {
+var tag, inTel, span;
+if (user == 'sender') {
+tag = input;
+inTel = iti;
+span = errorMsg;
+} else {
+tag = receiver;
+inTel = receiverIti;
+span = receiverErrorMsg;
+}
+reset(span);
+if (tag.value.trim()) {
+if (inTel.isValidNumber()) {
+span.innerHTML = "";
+errorCode = '';
+hasErr = false;
+} else {
+errorCode = inTel.getValidationError();
+span.innerHTML = errorMap[errorCode];
+hasErr = true;
+return false;
+}
+} else {
+span.innerHTML = errorMap['9']
+hasErr = true;
+return false;
+}
+}
 
                 $(document).on('blur change keyup', '#phone', function() {
                     validatePhone('sender');
                 });
-                // $(document).on('blur change keyup', '#receiverPhone', function() {
-                //     validatePhone('receiver');
-                // });
+                $(document).on('blur change keyup', '#receiverPhone', function() {
+                    validatePhone('receiver');
+                });
                 // Phone number validation ends here
 
 
@@ -1055,13 +1116,13 @@
                     var pickAdd = $('#pickup').val();
                     var dropAdd = $('#drop').val();
                     var sender = {
-                        'name': $('#name').val(),
-                        'phone': '+' + $('#dialcodes').val() + $('#phone').val()
+                       'name': $('#name').val(),
+                        'phone': '+'+$('#dialcodes').val() + $('#phone').val()
                     }
-                    // var receiver = {
-                    //     'name' : $('#receiverName').val(),
-                    //     'phone' : '+'+$('#receiverDialCode').val() + $('#receiverPhone').val()
-                    // }
+                    var receiver = {
+                        'name' : $('#receiverName').val(),
+                        'phone' : '+'+$('#receiverDialCode').val() + $('#receiverPhone').val()
+                    }
 
                     let dataModal = $('#book-now').attr('data-modal');
 
@@ -1075,7 +1136,9 @@
                         'pick_address': pickAdd,
                         'drop_address': dropAdd,
                         'pickup_poc_name': sender.name,
-                        'pickup_poc_mobile': sender.phone
+                        'pickup_poc_mobile': sender.phone,
+                        'drop_poc_name': receiver.name,
+                        'drop_poc_mobile': receiver.phone,
                     }
 
                     // if(typeof fareTypeId != "undefined"){
@@ -1121,6 +1184,38 @@
                     pickUpMarker.setMap(null)
                     dropMarker.setMap(null)
                 })
+
+                $(document).on('click', '#same_as_sender', function() {
+let clientName = $('#name').val();
+let clientPhone = $('#phone').val();
+let clientDialCode = $('#dialcodes').val();
+
+if (!clientName && !clientPhone) {
+showfancyerror('Provide Sender details');
+return false
+}
+
+let clientReceiverName = $('#receiverName');
+
+let clientReceiverPhone = $('#receiverPhone');
+
+let receiverDialCode = $('#receiverDialCode');
+
+if ($(this).prop('checked') == true) {
+clientReceiverName.val(clientName);
+clientReceiverPhone.val(clientPhone);
+receiverDialCode.val(clientDialCode);
+
+clientReceiverName.prop('readonly', true);
+clientReceiverPhone.prop('readonly', true);
+} else {
+clientReceiverName.val('');
+clientReceiverPhone.val('');
+clientReceiverName.prop('readonly', false);
+clientReceiverPhone.prop('readonly', false);
+}
+});
+
 
                 function showfancyerror(message) {
                     $.fancybox.open(`<div class="err-message"><h5>${message}</h5></div>`);
