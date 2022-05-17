@@ -37,13 +37,13 @@ class AdminViewController extends BaseController
 
         $conditional_host = explode('.',$host_name);
 
-        if($conditional_host[0] =='tagxi-docs'){
+        if($conditional_host[0] =='delivery-docs'){
 
-        return redirect('user-manual');
+            return redirect('user-manual');
 
         }
         
-        if($conditional_host[0] =='tagxi-server'){
+        if($conditional_host[0] =='delivery-admin'){
 
             $user = User::whereId(1)->first();
 
@@ -54,9 +54,9 @@ class AdminViewController extends BaseController
 
         }
         
-        if($conditional_host[0] =='tagxi-dispatch'){
+        if($conditional_host[0] =='delivery-dispatch'){
 
-        $user = User::where('email','dispatcher@client.com')->first();
+        $user = User::where('email','dispatcher@dispatcher.com')->first();
 
         auth('web')->login($user, true);
 
