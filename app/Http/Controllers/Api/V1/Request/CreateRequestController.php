@@ -363,7 +363,10 @@ class CreateRequestController extends BaseController
             'unit'=>$unit,
             'requested_currency_code'=>$currency_code,
             'service_location_id'=>$service_location->id,
-            'ride_otp'=>rand(1111, 9999)];
+            'ride_otp'=>rand(1111, 9999),
+            'goods_type_id'=>$request->goods_type_id,
+            'goods_type_quantity'=>$request->goods_type_quantity
+        ];
 
         $request_params['company_key'] = auth()->user()->company_key;
         
@@ -378,14 +381,35 @@ class CreateRequestController extends BaseController
         DB::beginTransaction();
         try {
             $request_detail = $this->request->create($request_params);
-            // request place detail params
-            $request_place_params = [
+            
+            // To Store Request stops along with poc details
+        if ($request->has('stops')) {
+            foreach (json_decode($request->stops) as $key => $stop) {
+                $request_detail->requestStops()->create([
+                'address'=>$stop->address,
+                'latitude'=>$stop->latitude,
+                'longitude'=>$stop->longitude,
+                'poc_name'=>$stop->poc_name,
+                'poc_mobile'=>$stop->poc_mobile,
+                'order'=>$stop->order]);
+
+            }
+        }
+
+        // request place detail params
+        $request_place_params = [
             'pick_lat'=>$request->pick_lat,
             'pick_lng'=>$request->pick_lng,
             'drop_lat'=>$request->drop_lat,
             'drop_lng'=>$request->drop_lng,
             'pick_address'=>$request->pick_address,
-            'drop_address'=>$request->drop_address];
+            'drop_address'=>$request->drop_address,
+            'pickup_poc_name'=>$request->pickup_poc_name,
+            'pickup_poc_mobile'=>$request->pickup_poc_mobile,
+            'drop_poc_name'=>$request->drop_poc_name,
+            'drop_poc_mobile'=>$request->drop_poc_mobile
+        ];
+        
             // store request place details
             $request_detail->requestPlace()->create($request_place_params);
 
