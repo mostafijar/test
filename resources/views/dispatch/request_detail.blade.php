@@ -780,11 +780,11 @@
     var icons = {
         available: {
             name: 'Available',
-            icon: iconBase + '/taxi1.svg'
+            icon: iconBase + '/truck1.png'
         },
         ontrip: {
             name: 'OnTrip',
-            icon: iconBase + '/taxi.svg'
+            icon: iconBase + '/truck2.png'
         },
         pickup: {
             name: 'PickUp',
