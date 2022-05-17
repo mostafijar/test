@@ -103,7 +103,9 @@ class DispatcherCreateRequestController extends BaseController
             'payment_opt'=>$request->payment_opt,
             'unit'=>$unit,
             'requested_currency_code'=>$currency_code,
-            'service_location_id'=>$service_location->id];
+            'service_location_id'=>$service_location->id,
+            'goods_type_id'=>(integer)$request->goods_type_id
+        ];
 
         // store request details to db
         // DB::beginTransaction();
@@ -116,7 +118,12 @@ class DispatcherCreateRequestController extends BaseController
             'drop_lat'=>$request->drop_lat,
             'drop_lng'=>$request->drop_lng,
             'pick_address'=>$request->pick_address,
-            'drop_address'=>$request->drop_address];
+            'drop_address'=>$request->drop_address,
+            'pickup_poc_name'=>$request->pickup_poc_name,
+            'pickup_poc_mobile'=>$request->pickup_poc_mobile,
+            'drop_poc_name'=>$request->drop_poc_name,
+            'drop_poc_mobile'=>$request->drop_poc_mobile
+        ];
         // store request place details
         $request_detail->requestPlace()->create($request_place_params);
         // $ad_hoc_user_params = $request->only(['name','phone_number']);
