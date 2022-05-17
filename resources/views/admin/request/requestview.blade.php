@@ -23,6 +23,11 @@ td {
     font-weight: 800;
     font-size: large;
 }
+
+.max-h{
+max-height: 200px;
+}
+
 </style>
 <!-- Start Page content -->
 <section class="content">
@@ -206,6 +211,20 @@ td {
                     </table>
                 </div>
             </div>
+
+            <div class="box">
+                <div class="box-header bb-2 border-primary">
+                    <h3 class="box-title">@lang('view_pages.delivery_proof')</h3>
+                </div>
+
+                <div class="box-body">
+
+                    <img class="max-h" src="{{ $item->requestProofs()->first() }}" alt="">
+
+                </div>
+
+            </div>
+
             @endif
 
         </div>
