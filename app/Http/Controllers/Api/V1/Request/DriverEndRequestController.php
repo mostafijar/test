@@ -147,10 +147,7 @@ class DriverEndRequestController extends BaseController
         if ($request_detail->promo_id) {
             $promo_detail = $this->validateAndGetPromoDetail($request_detail->promo_id);
         }
-        Log::info("promo-detail");
-
-        Log::info($promo_detail);
-
+        
         $calculated_bill =  $this->calculateRideFares($zone_type_price, $distance, $duration, $waiting_time, $promo_detail,$request_detail);
 
         $calculated_bill['before_trip_start_waiting_time'] = $before_trip_start_waiting_time;
@@ -414,20 +411,14 @@ class DriverEndRequestController extends BaseController
         }
 
         $discount_amount = 0;
-        Log::info($coupon_detail);
 
         if ($coupon_detail) {
-            Log::info("coupon-exists");
             if ($coupon_detail->minimum_trip_amount < $sub_total) {
-            Log::info("yes-minimum");
 
                 $discount_amount = $sub_total * ($coupon_detail->discount_percent/100);
                 if ($discount_amount > $coupon_detail->maximum_discount_amount) {
                     $discount_amount = $coupon_detail->maximum_discount_amount;
                 }
-
-            Log::info("discount_amount");
-            Log::info($discount_amount);
             
                 $sub_total = $sub_total - $discount_amount;
             }
@@ -541,21 +532,15 @@ class DriverEndRequestController extends BaseController
 
 
         $discount_amount = 0;
-        Log::info($coupon_detail);
 
         if ($coupon_detail) {
-            Log::info("coupon-exists");
             if ($coupon_detail->minimum_trip_amount < $sub_total) {
-            Log::info("yes-minimum");
 
                 $discount_amount = $sub_total * ($coupon_detail->discount_percent/100);
                 if ($discount_amount > $coupon_detail->maximum_discount_amount) {
                     $discount_amount = $coupon_detail->maximum_discount_amount;
                 }
 
-            Log::info("discount_amount");
-            Log::info($discount_amount);
-            
                 $sub_total = $sub_total - $discount_amount;
             }
         }
@@ -609,7 +594,6 @@ class DriverEndRequestController extends BaseController
 
         $expired = Promo::where('id', $promo_code_id)->where('from', '<=', $current_date)->orWhere('to', '>=', $current_date)->first();
 
-        Log::info($expired);
 
         if ($expired==null) {
 
