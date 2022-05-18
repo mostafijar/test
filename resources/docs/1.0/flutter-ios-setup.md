@@ -65,10 +65,12 @@ GMSServices.provideAPIKey("your map key here")
 
 
 3. create development and distribution certificates.
+    
+    kindly refer this url for reference - https://medium.com/mobile-devops-ci-cd-ct/steps-to-create-ios-developer-and-distribution-certificates-with-and-without-a-mac-8449b973ef9d
 
 
 4. Create provisioning profiles for both development and distribution.
-
+    kindly refer this url for reference - https://clearbridgemobile.com/how-to-create-a-distribution-provisioning-profile-for-ios/
 
 5. Create APNS auth key for push notification.
 
@@ -80,12 +82,14 @@ GMSServices.provideAPIKey("your map key here")
 
 
 8. Download the googleservicePlist json from firebase.
-
+    
 
 9. Now open the project.
 
 
-10. Replace Googleservicelist json.
+10. add googleservice-Info.plist in project/ios/Runner/ or from xcode right click Runner and click Add files to runner and choose googleserviceInfo.plist file as shown in image.
+![image](../../images/flutter-doc/replace-google-services.png)
+
 
 
 11. copy the reversed client id from googleserviceplist.json and paste it in url scheme in Xcode / Runner / Info / url types as shown in image
@@ -133,7 +137,7 @@ GMSServices.provideAPIKey("your map key here")
      Icon-App-1024x1024@1x.png - (1024x1024) x1 size - 1024x1024
 
 
-13.in go to folder 'project/ios' and run command 'flutter build ios'
+13. in go to folder 'project/ios' and run command 'flutter build ios'
 
 
 14. to create archive file to upload run command 'flutter build ipa' from folder 'project/ios'.

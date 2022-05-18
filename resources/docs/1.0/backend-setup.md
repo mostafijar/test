@@ -105,9 +105,9 @@ DEFAULT_LNG=76.54545
 Steps
 
 * Find the node file by below path
-    "project-file/node/server.js"
+    "project-file/node/geofire.js"
 
-* run the server file by using pm2. "pm2 start server.js"
+* run the server file by using pm2. "pm2 start geofire.js"
 
 <a name="section-4"></a>
 ## Map Configuration
@@ -174,9 +174,7 @@ stopwaitsecs=3600
 <a name="section-7"></a>
 ## Translation
 
-* we have modified the translation package controller file for some reasons. so we have placed the controller file in the server-app folder named "Controller.php". you have to copy the file using below command or do the thing manually.
-
-cp  Controller.php vendor/barryvdh/laravel-translation-manager/src. 
+* We have used barryvdh/laravel-translation-manager for the admin app translations
 
 * For Mobile Translation keywords you need to enable the translation sheet api in google cloud console & get the api key from there & paste in to our .environment value below like this.
 

@@ -19,13 +19,19 @@
 <a name="section-1"></a>
 ## Introduction
 
-We are strongly suggested AWS or Azure VPS with ubuntu OS. Because it is quite easy to setup and maintain. For an AWS we can create EC2 T2 medium or large instance. After created an instance from AWS or AZURE. we need to install the required softwares below.
+We are strongly any VPS Server with ubuntu OS. Because it is quite easy to setup and maintain.
+
+* Minimum Server Requirements
+    * Any VPS server with UBUNTU Preferred
+    * 4 GB Ram
+    * 30 GB Storage
+    * vCPU 2 cores
 
 <a name="section-2"></a>
 ## Installation Instructions
 
-1. Create an Instance from AWS/AZURE
-2. Add Security groups
+1. Create an Instance OR Droplets
+2. Add Security groups/Enable Ports
 3. Install Apache
 4. Install PHP7.2 & above
 5. Install mysql
@@ -38,11 +44,27 @@ We are strongly suggested AWS or Azure VPS with ubuntu OS. Because it is quite e
 
 
 <a name="section-3"></a>
-## 1. Create an Instance from AWS/AZURE
+## 1. Create an Instance/Droplets
+
+* To Create an instance please follow the below link.
+
+    * Create Instance in AWS
+        https://docs.aws.amazon.com/efs/latest/ug/gs-step-one-create-ec2-resources.html
+
+    * Create Droplets in Digitalocean
+        https://docs.digitalocean.com/products/droplets/how-to/create/
+
 
 <a name="section-4"></a>
 ## 2. Add Security groups & enable the below port numbers
     * 1883,3000,3001,443,80,8080
+
+* To create security groups in AWS
+    https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html
+
+* To enable ports in VPS except AWS
+    https://www.cyberciti.biz/faq/how-to-open-firewall-port-on-ubuntu-linux-12-04-14-04-lts/
+
 
 <a name="section-5"></a>
 ## 3. Install Apache

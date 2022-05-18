@@ -293,7 +293,11 @@ applicationId "package name here"
 
 	* add package name here
 
+	```flutter
+		package com.project.name
+	```
 3. change folder name
+
 
  if your package name is com.package.android then,
 
