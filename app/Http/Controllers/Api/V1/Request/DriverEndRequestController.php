@@ -147,7 +147,10 @@ class DriverEndRequestController extends BaseController
         if ($request_detail->promo_id) {
             $promo_detail = $this->validateAndGetPromoDetail($request_detail->promo_id);
         }
+        Log::info("promo-detail");
 
+        Log::info($promo_detail);
+        
         $calculated_bill =  $this->calculateRideFares($zone_type_price, $distance, $duration, $waiting_time, $promo_detail,$request_detail);
 
         $calculated_bill['before_trip_start_waiting_time'] = $before_trip_start_waiting_time;
