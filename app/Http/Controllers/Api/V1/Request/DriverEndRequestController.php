@@ -411,6 +411,8 @@ class DriverEndRequestController extends BaseController
         }
 
         $discount_amount = 0;
+        Log::info($coupon_detail);
+
         if ($coupon_detail) {
             Log::info("coupon-exists");
             if ($coupon_detail->minimum_trip_amount < $sub_total) {
