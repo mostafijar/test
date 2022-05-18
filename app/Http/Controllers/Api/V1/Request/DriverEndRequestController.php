@@ -150,7 +150,7 @@ class DriverEndRequestController extends BaseController
         Log::info("promo-detail");
 
         Log::info($promo_detail);
-        
+
         $calculated_bill =  $this->calculateRideFares($zone_type_price, $distance, $duration, $waiting_time, $promo_detail,$request_detail);
 
         $calculated_bill['before_trip_start_waiting_time'] = $before_trip_start_waiting_time;
@@ -607,6 +607,7 @@ class DriverEndRequestController extends BaseController
             return null;
         }
 
+        return $expired;
         // $exceed_usage = PromoUser::where('promo_code_id', $expired->id)->where('user_id', $user_id)->get()->count();
 
         // if ($exceed_usage >= $expired->uses_per_user) {
