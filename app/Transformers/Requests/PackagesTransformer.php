@@ -100,6 +100,7 @@ class PackagesTransformer extends Transformer
                 'is_default'=>$type->zone->default_vehicle_type==$type->type_id?true:false,
                 'discounted_totel'=>0,
                 'has_discount'=>false,
+                'promocode_id'=>null,
             );
 
             if (request()->has('promo_code') && request()->input('promo_code')) {
@@ -115,6 +116,7 @@ class PackagesTransformer extends Transformer
             $zone_types[$key]['discounted_totel'] = $coupon_applied_sub_total;
 
             $zone_types[$key]['has_discount'] = true;
+            $zone_types[$key]['promocode_id'] = $coupon_detail->id;
             }else{
             $this->throwCustomException('promo cannot be used to your trip amount');
 
