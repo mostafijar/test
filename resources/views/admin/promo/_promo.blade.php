@@ -5,7 +5,7 @@
             <th> @lang('view_pages.code')</th>
             <th> @lang('view_pages.from')</th>
             <th> @lang('view_pages.to')</th>
-            <th> @lang('view_pages.promo_total_uses')</th>
+            <!-- <th> @lang('view_pages.promo_total_uses')</th> -->
             <th> @lang('view_pages.status')</th>
             <th> @lang('view_pages.action')</th>
         </tr>
@@ -21,7 +21,7 @@
             <td>{{ $result->code }}</td>
             <td>{{ $result->from_date }}</td>
             <td>{{ $result->to_date }}</td>
-            <td>{{ $result->total_uses }}</td>
+            <!-- <td>{{ $result->total_uses }}</td> -->
             @if($result->active)
                 <td><span class="label label-success">@lang('view_pages.active')</span></td>
             @else
