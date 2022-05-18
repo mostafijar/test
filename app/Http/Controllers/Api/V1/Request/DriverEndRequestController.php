@@ -541,12 +541,21 @@ class DriverEndRequestController extends BaseController
 
 
         $discount_amount = 0;
+        Log::info($coupon_detail);
+
         if ($coupon_detail) {
+            Log::info("coupon-exists");
             if ($coupon_detail->minimum_trip_amount < $sub_total) {
-                $discount_amount = $sub_total * ($coupon_detail->coupon_detail/100);
+            Log::info("yes-minimum");
+
+                $discount_amount = $sub_total * ($coupon_detail->discount_percent/100);
                 if ($discount_amount > $coupon_detail->maximum_discount_amount) {
                     $discount_amount = $coupon_detail->maximum_discount_amount;
                 }
+
+            Log::info("discount_amount");
+            Log::info($discount_amount);
+            
                 $sub_total = $sub_total - $discount_amount;
             }
         }

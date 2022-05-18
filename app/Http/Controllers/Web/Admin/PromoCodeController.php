@@ -57,7 +57,7 @@ class PromoCodeController extends BaseController
 
     public function store(CreatePromoRequest $request)
     {
-        $created_params = $request->only(['code','service_location_id','minimum_trip_amount','maximum_discount_amount','discount_percent','total_uses','uses_per_user']);
+        $created_params = $request->only(['code','service_location_id','minimum_trip_amount','maximum_discount_amount','discount_percent']);
 
         $created_params['from'] = now()->parse($request->from)->startOfDay()->toDateTimeString();
         $created_params['to'] = now()->parse($request->to)->endOfDay()->toDateTimeString();
