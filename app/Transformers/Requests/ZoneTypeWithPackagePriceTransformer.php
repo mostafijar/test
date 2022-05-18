@@ -46,6 +46,7 @@ class ZoneTypeWithPackagePriceTransformer extends Transformer
             'payment_type'=>$zone_type['payment_type'],
             'discounted_totel'=>$zone_type['discounted_totel'],
             'has_discount'=>$zone_type['has_discount'],
+            'promocode_id'=>$zone_type['promocode_id'],
         ];
 
 
