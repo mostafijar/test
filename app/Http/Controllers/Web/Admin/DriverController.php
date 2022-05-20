@@ -110,12 +110,12 @@ class DriverController extends BaseController
     /**
     * Fetch all drivers
     */
-    public function getAllDrivers(QueryFilterContract $queryFilter)
+    public function getApprovedDrivers(QueryFilterContract $queryFilter)
     {
         $url = request()->fullUrl(); //get full url
         return cache()->tags('drivers_list')->remember($url, Carbon::parse('10 minutes'), function () use ($queryFilter) {
             if (access()->hasRole(RoleSlug::SUPER_ADMIN)) {
-                $query = Driver::orderBy('created_at', 'desc');
+                $query = Driver::where('approve', true)->orderBy('created_at', 'desc');
                 if (env('APP_FOR')=='demo') {
                     $query = Driver::whereHas('user', function ($query) {
                         $query->whereCompanyKey(auth()->user()->company_key);
@@ -127,6 +127,37 @@ class DriverController extends BaseController
                 // $query = Driver::orderBy('created_at', 'desc');
             }
             $results = $queryFilter->builder($query)->customFilter(new DriverFilter)->paginate();
+
+            return view('admin.drivers._drivers', compact('results'))->render();
+        });
+    }
+    public function approvalPending()
+    {
+        $page = trans('pages_names.drivers');
+        $main_menu = 'drivers';
+        $sub_menu = 'driver_approval_pending';
+        $services = ServiceLocation::whereActive(true)->companyKey()->get();
+        return view('admin.drivers.pending-for-approval', compact('page', 'main_menu', 'sub_menu','services'));
+    }
+    public function getApprovalPendingDrivers(QueryFilterContract $queryFilter)
+    {
+        $url = request()->fullUrl(); //get full url        
+        return cache()->tags('drivers_list')->remember($url, Carbon::parse('10 minutes'), function () use ($queryFilter) {
+            if (access()->hasRole(RoleSlug::SUPER_ADMIN)) {
+                $query = Driver::where('approve', false)->orderBy('created_at', 'desc');
+
+                if (env('APP_FOR')=='demo') {
+                    $query = Driver::whereHas('user', function ($query) {
+                        $query->whereCompanyKey(auth()->user()->company_key);
+                    })->orderBy('created_at', 'desc');
+                }
+            } else {
+                $this->validateAdmin();
+                $query = $this->driver->where('service_location_id', auth()->user()->admin->service_location_id)->orderBy('created_at', 'desc');
+                // $query = Driver::orderBy('created_at', 'desc');
+            }
+            $results = $queryFilter->builder($query)->customFilter(new DriverFilter)->paginate();
+        // dd($results);
 
             return view('admin.drivers._drivers', compact('results'))->render();
         });

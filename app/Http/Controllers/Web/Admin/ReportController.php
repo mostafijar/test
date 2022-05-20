@@ -74,6 +74,7 @@ class ReportController extends Controller
 
     public function downloadReport(Request $request, QueryFilterContract $queryFilter)
     {
+
         $method = "download".$request->model."Report";
 
         $filename = $this->$method($request, $queryFilter);
@@ -165,6 +166,8 @@ class ReportController extends Controller
 
     public function downloadTravelReport(Request $request, QueryFilterContract $queryFilter)
     {
+        // dd($data);
+        
         $format = $request->format;
 
         $query = RequestRequest::companyKey();

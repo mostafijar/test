@@ -174,8 +174,13 @@ Route::middleware('auth:web')->group(function () {
 
         Route::group(['prefix' => 'drivers'], function () {
             // prefix('drivers')->group(function () {
-            Route::get('/', 'DriverController@index');
-            Route::get('/fetch', 'DriverController@getAllDrivers');
+        Route::get('/', 'DriverController@index');
+        Route::get('/fetch/approved', 'DriverController@getApprovedDrivers');
+
+        Route::get('/waiting-for-approval', 'DriverController@approvalPending');
+        // Route::get('/fetch', 'DriverController@getAllDrivers');
+        Route::get('/fetch/approval-pending-drivers', 'DriverController@getApprovalPendingDrivers');
+            
             Route::get('/create', 'DriverController@create');
             Route::post('store', 'DriverController@store');
             Route::get('/{driver}', 'DriverController@getById');

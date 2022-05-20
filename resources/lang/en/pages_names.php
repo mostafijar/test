@@ -92,5 +92,7 @@ return array(
   'scheduled_rides' => 'Scheduled Rides',
   'airport'=>'Airport',
   'withdrawal_requests'=>'Withdrawal Requests',
-  'goods_types'=>'Goods Types'
+  'goods_types'=>'Goods Types',
+  'approved_drivers' => 'Approved Drivers',
+  'pending_approvals' => 'Approval Pending Drivers',
 );

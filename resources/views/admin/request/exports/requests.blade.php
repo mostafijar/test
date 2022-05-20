@@ -11,9 +11,13 @@
             <th> @lang('view_pages.is_paid_status')</th>
             <th> @lang('view_pages.payment_option')</th>
             <th> @lang('view_pages.vehicle_type')</th>
+
+            <th> @lang('view_pages.goods_type_and_quantity')</th>
+            <th> @lang('view_pages.ride_type')</th> 
+
             <th> @lang('view_pages.trip_time')</th>
             <th> @lang('view_pages.trip_distance')</th>
-            <th> @lang('view_pages.driver_commission')</th>
+            <th> @lang('view_pages.driver_commission')</th>               
             <th> @lang('view_pages.admin_commission')</th>
             <th> @lang('view_pages.total_amount')</th>
         </tr>
@@ -58,6 +62,33 @@
                 @endif
 
                 <td>{{ $result->vehicle_type_name }}</td>
+
+                <td>{{ $result->goodsTypeDetail->goods_type_name }} - {{$result->goods_type_quantity }}
+                    </td>
+
+            @php
+               $later = $result->is_later;  
+               $rental = $result->is_rental;
+             @endphp
+             @if($later == 0)
+
+                @if(($later == 0) &&  ($rental == 0))           
+                <td><span class="label label-success"> Regular-Instant </span> </td>
+                @else(($later == 0) &&  ($rental == 1)) 
+                <td><span class="label label-success"> Rental-Instant </span> </td>
+                @endif
+
+            @else($later == 1)
+               
+                @if(($later == 1) &&  ($rental == 0))           
+                <td><span class="label label-success"> Regular-Scheduled </span></td>
+                @else(($later == 1) &&  ($rental == 1 )) 
+                <td><span class="label label-success"> Rental-Scheduled </span></td>
+                @endif
+               
+            @endif
+
+
                 <td>{{ $result->total_time .' Mins' }}</td>
                 <td>{{ $result->total_distance .'  '. $result->request_unit}}</td>
                 <td>{{ $result->requestBill ? $result->currency .' '. $result->requestBill->driver_commision : '-' }}</td>

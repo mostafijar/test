@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Company page')
+@section('title', 'Company Page')
 
 @section('content')
     <style>
@@ -117,7 +117,7 @@
                     </div>
 
                     <div id="js-drivers-partial-target">
-                        <include-fragment src="drivers/fetch/approved">
+                        <include-fragment src="fetch/approval-pending-drivers">
                             <span style="text-align: center;font-weight: bold;"> Loading...</span>
                         </include-fragment>
                     </div>
@@ -190,7 +190,6 @@
                 e.preventDefault();
 
                 let url = $(this).attr('data-url');
-
                 swal({
                     title: "Are you sure to delete ?",
                     type: "error",
@@ -286,8 +285,9 @@
 
             $(function() {
   $('table.container').on("click", "tr.table-tr", function() {
+        e.preventDefault();
     window.location = $(this).data("url");
-    //alert($(this).data("url"));
+    alert($(this).data("url"));
   });
 });
 

@@ -230,9 +230,17 @@
         <ul class="treeview-menu">
           @if(auth()->user()->can('view-drivers'))
           <li class="{{ 'driver_details' == $sub_menu ? 'active' : '' }}">
-            <a href="{{url($route)}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.driver_details')</a>
+            <a href="{{url($route)}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.approved_drivers')</a>
           </li>
           @endif
+
+          @if(auth()->user()->can('view-drivers'))
+          <li class="{{ 'driver_approval_pending' == $sub_menu ? 'active' : '' }}">
+            <a href="{{url('/drivers/waiting-for-approval')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.pending_approvals')</a>
+          </li>
+          @endif
+          
+
           @if(auth()->user()->can('view-drivers') && !auth()->user()->hasRole('owner'))
           <li class="{{ 'driver_ratings' == $sub_menu ? 'active' : '' }}">
             <a href="{{url('/driver-ratings')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.driver_ratings')</a>

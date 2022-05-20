@@ -473,5 +473,9 @@ return array(
     'enter_maximum_weight_can_carry'=>'Enter Maximum Weight Can Carry(eg:1 ton, 500KG,etc)',
     'size'=>'Size',
     'enter_size'=>'Enter Size(eg: 7ft x 4.5ft x 5.5ft)',
-    'delivery_proof'=>'Delivery Proof'
+    'delivery_proof'=>'Delivery Proof',
+    'goods_type_and_quantity'=>'Goods Type',
+    'ride_type'=>'Ride Type'
+
+
 );

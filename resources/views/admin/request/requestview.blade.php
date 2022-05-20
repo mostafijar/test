@@ -88,6 +88,8 @@ max-height: 200px;
                                 <th>@lang('view_pages.zone')</th>
                                 <th>@lang('view_pages.type')</th>
                                 <th>@lang('view_pages.trip_time')</th>
+                                <th>@lang('view_pages.goods_type_and_quantity')</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -95,6 +97,8 @@ max-height: 200px;
                                 <td>{{ $item->zoneType->zone->name }}</td>
                                 <td>{{ $item->zoneType->vehicleType->name }}</td>
                                 <td>{{ $item->trip_start_time }}</td>
+                                <td>{{ $item->goodsTypeDetail->goods_type_name }} - {{$item->goods_type_quantity }}</td>
+
                             </tr>
                         </tbody>
                     </table>
@@ -152,7 +156,7 @@ max-height: 200px;
                                 <td>{{ $item->driverDetail->name }}</td>
                                 <td>{{ $item->driverDetail->email }}</td>
                                 <td>{{ $item->driverDetail->mobile }}</td>
-                                <td>{{ $item->driverDetail->driverDetail->rating }}</td>
+                                <td>{{ $item->driverDetail->rating }}</td>
                             </tr>
                         </tbody>
                     </table>
