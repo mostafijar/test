@@ -170,7 +170,7 @@
                         <div class="display-4 fs-4 mb-2 font-weight-normal font-sans-serif text-warning"
                             data-countup="{&quot;endValue&quot;:58.386,&quot;decimalPlaces&quot;:2,&quot;suffix&quot;:&quot;k&quot;}">
                             {{ $total_drivers[0]['decline'] }}</div><a class="font-weight-semi-bold fs--1 text-nowrap"
-                            href="{{url('drivers')}}">See all<span class="fa fa-angle-right ml-1" data-fa-transform="down-1"></span></a>
+                            href="{{url('/drivers/waiting-for-approval')}}">See all<span class="fa fa-angle-right ml-1" data-fa-transform="down-1"></span></a>
                     </div>
                 </div>
             </div>

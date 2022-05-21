@@ -37,6 +37,7 @@ class RequestController extends Controller
 
     public function getSingleRequest(RequestRequest $request)
     {
+        // dd($request);
         $page = trans('pages_names.request');
         $main_menu = 'trip-request';
         $sub_menu = 'request';
