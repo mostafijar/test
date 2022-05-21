@@ -1,3 +1,11 @@
+@php
+  
+
+if(str_contains((string)request()->path(),'translations')){
+  $main_menu = 'settings';
+  $sub_menu = 'translations';
+}
+@endphp
 <aside class="main-sidebar">
   <!-- sidebar-->
   <section class="sidebar">
