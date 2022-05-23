@@ -475,7 +475,8 @@ return array(
     'enter_size'=>'Enter Size(eg: 7ft x 4.5ft x 5.5ft)',
     'delivery_proof'=>'Delivery Proof',
     'goods_type_and_quantity'=>'Goods Type',
-    'ride_type'=>'Ride Type'
-
-
+    'ride_type'=>'Ride Type',
+    'enable_rental_ride' => 'Enable Rental Ride',
+    'enable_otp_tripstart' => 'Enable Otp Trip Start',
+    'enable_delivery_start_and_end_of_ride' =>'Enable Delivery Start And End Of Ride',
 );
