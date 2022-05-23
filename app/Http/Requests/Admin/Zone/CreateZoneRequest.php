@@ -15,7 +15,7 @@ class CreateZoneRequest extends BaseRequest
     {
         return [
             // 'name' => 'required|max:50|unique:zones,name',
-            // 'unit'=>'required|in:1,2'
+            // 'unit'=>'required|in:1,2',
 
         ];
     }

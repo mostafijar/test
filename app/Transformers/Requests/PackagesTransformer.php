@@ -118,7 +118,7 @@ class PackagesTransformer extends Transformer
             $zone_types[$key]['has_discount'] = true;
             $zone_types[$key]['promocode_id'] = $coupon_detail->id;
             }else{
-            $this->throwCustomException('promo cannot be used to your trip amount');
+            // $this->throwCustomException('promo cannot be used to your trip amount');
 
             }
 
