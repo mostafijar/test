@@ -82,6 +82,8 @@ class TripRequestTransformer extends Transformer
             'pickup_poc_mobile'=>$request->requestPlace->pickup_poc_mobile,
             'drop_poc_name'=>$request->requestPlace->drop_poc_name,
             'drop_poc_mobile'=>$request->requestPlace->drop_poc_mobile,
+            'pickup_poc_instruction'=>$request->requestPlace->pickup_poc_instruction,
+            'drop_poc_instruction'=>$request->requestPlace->drop_poc_instruction,
             'requested_currency_code'=>$request->requested_currency_code,
             'requested_currency_symbol'=>$request->requested_currency_symbol,
             'user_cancellation_fee'=>0,

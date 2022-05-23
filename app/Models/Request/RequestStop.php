@@ -18,7 +18,7 @@ class RequestStop extends Model
      *
      * @var array
      */
-    protected $fillable = ['request_id','address','latitude','longitude','poc_name','poc_mobile','order'];
+    protected $fillable = ['request_id','address','latitude','longitude','poc_name','poc_mobile','order','poc_instruction'];
 
     /**
      * The relationships that can be loaded with query string filtering includes.

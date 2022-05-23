@@ -31,6 +31,7 @@ class RequestStopsTransformer extends Transformer
             'longitude' => $request->longitude,
             'poc_name' => $request->poc_name,
             'poc_mobile' => $request->poc_mobile,
+            'poc_instruction' => $request->poc_instruction,
             'order'=>$request->order
         ];
     }

@@ -29,49 +29,7 @@ use App\Base\Constants\Masters\PushEnums;
 class FlutterWaveController extends ApiController
 {
 
-    /**
-     * Initialize Payment
-     * 
-     * 
-     * 
-     * */
-    public function initialize(Request $request){
 
-        $paystack_initialize_url = 'https://api.paystack.co/transaction/initialize';
-
-        $headers = [
-            'Authorization:Bearer '.env('PAYSTACK_TEST_SECRET_KEY'),
-            'Content-Type:application/json'
-            ];
-
-        $customer_email = auth()->user()->email;
-
-        $amount = $request->amount;
-
-        $query = [
-            'email'=> $customer_email,
-            'amount'=>$request->amount
-            ];
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $paystack_initialize_url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($query));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        $result = curl_exec($ch);
-
-
-        if ($result) {
-            $result = json_decode($result);
-            return response()->json($result);
-        }
-
-        return $this->respondFailed();
-
-
-
-    }
 
     /**
     * Add money to wallet
