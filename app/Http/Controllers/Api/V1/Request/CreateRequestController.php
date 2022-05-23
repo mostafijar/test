@@ -179,6 +179,7 @@ class CreateRequestController extends BaseController
                 'longitude'=>$stop->longitude,
                 'poc_name'=>$stop->poc_name,
                 'poc_mobile'=>$stop->poc_mobile,
+                'poc_instruction'=>$stop->poc_instruction,
                 'order'=>$stop->order]);
 
             }
@@ -194,6 +195,8 @@ class CreateRequestController extends BaseController
             'drop_address'=>$request->drop_address,
             'pickup_poc_name'=>$request->pickup_poc_name,
             'pickup_poc_mobile'=>$request->pickup_poc_mobile,
+            'pickup_poc_instruction'=>$request->pickup_poc_instruction,
+            'drop_poc_instruction'=>$request->drop_poc_instruction,
             'drop_poc_name'=>$request->drop_poc_name,
             'drop_poc_mobile'=>$request->drop_poc_mobile
         ];
@@ -391,6 +394,7 @@ class CreateRequestController extends BaseController
                 'longitude'=>$stop->longitude,
                 'poc_name'=>$stop->poc_name,
                 'poc_mobile'=>$stop->poc_mobile,
+                'poc_instruction'=>$stop->poc_instruction,
                 'order'=>$stop->order]);
 
             }
@@ -406,6 +410,8 @@ class CreateRequestController extends BaseController
             'drop_address'=>$request->drop_address,
             'pickup_poc_name'=>$request->pickup_poc_name,
             'pickup_poc_mobile'=>$request->pickup_poc_mobile,
+            'pickup_poc_instruction'=>$request->pickup_poc_instruction,
+            'drop_poc_instruction'=>$request->drop_poc_instruction,
             'drop_poc_name'=>$request->drop_poc_name,
             'drop_poc_mobile'=>$request->drop_poc_mobile
         ];
