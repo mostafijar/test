@@ -76,6 +76,6 @@ class Settings
     const ENABLE_PAYMOB='enable-paymob';
     const ENABLE_RENTAL_RIDE ='enable_rental_ride';
     const ENABLE_OTP_TRIPSTART ='enable_otp_tripstart';
-    const ENABLE_DELIVERY_START_AND_END_OF_RIDE = 'enable_delivery_start_and_end_of_ride';
+    const ENABLE_DIGITAL_SIGNATURE_AT_THE_END_OF_RIDE = 'enable_digital_signatur_at_the_end_of_ride';
 
 }
