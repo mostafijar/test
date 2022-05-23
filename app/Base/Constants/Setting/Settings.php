@@ -74,5 +74,8 @@ class Settings
     const CASH_FREE_PRODUCTION_CLIENT_SECRET_FOR_PAYOUT = 'cash_free_production_secret_for_payout';
     const ENABLE_RAZOR_PAY='enable-razor-pay';
     const ENABLE_PAYMOB='enable-paymob';
+    const ENABLE_RENTAL_RIDE ='enable_rental_ride';
+    const ENABLE_OTP_TRIPSTART ='enable_otp_tripstart';
+    const ENABLE_DELIVERY_START_AND_END_OF_RIDE = 'enable_delivery_start_and_end_of_ride';
 
 }
