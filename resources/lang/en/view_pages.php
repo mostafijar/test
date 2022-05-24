@@ -486,4 +486,6 @@ return array(
     'paystack_production_publishable_key'=>'Paystack Live Publishable Key',
     'razor_pay_test_api_key'=>'Razor Pay Test Api Key',
     'razor_pay_live_api_key'=>'Razor Pay Live Api Key',
+    'razor_pay_environment'=>'Razor Pay Environment',
+    'enable-cashfree'=>'Enable Cashfree'
 );
