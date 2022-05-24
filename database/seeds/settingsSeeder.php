@@ -414,14 +414,14 @@ class SettingsSeeder extends Seeder
             'value' => 'rzp_test_L58xOhOjEMu6wF',
             'field' => SettingValueType::TEXT,
             'option_value' => null,
-            'group_name' => SettingSubGroup::PAYSTACK_SETTINGS,
+            'group_name' => SettingSubGroup::RAZOR_PAY_SETTINGS,
         ],
         SettingSlug::RAZOR_PAY_LIVE_API_KEY => [
             'category'=>SettingCategory::INSTALLATION,
             'value' => 'rzp_test_L58xOhOjEMu6wF',
             'field' => SettingValueType::TEXT,
             'option_value' => null,
-            'group_name' => SettingSubGroup::PAYSTACK_SETTINGS,
+            'group_name' => SettingSubGroup::RAZOR_PAY_SETTINGS,
         ],
         SettingSlug::REFERRAL_COMMISION_FOR_USER => [
             'category'=>SettingCategory::REFERRAL,

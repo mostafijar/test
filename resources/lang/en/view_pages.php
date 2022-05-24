@@ -479,4 +479,11 @@ return array(
     'enable_rental_ride' => 'Enable Rental Ride',
     'enable_otp_tripstart' => 'Enable Otp Trip Start',
     'enable_digital_signatur_at_the_end_of_ride' =>'Enable Digital Signatue At The End Of Ride',
+    'stripe_settings'=>'Stripe Settings',
+    'stripe_test_publishable_key'=>'Stripe Test Publishable Key',
+    'stripe_live_publishable_key'=>'Stripe Live Publishable key',
+    'paystack_test_publishable_key'=>'Paystack Test Publishable Key',
+    'paystack_production_publishable_key'=>'Paystack Live Publishable Key',
+    'razor_pay_test_api_key'=>'Razor Pay Test Api Key',
+    'razor_pay_live_api_key'=>'Razor Pay Live Api Key',
 );
