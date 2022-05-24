@@ -244,6 +244,10 @@ class PaymentController extends BaseController
 
             $stripe_environment = 'test';
 
+        }else{
+
+            $stripe_environment = 'production';
+
         }
         if(get_settings(Settings::ENABLE_STRIPE)==1){
 
@@ -285,6 +289,17 @@ class PaymentController extends BaseController
             $enable_paymob = true;
         }
 
+
+        $stripe_test_publishable_key = get_settings(Settings::STRIPE_TEST_PUBLISHABLE_KEY);
+        $stripe_live_publishable_key = get_settings(Settings::STRIPE_LIVE_PUBLISHABLE_KEY);
+        //Razor pay api keys
+        $razorpay_test_api_key = get_settings(Settings::RAZOR_PAY_TEST_API_KEY);
+        $razorpay_live_api_key = get_settings(Settings::RAZOR_PAY_LIVE_API_KEY);
+
+        //Paystack keys
+        $paystack_test_publishable_key = get_settings(Settings::PAYSTACK_TEST_PUBLISHABLE_KEY);
+        $paystack_live_publishable_key = get_settings(Settings::PAYSTACK_PRODUCTION_PUBLISHABLE_KEY);
+
         return response()->json(['success'=>true,
             'message'=>'wallet_history_listed',
             'wallet_balance'=>$wallet_balance,
@@ -300,7 +315,24 @@ class PaymentController extends BaseController
             'flutter_wave'=>$enable_flutter_wave,
             'paymob'=>$enable_paymob,
             'bank_info_exists'=>$bank_info_exists,
-            'stripe_environment'=>$stripe_environment]);
+            'stripe_environment'=>$stripe_environment,
+            'stripe_live_publishable_key'=>$stripe_live_publishable_key,
+            'stripe_live_publishable_key'=>$stripe_live_publishable_key,
+            'razor_pay_environment'=>get_settings(Settings::RAZOR_PAY_ENVIRONMENT),
+            'razorpay_test_api_key'=>$razorpay_test_api_key,
+            'razorpay_live_api_key'=>$razorpay_live_api_key,
+            'paystack_environment'=>get_settings(Settings::PAYSTACK_ENVIRONMENT),
+            'paystack_test_publishable_key'=>$paystack_test_publishable_key,
+            'paystack_live_publishable_key'=>$paystack_live_publishable_key,
+            'flutterwave_environment'=>get_settings(Settings::FLUTTER_WAVE_ENVIRONMENT),
+            'flutter_wave_test_secret_key'=>get_settings(Settings::FLUTTER_WAVE_TEST_SECRET_KEY),
+            'flutter_wave_test_secret_key'=>get_settings(Settings::FLUTTER_WAVE_PRODUCTION_SECRET_KEY),
+            'cashfree_environment'=>get_settings(Settings::CASH_FREE_ENVIRONMENT),
+            'cashfree_test_app_id'=>get_settings(Settings::CASH_FREE_TEST_APP_ID),
+            'cashfree_live_app_id'=>get_settings(Settings::CASH_FREE_PRODUCTION_APP_ID),
+
+
+        ]);
 
         // return $this->respondSuccess($result, 'wallet_history_listed');
     }

@@ -77,5 +77,11 @@ class Settings
     const ENABLE_RENTAL_RIDE ='enable_rental_ride';
     const ENABLE_OTP_TRIPSTART ='enable_otp_tripstart';
     const ENABLE_DELIVERY_START_AND_END_OF_RIDE = 'enable_delivery_start_and_end_of_ride';
+    const STRIPE_TEST_PUBLISHABLE_KEY='stripe_test_publishable_key';
+    const STRIPE_LIVE_PUBLISHABLE_KEY='stripe_live_publishable_key';
+    const RAZOR_PAY_TEST_API_KEY='razor_pay_test_api_key';
+    const RAZOR_PAY_LIVE_API_KEY='razor_pay_live_api_key';
+    const PAYSTACK_TEST_PUBLISHABLE_KEY='paystack_test_publishable_key';
+    const PAYSTACK_PRODUCTION_PUBLISHABLE_KEY='paystack_production_publishable_key';
 
 }
