@@ -380,14 +380,14 @@ class SettingsSeeder extends Seeder
         ],
             SettingSlug::CASH_FREE_SECRET_KEY => [
             'category'=>SettingCategory::INSTALLATION,
-            'value' => 'c07b52495da5f0cfd2e91f6c75b715718cf1b425',
+            'value' => '9fbbd7bf43e9470cb3cc6e6a36839258ebcd5ebf',
             'field' => SettingValueType::TEXT,
             'option_value' => null,
             'group_name' => SettingSubGroup::CASH_FREE_SETTINGS,
         ],
         SettingSlug::CASH_FREE_PRODUCTION_SECRET_KEY => [
             'category'=>SettingCategory::INSTALLATION,
-            'value' => 'c07b52495da5f0cfd2e91f6c75b715718cf1b425',
+            'value' => '9fbbd7bf43e9470cb3cc6e6a36839258ebcd5ebf',
             'field' => SettingValueType::TEXT,
             'option_value' => null,
             'group_name' => SettingSubGroup::CASH_FREE_SETTINGS,
