@@ -478,5 +478,5 @@ return array(
     'ride_type'=>'Ride Type',
     'enable_rental_ride' => 'Enable Rental Ride',
     'enable_otp_tripstart' => 'Enable Otp Trip Start',
-    'enable_delivery_start_and_end_of_ride' =>'Enable Delivery Start And End Of Ride',
+    'enable_digital_signatur_at_the_end_of_ride' =>'Enable Digital Signatue At The End Of Ride',
 );

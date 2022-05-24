@@ -100,7 +100,7 @@ class SettingsSeeder extends Seeder
             'option_value' => '{"yes":1,"no":0}',
             'group_name' => null,
         ],
-         SettingSlug::ENABLE_DELIVERY_START_AND_END_OF_RIDE => [
+         SettingSlug::ENABLE_DIGITAL_SIGNATURE_AT_THE_END_OF_RIDE => [
             'category'=>SettingCategory::TRIP_SETTINGS,
             'value' => '1',
             'field' => SettingValueType::SELECT,

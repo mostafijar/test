@@ -73,6 +73,7 @@ class Settings
     const CASH_FREE_TEST_CLIENT_SECRET_FOR_PAYOUT = 'cash_free_test_secret_for_payout';
     const CASH_FREE_PRODUCTION_CLIENT_SECRET_FOR_PAYOUT = 'cash_free_production_secret_for_payout';
     const ENABLE_RAZOR_PAY='enable-razor-pay';
+    const RAZOR_PAY_ENVIRONMENT='razor_pay_environment';
     const ENABLE_PAYMOB='enable-paymob';
     const ENABLE_RENTAL_RIDE ='enable_rental_ride';
     const ENABLE_OTP_TRIPSTART ='enable_otp_tripstart';
@@ -83,5 +84,6 @@ class Settings
     const RAZOR_PAY_LIVE_API_KEY='razor_pay_live_api_key';
     const PAYSTACK_TEST_PUBLISHABLE_KEY='paystack_test_publishable_key';
     const PAYSTACK_PRODUCTION_PUBLISHABLE_KEY='paystack_production_publishable_key';
+    const ENABLE_DIGITAL_SIGNATURE_AT_THE_END_OF_RIDE = 'enable_digital_signatur_at_the_end_of_ride';
 
 }
