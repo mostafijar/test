@@ -46,6 +46,8 @@ class Settings
     const FIREBASE_MESSAGIN_SENDER_ID='firebase-messaging-sender-id';
     const FIREBASE_APP_ID='firebase-app-id';
     const FIREBASE_MEASUREMENT_ID='firebase-measurement-id';
+    
+
     const ENABLE_PAYSTACK='enable-paystack';
     const PAYSTACK_ENVIRONMENT='paystack-environment';
     const PAYSTACK_TEST_SECRET_KEY='paystack-test-secret-key';
