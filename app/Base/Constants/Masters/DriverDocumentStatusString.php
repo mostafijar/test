@@ -11,4 +11,5 @@ class DriverDocumentStatusString
     const REUPLOADED_AND_WAITING_FOR_APPROVAL = 'Reuploaded And Waiting For Approval';
     const REUPLOADED_AND_DECLINED = 'Reuploaded And Declined';
     const EXPIRED_AND_DECLINED = 'Expired And Declined';
+    const EXPIRED='Expired';
 }

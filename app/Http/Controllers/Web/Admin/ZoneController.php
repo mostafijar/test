@@ -205,6 +205,13 @@ class ZoneController extends BaseController
     */
     public function update(Zone $zone, CreateZoneRequest $request)
     {
+        
+        if (env('APP_FOR')=='demo') {
+            $message = trans('succes_messages.you_are_not_authorised');
+
+            return redirect('zone')->with('warning', $message);
+        }
+        
         // dd($request->coordinates);
         $updated_params = $request->only(['unit']);
         $updated_params['service_location_id'] = $request->admin_id;
