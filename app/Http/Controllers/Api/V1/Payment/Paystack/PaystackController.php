@@ -107,12 +107,12 @@ class PaystackController extends ApiController
         $user_currency_code = auth()->user()->countryDetail->currency_code?:env('SYSTEM_DEFAULT_CURRENCY');
 
         // Convert the amount to USD to any currency
-        $converted_amount_array =  convert_currency_to_usd($user_currency_code, $request->input('amount'));
+        // $converted_amount_array =  convert_currency_to_usd($user_currency_code, $request->input('amount'));
 
-        $converted_amount = $converted_amount_array['converted_amount'];
-        $converted_type = $converted_amount_array['converted_type'];
+        // $converted_amount = $converted_amount_array['converted_amount'];
+        // $converted_type = $converted_amount_array['converted_type'];
 
-        $conversion = $converted_type.':'.$request->amount.'-'.$converted_amount;
+        // $conversion = $converted_type.':'.$request->amount.'-'.$converted_amount;
         $transaction_id = $request->payment_id;
             $user = auth()->user();
             
@@ -137,7 +137,6 @@ class PaystackController extends ApiController
             'user_id'=>$user_id,
             'amount'=>$request->amount,
             'transaction_id'=>$transaction_id,
-            'conversion'=>$conversion,
             'remarks'=>WalletRemarks::MONEY_DEPOSITED_TO_E_WALLET,
             'is_credit'=>true]);
 

@@ -473,11 +473,11 @@ class DriverController extends BaseController
         
         $user_currency_code = env('SYSTEM_DEFAULT_CURRENCY');
          
-        $converted_amount_array =  convert_currency_to_usd($user_currency_code, $request->input('amount'));
+        // $converted_amount_array =  convert_currency_to_usd($user_currency_code, $request->input('amount'));
 
-        $converted_amount = $converted_amount_array['converted_amount'];
-        $converted_type = $converted_amount_array['converted_type'];
-        $conversion = $converted_type.':'.$request->amount.'-'.$converted_amount;
+        // $converted_amount = $converted_amount_array['converted_amount'];
+        // $converted_type = $converted_amount_array['converted_type'];
+        // $conversion = $converted_type.':'.$request->amount.'-'.$converted_amount;
         $transaction_id = Str::random(6);
         
        
@@ -497,7 +497,6 @@ class DriverController extends BaseController
             'card_id'=>null,
             'amount'=>$request->amount,
             'transaction_id'=>$transaction_id,
-            'conversion'=>$conversion,
             'merchant'=>null,
             'remarks'=>WalletRemarks::MONEY_DEPOSITED_TO_E_WALLET_FROM_ADMIN,
             'is_credit'=>true]);

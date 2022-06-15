@@ -47,11 +47,11 @@ class DriverPayment implements DriverPaymentContract {
         // dd($user_currency_code);
 
         // Convert the amount to USD to any currency
-        $converted_amount_array =  convert_currency_to_usd($user_currency_code, $request->input('amount'));
+        // $converted_amount_array =  convert_currency_to_usd($user_currency_code, $request->input('amount'));
 
-        // dd($converted_amount_array);
-        $converted_amount = $converted_amount_array['converted_amount'];
-        $converted_type = $converted_amount_array['converted_type'];
+        // // dd($converted_amount_array);
+        // $converted_amount = $converted_amount_array['converted_amount'];
+        // $converted_type = $converted_amount_array['converted_type'];
 
         // get card detail
         // $card = CardInfo::find($request->input('card_id'));
@@ -59,7 +59,7 @@ class DriverPayment implements DriverPaymentContract {
         // Transfer money to admin account
         // $tranfer = $this->transferToAdminAccount($converted_amount, $card);
         // $merchant  = $tranfer->transaction->merchantAccountId;
-        $conversion = $converted_type.':'.$request->amount.'-'.$converted_amount;
+        // $conversion = $converted_type.':'.$request->amount.'-'.$converted_amount;
         $transaction_id = str_rand(7);
 
        
@@ -80,7 +80,6 @@ class DriverPayment implements DriverPaymentContract {
             'card_id'=>null,
             'amount'=>$request->amount,
             'transaction_id'=>null,
-            'conversion'=>$conversion,
             'merchant'=>null,
             'remarks'=>WalletRemarks::MONEY_DEPOSITED_TO_E_WALLET_FROM_ADMIN,
             'is_credit'=>true]);
