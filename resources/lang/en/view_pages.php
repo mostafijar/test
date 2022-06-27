@@ -171,7 +171,7 @@ return array(
   'offline' => 'Offline',
   'online' => 'Online',
   'approved' => 'Approved',
-  'driver_search_radius' => 'Driver Search radius',
+  'driver_search_radius' => 'Driver Search radius in Kilometer',
   'paid_status' => 'Paid Status',
   'completed' => 'Completed',
   'unpaid' => 'Unpaid',
