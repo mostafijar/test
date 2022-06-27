@@ -19,6 +19,7 @@ use App\Transformers\Requests\TripRequestTransformer;
 use App\Models\Admin\ZoneTypePackagePrice;
 use Illuminate\Support\Facades\Log;
 use App\Models\Request\RequestCancellationFee;
+use App\Base\Constants\Setting\Settings;
 
 /**
  * @group Driver-trips-apis
@@ -84,8 +85,8 @@ class DriverEndRequestController extends BaseController
         // Get currency code of Request
         $service_location = $request_detail->zoneType->zone->serviceLocation;
 
-        $currency_code = $service_location->currency_code;
-        $requested_currency_symbol = $service_location->currency_symbol;
+        $currency_code = get_settings(Settings::CURRENCY);
+        $requested_currency_symbol = get_settings(Settings::CURRENCY_SYMBOL);
 
         if (!$request_detail->is_later) {
             $ride_type = 1;

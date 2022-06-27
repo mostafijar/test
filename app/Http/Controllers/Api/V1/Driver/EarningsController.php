@@ -9,6 +9,7 @@ use App\Models\Request\RequestBill;
 use App\Models\Admin\DriverAvailability;
 use App\Base\Constants\Master\PaymentType;
 use App\Http\Controllers\Api\V1\BaseController;
+use App\Base\Constants\Setting\Settings;
 
 /**
  * @group Driver Earnings
@@ -67,7 +68,7 @@ class EarningsController extends BaseController
 
         $total_wallet_trip_count = $this->request->where('driver_id', $driver->id)->where('is_completed', 1)->whereDate('trip_start_time', $current_date)->where('payment_opt', '2')->get()->count();
 
-        $currency_symbol = auth()->user()->countryDetail->currency_symbol;
+        $currency_symbol = get_settings(Settings::CURRENCY_SYMBOL);
 
         return response()->json(['success'=>true,'message'=>'todays_earnings','data'=>['current_date'=>$converted_current_date,'total_trips_count'=>$total_trips,'total_trip_kms'=>$total_trip_kms,'total_earnings'=>$total_earnings,'total_cash_trip_amount'=>$total_cash_trip_amount,'total_wallet_trip_amount'=>$total_wallet_trip_amount,'total_cash_trip_count'=>$total_cash_trip_count,'total_wallet_trip_count'=>$total_wallet_trip_count,'currency_symbol'=>$currency_symbol,'total_hours_worked'=>$total_hours_worked]]);
     }
@@ -167,7 +168,7 @@ class EarningsController extends BaseController
 
         $total_wallet_trip_count = $this->request->where('driver_id', $driver->id)->where('is_completed', 1)->whereBetween('trip_start_time', $weeks)->where('payment_opt', '2')->get()->count();
 
-        $currency_symbol = auth()->user()->countryDetail->currency_symbol;
+        $currency_symbol = get_settings(Settings::CURRENCY_SYMBOL);
 
         return response()->json(['success'=>true,'message'=>'weekly_earnings','data'=>['week_days'=>$weekDays,'current_date'=>$converted_current_date,'current_week_number'=>$current_week_number,'start_of_week'=>$converted_start_of_week,'end_of_week'=>$converted_end_of_week,'disable_next_week'=>$disable_next_week,'disable_previous_week'=>$disable_previous_week,'total_trips_count'=>$total_trips,'total_trip_kms'=>$total_trip_kms,'total_earnings'=>$total_earnings,'total_cash_trip_amount'=>$total_cash_trip_amount,'total_wallet_trip_amount'=>$total_wallet_trip_amount,'total_cash_trip_count'=>$total_cash_trip_count,'total_wallet_trip_count'=>$total_wallet_trip_count,'currency_symbol'=>$currency_symbol,'total_hours_worked'=>$total_hours_worked]]);
     }
@@ -222,7 +223,7 @@ class EarningsController extends BaseController
 
         $total_wallet_trip_count = $this->request->where('driver_id', $driver->id)->where('is_completed', 1)->whereBetween('trip_start_time', $weeks)->where('payment_opt', '2')->get()->count();
 
-        $currency_symbol = auth()->user()->countryDetail->currency_symbol;
+        $currency_symbol = get_settings(Settings::CURRENCY_SYMBOL);
 
         $converted_from_date = Carbon::parse($from_date)->format('jS M Y');
         $converted_to_date = Carbon::parse($to_date)->format('jS M Y');

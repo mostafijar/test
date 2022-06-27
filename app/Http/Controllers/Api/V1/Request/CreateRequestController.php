@@ -18,6 +18,7 @@ use App\Http\Requests\Request\CreateTripRequest;
 use App\Jobs\Notifications\AndroidPushNotification;
 use App\Transformers\Requests\TripRequestTransformer;
 use App\Jobs\Notifications\FcmPushNotification;
+use App\Base\Constants\Setting\Settings;
 
 /**
  * @group User-trips-apis
@@ -98,7 +99,7 @@ class CreateRequestController extends BaseController
 
         // Get currency code of Request
         $service_location = $zone_type_detail->zone->serviceLocation;
-        $currency_code = $service_location->currency_code;
+        $currency_code = get_settings(Settings::CURRENCY);
         //Find the zone using the pickup coordinates & get the nearest drivers
 
         $nearest_drivers =  $this->getFirebaseDrivers($request, $type_id);
@@ -329,7 +330,7 @@ class CreateRequestController extends BaseController
 
         // Get currency code of Request
         $service_location = $zone_type_detail->zone->serviceLocation;
-        $currency_code = $service_location->currency_code;
+        $currency_code = get_settings(Settings::CURRENCY);
 
         // fetch unit from zone
         $unit = $zone_type_detail->zone->unit;

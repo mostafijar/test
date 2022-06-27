@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Api\V1\BaseController;
 use App\Http\Requests\Request\CreateTripRequest;
 use App\Transformers\Requests\TripRequestTransformer;
+use App\Base\Constants\Setting\Settings;
 
 /**
  * @group Driver-trips-apis
@@ -59,7 +60,7 @@ class InstantRideController extends BaseController
 
         $service_location = $zone_detail->serviceLocation;
 
-        $currency_code = $service_location->currency_code;
+        $currency_code = get_settings(Settings::CURRENCY);
 
         $type_id = auth()->user()->driver->vehicle_type;
 

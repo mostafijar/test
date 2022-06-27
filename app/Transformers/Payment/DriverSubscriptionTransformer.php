@@ -4,6 +4,7 @@ namespace App\Transformers\Payment;
 
 use App\Transformers\Transformer;
 use App\Models\Payment\DriverSubscription;
+use App\Base\Constants\Setting\Settings;
 
 class DriverSubscriptionTransformer extends Transformer
 {
@@ -23,7 +24,7 @@ class DriverSubscriptionTransformer extends Transformer
      */
     public function transform(DriverSubscription $driver_subscription)
     {
-        $user_currency_code = auth()->user()->countryDetail->currency_code?:env('SYSTEM_DEFAULT_CURRENCY');
+        $user_currency_code = get_settings(Settings::CURRENCY);
 
         $params = [
             'id' => $driver_subscription->id,
@@ -34,7 +35,7 @@ class DriverSubscriptionTransformer extends Transformer
             'payable_monthly_subscription_amount'=>get_settings('driver_monthly_subscription_amount'),
             'payable_yearly_subscription_amount'=>get_settings('driver_yearly_subscription_amount'),
             'currency_code'=>$user_currency_code,
-            'currency_symbol'=>auth()->user()->countryDetail->currency_symbol,
+            'currency_symbol'=>get_settings(Settings::CURRENCY_SYMBOL),
             'expired_at' => $driver_subscription->converted_expired_at,
             'transaction_id'=>$driver_subscription->transaction_id
         ];

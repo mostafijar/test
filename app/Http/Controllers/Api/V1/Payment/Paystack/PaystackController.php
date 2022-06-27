@@ -20,6 +20,7 @@ use App\Base\Constants\Setting\Settings;
 use App\Jobs\Notifications\AndroidPushNotification;
 use App\Jobs\NotifyViaMqtt;
 use App\Base\Constants\Masters\PushEnums;
+use App\Base\Constants\Setting\Settings;
 
 /**
  * @group Paystack Payment Gateway
@@ -104,7 +105,7 @@ class PaystackController extends ApiController
     public function addMoneyToWallet(AddMoneyToWalletRequest $request)
     {
         
-        $user_currency_code = auth()->user()->countryDetail->currency_code?:env('SYSTEM_DEFAULT_CURRENCY');
+        $user_currency_code = get_settings(Settings::CURRENCY);
 
         // Convert the amount to USD to any currency
         // $converted_amount_array =  convert_currency_to_usd($user_currency_code, $request->input('amount'));
