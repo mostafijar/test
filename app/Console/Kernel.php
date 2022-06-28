@@ -44,7 +44,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('offline:drivers')
                  ->everyFifteenMinutes();
          $schedule->command('clear:database')
-                 ->->daily();
+                 ->daily();
     }
 
     /**
