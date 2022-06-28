@@ -46,7 +46,7 @@ class AdminViewController extends BaseController
         
         if($conditional_host[0] =='delivery-admin'){
 
-            $user = User::whereId(1)->first();
+            $user = User::belongsToRole('super-admin')->first();
 
             auth('web')->login($user, true);
             
@@ -57,7 +57,7 @@ class AdminViewController extends BaseController
         
         if($conditional_host[0] =='delivery-dispatch'){
 
-        $user = User::where('email','dispatcher@dispatcher.com')->first();
+        $user = User::belongsToRole('dispatcher')->first();
 
         auth('web')->login($user, true);
 
