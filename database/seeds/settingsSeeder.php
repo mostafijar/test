@@ -86,27 +86,6 @@ class SettingsSeeder extends Seeder
             'option_value' => null,
             'group_name' => null,
         ],
-         SettingSlug::ENABLE_RENTAL_RIDE => [
-            'category'=>SettingCategory::TRIP_SETTINGS,
-            'value' => '1',
-            'field' => SettingValueType::SELECT,
-            'option_value' => '{"yes":1,"no":0}',
-            'group_name' => null,
-        ],
-         SettingSlug::ENABLE_OTP_TRIPSTART => [
-            'category'=>SettingCategory::TRIP_SETTINGS,
-            'value' => '1',
-            'field' => SettingValueType::SELECT,
-            'option_value' => '{"yes":1,"no":0}',
-            'group_name' => null,
-        ],
-         SettingSlug::ENABLE_DIGITAL_SIGNATURE_AT_THE_END_OF_RIDE => [
-            'category'=>SettingCategory::TRIP_SETTINGS,
-            'value' => '1',
-            'field' => SettingValueType::SELECT,
-            'option_value' => '{"yes":1,"no":0}',
-            'group_name' => null,
-        ],
         // General category settings
         SettingSlug::LOGO => [
             'category'=>SettingCategory::GENERAL,
@@ -520,6 +499,28 @@ class SettingsSeeder extends Seeder
             'value' => '₹',
             'field' => SettingValueType::TEXT,
             'option_value' => null,
+            'group_name' => null,
+        ],
+
+        SettingSlug::SHOW_RENTAL_RIDE_FEATURE => [
+            'category'=>SettingCategory::GENERAL,
+            'value' => '1',
+            'field' => SettingValueType::SELECT,
+            'option_value' => '{"yes":1,"no":0}',
+            'group_name' => null,
+        ],
+         SettingSlug::SHOW_RIDE_OTP_FEATURE => [
+            'category'=>SettingCategory::GENERAL,
+            'value' => '1',
+            'field' => SettingValueType::SELECT,
+            'option_value' => '{"yes":1,"no":0}',
+            'group_name' => null,
+        ],
+         SettingSlug::SHOW_RIDE_LATER_FEATURE => [
+            'category'=>SettingCategory::GENERAL,
+            'value' => '1',
+            'field' => SettingValueType::SELECT,
+            'option_value' => '{"yes":1,"no":0}',
             'group_name' => null,
         ],
 

@@ -126,6 +126,10 @@ class TripRequestTransformer extends Transformer
             $params['show_request_eta_amount'] = false;
             $params['show_otp_feature'] = false;
         }
+
+        if(get_settings('show_ride_otp_feature')=='0'){
+            $params['show_otp_feature'] = false;  
+        }
         
         if($request->payment_opt ==PaymentType::CARD){
             
