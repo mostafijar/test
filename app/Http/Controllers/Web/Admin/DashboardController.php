@@ -9,6 +9,7 @@ use App\Models\Request\RequestBill;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use App\Base\Constants\Setting\Settings;
 
 class DashboardController extends BaseController
 {
@@ -16,7 +17,7 @@ class DashboardController extends BaseController
     public function dashboard()
     {
         Session::put('applocale', 'en');
-        
+
         $ownerId = null;
         if (auth()->user()->hasRole('owner')) {
             $ownerId = auth()->user()->owner->id;
@@ -27,7 +28,7 @@ class DashboardController extends BaseController
         $sub_menu = null;
 
         $today = date('Y-m-d');
-    
+
         $total_drivers = Driver::selectRaw('
                                         IFNULL(SUM(CASE WHEN approve=1 THEN 1 ELSE 0 END),0) AS approved,
                                         IFNULL((SUM(CASE WHEN approve=1 THEN 1 ELSE 0 END) / count(*)),0) * 100 AS approve_percentage,
@@ -42,7 +43,7 @@ class DashboardController extends BaseController
         if($ownerId != null){
             $total_drivers = $total_drivers->whereOwnerId($ownerId);
         }
-        
+
         $total_drivers = $total_drivers->get();
 
         $total_users = User::belongsToRole('user')->companyKey()->count();
@@ -88,7 +89,7 @@ class DashboardController extends BaseController
         $adminCommissionQuery = "IFNULL(SUM(request_bills.admin_commision_with_tax),0)";
         $driverCommissionQuery = "IFNULL(SUM(request_bills.driver_commision),0)";
         $totalEarningsQuery = "$cardEarningsQuery + $cashEarningsQuery + $walletEarningsQuery";
-        
+
         // Today earnings
         $todayEarnings = Request::leftJoin('request_bills','requests.id','request_bills.request_id')
                                         ->selectRaw("
@@ -189,7 +190,7 @@ class DashboardController extends BaseController
             $data['earnings']['values'][] = RequestBill::whereHas('requestDetail', function ($query) use ($from,$to) {
                                                         $query->companyKey()->whereBetween('trip_start_time', [$from,$to])->whereIsCompleted(true);
                                                     })->sum('total_amount');
-            
+
               $startDate->addMonth();
             }
 

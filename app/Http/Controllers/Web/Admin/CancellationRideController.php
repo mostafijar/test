@@ -11,6 +11,7 @@ use App\Models\Request\Request as RequestRequest;
 use App\Models\Request\RequestCancellationFee;
 use App\Models\Admin\CancellationReason;
 use Illuminate\Http\Request;
+use App\Base\Constants\Setting\Settings;
 
 class CancellationRideController extends Controller
 {
@@ -28,11 +29,13 @@ class CancellationRideController extends Controller
         $query = RequestCancellationFee::query();
         $results = $queryFilter->builder($query)->customFilter(new RequestCancellationFilter)->defaultSort('-created_at')->paginate();
 
-        if (auth()->user()->countryDetail) {
-            $currency = auth()->user()->countryDetail->currency_symbol;
-        } else {
-            $currency = env('SYSTEM_DEFAULT_CURRENCY');
-        }
+        // if (auth()->user()->countryDetail) {
+        //     $currency = get_settings(Settings::CURRENCY_SYMBOL);
+        // } else {
+        //     $currency = env('SYSTEM_DEFAULT_CURRENCY');
+        // }
+
+        $currency = get_settings(Settings::CURRENCY_SYMBOL);
 
         return view('admin.cancellation-rides._rides', compact('results','currency'));
     }

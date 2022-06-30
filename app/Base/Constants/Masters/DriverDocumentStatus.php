@@ -10,7 +10,8 @@ class DriverDocumentStatus
     const UPLOADED_AND_WAITING_FOR_APPROVAL = 3;
     const REUPLOADED_AND_WAITING_FOR_APPROVAL = 4;
     const REUPLOADED_AND_DECLINED = 5;
-    const EXPIRED_AND_DECLINED = 6;
+    const EXPIRED=6;
+    const EXPIRED_AND_DECLINED = 7;
 
     /**
     * Get all the admin roles.
@@ -27,6 +28,7 @@ class DriverDocumentStatus
             self::REUPLOADED_AND_WAITING_FOR_APPROVAL=>DriverDocumentStatusString::REUPLOADED_AND_WAITING_FOR_APPROVAL,
             self::REUPLOADED_AND_DECLINED=>DriverDocumentStatusString::REUPLOADED_AND_DECLINED,
             self::EXPIRED_AND_DECLINED=>DriverDocumentStatusString::EXPIRED_AND_DECLINED,
+            self::EXPIRED=>DriverDocumentStatusString::EXPIRED,
         ];
     }
 }

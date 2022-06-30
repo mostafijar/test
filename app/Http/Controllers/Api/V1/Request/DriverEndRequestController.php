@@ -19,6 +19,7 @@ use App\Transformers\Requests\TripRequestTransformer;
 use App\Models\Admin\ZoneTypePackagePrice;
 use Illuminate\Support\Facades\Log;
 use App\Models\Request\RequestCancellationFee;
+use App\Base\Constants\Setting\Settings;
 
 /**
  * @group Driver-trips-apis
@@ -84,8 +85,8 @@ class DriverEndRequestController extends BaseController
         // Get currency code of Request
         $service_location = $request_detail->zoneType->zone->serviceLocation;
 
-        $currency_code = $service_location->currency_code;
-        $requested_currency_symbol = $service_location->currency_symbol;
+        $currency_code = get_settings(Settings::CURRENCY);
+        $requested_currency_symbol = get_settings(Settings::CURRENCY_SYMBOL);
 
         if (!$request_detail->is_later) {
             $ride_type = 1;
@@ -353,7 +354,34 @@ class DriverEndRequestController extends BaseController
         // Distance Price
         $calculatable_distance = $distance - $zone_type_price->base_distance;
         $calculatable_distance = $calculatable_distance<0?0:$calculatable_distance;
-        $distance_price = $calculatable_distance * $zone_type_price->price_per_distance;
+
+        $price_per_distance = $zone_type_price->price_per_distance;
+
+        // Validate if the current time in surge timings
+
+        $timezone = $request_detail->serviceLocationDetail->timezone;
+
+        $current_time = Carbon::now()->setTimezone($timezone);
+
+        $current_time = $current_time->toTimeString();
+
+        $zone_surge_price = $request_detail->zoneType->zone->zoneSurge()->whereTime('start_time','<=',$current_time)->whereTime('end_time','>=',$current_time)->first();
+
+        if($zone_surge_price){
+
+            $surge_percent = $zone_surge_price->value;
+
+            $surge_price_additional_cost = ($price_per_distance * ($surge_percent / 100));
+
+            $price_per_distance += $surge_price_additional_cost;
+
+            $request_detail->is_surge_applied = true;
+
+            $request_detail->save();
+
+        }
+
+        $distance_price = $calculatable_distance * $price_per_distance;
         // Time Price
         $time_price = $duration * $zone_type_price->price_per_time;
         // Waiting charge
@@ -488,7 +516,34 @@ class DriverEndRequestController extends BaseController
         // Distance Price
         $calculatable_distance = $distance - $zone_type_price->free_distance;
         $calculatable_distance = $calculatable_distance<0?0:$calculatable_distance;
-        $distance_price = $calculatable_distance * $zone_type_price->distance_price_per_km;
+
+        $price_per_distance = $zone_type_price->distance_price_per_km; 
+
+        // Validate if the current time in surge timings
+
+        $timezone = $request_detail->serviceLocationDetail->timezone;
+
+        $current_time = Carbon::now()->setTimezone($timezone);
+
+        $current_time = $current_time->toTimeString();
+
+        $zone_surge_price = $request_detail->zoneType->zone->zoneSurge()->whereTime('start_time','<=',$current_time)->whereTime('end_time','>=',$current_time)->first();
+
+        if($zone_surge_price){
+
+            $surge_percent = $zone_surge_price->value;
+
+            $surge_price_additional_cost = ($price_per_distance * ($surge_percent / 100));
+
+            $price_per_distance += $surge_price_additional_cost;
+
+            $request_detail->is_surge_applied = true;
+
+            $request_detail->save();
+
+        }
+
+        $distance_price = $calculatable_distance * $price_per_distance;
         // Time Price
         $time_price = $duration * $zone_type_price->time_price_per_min;
         // Waiting charge

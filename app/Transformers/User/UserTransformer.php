@@ -58,7 +58,9 @@ class UserTransformer extends Transformer
             'currency_code'=>$user->countryDetail->currency_code,
             'currency_symbol'=>$user->countryDetail->currency_symbol,
             'map_key'=>env('GOOGLE_MAP_KEY'),
-            'show_rental_ride'=>false,
+            'show_rental_ride'=>true,
+            'show_rental_ride'=>true,
+            'show_ride_later_feature'=>true,
             // 'created_at' => $user->converted_created_at->toDateTimeString(),
             // 'updated_at' => $user->converted_updated_at->toDateTimeString(),
         ];
@@ -66,6 +68,15 @@ class UserTransformer extends Transformer
         $referral_comission = get_settings('referral_commision_for_user');
         $referral_comission_string = 'Refer a friend and earn'.$user->countryDetail->currency_symbol.''.$referral_comission;
         $params['referral_comission_string'] = $referral_comission_string;
+
+         if(get_settings('show_rental_ride_feature')=='0'){
+            $params['show_rental_ride'] = false;  
+        }
+        
+        if(get_settings('show_ride_later_feature')=='0'){
+            $params['show_ride_later_feature'] = false;  
+        }
+
         return $params;
     }
 

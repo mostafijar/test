@@ -200,7 +200,7 @@ class PaymentController extends BaseController
 
             $wallet_balance= $user_wallet->amount_balance;
             $currency_code = auth()->user()->countryDetail->currency_code;
-            $currency_symbol = auth()->user()->countryDetail->currency_symbol;
+            $currency_symbol = get_settings(Settings::CURRENCY_SYMBOL);
             $default_card = CardInfo::where('user_id', auth()->user()->id)->where('is_default', true)->first();
             $default_card_id = null;
             if ($default_card) {
@@ -215,7 +215,7 @@ class PaymentController extends BaseController
 
             $wallet_balance= $driver_wallet->amount_balance;
             $currency_code = auth()->user()->countryDetail->currency_code;
-            $currency_symbol = auth()->user()->countryDetail->currency_symbol;
+            $currency_symbol = get_settings(Settings::CURRENCY_SYMBOL);
 
             $default_card = CardInfo::where('user_id', auth()->user()->id)->where('is_default', true)->first();
             $default_card_id = null;
@@ -243,6 +243,10 @@ class PaymentController extends BaseController
         if(get_settings(Settings::STRIPE_ENVIRONMENT)=='test'){
 
             $stripe_environment = 'test';
+
+        }else{
+
+            $stripe_environment = 'production';
 
         }
         if(get_settings(Settings::ENABLE_STRIPE)==1){
@@ -285,6 +289,17 @@ class PaymentController extends BaseController
             $enable_paymob = true;
         }
 
+
+        $stripe_test_publishable_key = get_settings(Settings::STRIPE_TEST_PUBLISHABLE_KEY);
+        $stripe_live_publishable_key = get_settings(Settings::STRIPE_LIVE_PUBLISHABLE_KEY);
+        //Razor pay api keys
+        $razorpay_test_api_key = get_settings(Settings::RAZOR_PAY_TEST_API_KEY);
+        $razorpay_live_api_key = get_settings(Settings::RAZOR_PAY_LIVE_API_KEY);
+
+        //Paystack keys
+        $paystack_test_publishable_key = get_settings(Settings::PAYSTACK_TEST_PUBLISHABLE_KEY);
+        $paystack_live_publishable_key = get_settings(Settings::PAYSTACK_PRODUCTION_PUBLISHABLE_KEY);
+
         return response()->json(['success'=>true,
             'message'=>'wallet_history_listed',
             'wallet_balance'=>$wallet_balance,
@@ -300,7 +315,24 @@ class PaymentController extends BaseController
             'flutter_wave'=>$enable_flutter_wave,
             'paymob'=>$enable_paymob,
             'bank_info_exists'=>$bank_info_exists,
-            'stripe_environment'=>$stripe_environment]);
+            'stripe_environment'=>$stripe_environment,
+            'stripe_test_publishable_key'=>$stripe_test_publishable_key,
+            'stripe_live_publishable_key'=>$stripe_live_publishable_key,
+            'razor_pay_environment'=>get_settings(Settings::RAZOR_PAY_ENVIRONMENT),
+            'razorpay_test_api_key'=>$razorpay_test_api_key,
+            'razorpay_live_api_key'=>$razorpay_live_api_key,
+            'paystack_environment'=>get_settings(Settings::PAYSTACK_ENVIRONMENT),
+            'paystack_test_publishable_key'=>$paystack_test_publishable_key,
+            'paystack_live_publishable_key'=>$paystack_live_publishable_key,
+            'flutterwave_environment'=>get_settings(Settings::FLUTTER_WAVE_ENVIRONMENT),
+            'flutter_wave_test_secret_key'=>get_settings(Settings::FLUTTER_WAVE_TEST_SECRET_KEY),
+            'flutter_wave_live_secret_key'=>get_settings(Settings::FLUTTER_WAVE_PRODUCTION_SECRET_KEY),
+            'cashfree_environment'=>get_settings(Settings::CASH_FREE_ENVIRONMENT),
+            'cashfree_test_app_id'=>get_settings(Settings::CASH_FREE_TEST_APP_ID),
+            'cashfree_live_app_id'=>get_settings(Settings::CASH_FREE_PRODUCTION_APP_ID),
+
+
+        ]);
 
         // return $this->respondSuccess($result, 'wallet_history_listed');
     }
@@ -360,7 +392,7 @@ class PaymentController extends BaseController
 
             $user_info = auth()->user();
 
-            $currency_code = auth()->user()->countryDetail?auth()->user()->countryDetail->currency_symbol:env('SYSTEM_DEFAULT_CURRENCY');
+            $currency_code = auth()->user()->countryDetail?get_settings(Settings::CURRENCY_SYMBOL):env('SYSTEM_DEFAULT_CURRENCY');
 
             $created_params['requested_currency'] = $currency_code;
             $created_params['user_id'] = auth()->user()->id;

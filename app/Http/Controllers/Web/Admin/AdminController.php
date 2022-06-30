@@ -173,6 +173,13 @@ class AdminController extends BaseController
 
     public function getById(AdminDetail $admin)
     {
+        if (env('APP_FOR')=='demo') {
+            $message = trans('succes_messages.you_are_not_authorised');
+
+            return redirect('admins')->with('warning', $message);
+        }
+        DB::beginTransaction();
+
         $page = trans('pages_names.edit_admin');
 
         if (access()->hasRole(RoleSlug::SUPER_ADMIN)) {

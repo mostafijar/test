@@ -85,7 +85,7 @@ class AssignDriversForScheduledRides extends Command
 
             // NEW flow
             $client = new \GuzzleHttp\Client();
-            $url = env('NODE_APP_URL').':'.env('NODE_APP_PORT').'/'.$pick_lat.'/'.$pick_lng.'/'.$type_id;
+            $url = env('NODE_APP_URL').':'.env('NODE_APP_PORT').'/'.$pick_lat.'/'.$pick_lng.'/'.$type_id.'/'.$driver_search_radius;
 
             $res = $client->request('GET', "$url");
 

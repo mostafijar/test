@@ -86,27 +86,6 @@ class SettingsSeeder extends Seeder
             'option_value' => null,
             'group_name' => null,
         ],
-         SettingSlug::ENABLE_RENTAL_RIDE => [
-            'category'=>SettingCategory::TRIP_SETTINGS,
-            'value' => '1',
-            'field' => SettingValueType::SELECT,
-            'option_value' => '{"yes":1,"no":0}',
-            'group_name' => null,
-        ],
-         SettingSlug::ENABLE_OTP_TRIPSTART => [
-            'category'=>SettingCategory::TRIP_SETTINGS,
-            'value' => '1',
-            'field' => SettingValueType::SELECT,
-            'option_value' => '{"yes":1,"no":0}',
-            'group_name' => null,
-        ],
-         SettingSlug::ENABLE_DIGITAL_SIGNATURE_AT_THE_END_OF_RIDE => [
-            'category'=>SettingCategory::TRIP_SETTINGS,
-            'value' => '1',
-            'field' => SettingValueType::SELECT,
-            'option_value' => '{"yes":1,"no":0}',
-            'group_name' => null,
-        ],
         // General category settings
         SettingSlug::LOGO => [
             'category'=>SettingCategory::GENERAL,
@@ -262,12 +241,20 @@ class SettingsSeeder extends Seeder
             'option_value' => null,
             'group_name' => SettingSubGroup::STRIPE_SETTINGS,
         ],
-         SettingSlug::PAYSTACK_ENVIRONMENT => [
+         SettingSlug::STRIPE_TEST_PUBLISHABLE_KEY => [
             'category'=>SettingCategory::INSTALLATION,
-            'value' => 'test',
+            'value' => 'pk_test_51IuYWUSBCHfacuRqacrdy8IOlL3uUPq1XI0BZaRlqDPPcNsmywe6rSqjpM9HhVmELhXWhx95CH1pvNyQ8pvQEil900eGE0jXN8',
             'field' => SettingValueType::TEXT,
-             'option_value' => '{"test":"test","production":"production"}',
-            'group_name' => SettingSubGroup::PAYSTACK_SETTINGS,
+            'option_value' => null,
+            'group_name' => SettingSubGroup::STRIPE_SETTINGS,
+        ],
+
+        SettingSlug::STRIPE_LIVE_PUBLISHABLE_KEY => [
+            'category'=>SettingCategory::INSTALLATION,
+            'value' => 'pk_test_51IuYWUSBCHfacuRqacrdy8IOlL3uUPq1XI0BZaRlqDPPcNsmywe6rSqjpM9HhVmELhXWhx95CH1pvNyQ8pvQEil900eGE0jXN8',
+            'field' => SettingValueType::TEXT,
+            'option_value' => null,
+            'group_name' => SettingSubGroup::STRIPE_SETTINGS,
         ],
 
         SettingSlug::ENABLE_PAYSTACK => [
@@ -275,6 +262,13 @@ class SettingsSeeder extends Seeder
             'value' => '1',
             'field' => SettingValueType::SELECT,
             'option_value' => '{"yes":1,"no":0}',
+            'group_name' => SettingSubGroup::PAYSTACK_SETTINGS,
+        ],
+        SettingSlug::PAYSTACK_ENVIRONMENT => [
+            'category'=>SettingCategory::INSTALLATION,
+            'value' => 'test',
+            'field' => SettingValueType::TEXT,
+             'option_value' => '{"test":"test","production":"production"}',
             'group_name' => SettingSubGroup::PAYSTACK_SETTINGS,
         ],
         SettingSlug::PAYSTACK_TEST_SECRET_KEY => [
@@ -292,6 +286,20 @@ class SettingsSeeder extends Seeder
             'group_name' => SettingSubGroup::PAYSTACK_SETTINGS,
         ],
 
+        SettingSlug::PAYSTACK_TEST_PUBLISHABLE_KEY => [
+            'category'=>SettingCategory::INSTALLATION,
+            'value' => 'pk_test_b4cb479fa0d654cb6db52663b27a019973ecfaf5',
+            'field' => SettingValueType::TEXT,
+            'option_value' => null,
+            'group_name' => SettingSubGroup::PAYSTACK_SETTINGS,
+        ],
+        SettingSlug::PAYSTACK_PRODUCTION_PUBLISHABLE_KEY => [
+            'category'=>SettingCategory::INSTALLATION,
+            'value' => 'pk_test_b4cb479fa0d654cb6db52663b27a019973ecfaf5',
+            'field' => SettingValueType::TEXT,
+            'option_value' => null,
+            'group_name' => SettingSubGroup::PAYSTACK_SETTINGS,
+        ],
         SettingSlug::ENABLE_FLUTTER_WAVE => [
             'category'=>SettingCategory::INSTALLATION,
             'value' => '1',
@@ -337,28 +345,28 @@ class SettingsSeeder extends Seeder
         ],
         SettingSlug::CASH_FREE_TEST_APP_ID => [
             'category'=>SettingCategory::INSTALLATION,
-            'value' => '141912279e955aa28f1630dc0e219141',
+            'value' => '159508ae34a76191df96dff52d805951',
             'field' => SettingValueType::TEXT,
             'option_value' => null,
             'group_name' => SettingSubGroup::CASH_FREE_SETTINGS,
         ],
         SettingSlug::CASH_FREE_PRODUCTION_APP_ID => [
             'category'=>SettingCategory::INSTALLATION,
-            'value' => '141912279e955aa28f1630dc0e219141',
+            'value' => '159508ae34a76191df96dff52d805951',
             'field' => SettingValueType::TEXT,
             'option_value' => null,
             'group_name' => SettingSubGroup::CASH_FREE_SETTINGS,
         ],
             SettingSlug::CASH_FREE_SECRET_KEY => [
             'category'=>SettingCategory::INSTALLATION,
-            'value' => 'c07b52495da5f0cfd2e91f6c75b715718cf1b425',
+            'value' => '9fbbd7bf43e9470cb3cc6e6a36839258ebcd5ebf',
             'field' => SettingValueType::TEXT,
             'option_value' => null,
             'group_name' => SettingSubGroup::CASH_FREE_SETTINGS,
         ],
         SettingSlug::CASH_FREE_PRODUCTION_SECRET_KEY => [
             'category'=>SettingCategory::INSTALLATION,
-            'value' => 'c07b52495da5f0cfd2e91f6c75b715718cf1b425',
+            'value' => '9fbbd7bf43e9470cb3cc6e6a36839258ebcd5ebf',
             'field' => SettingValueType::TEXT,
             'option_value' => null,
             'group_name' => SettingSubGroup::CASH_FREE_SETTINGS,
@@ -372,14 +380,28 @@ class SettingsSeeder extends Seeder
             'group_name' => SettingSubGroup::RAZOR_PAY_SETTINGS,
         ],
 
-         SettingSlug::ENABLE_PAYMOB => [
+         SettingSlug::RAZOR_PAY_ENVIRONMENT => [
             'category'=>SettingCategory::INSTALLATION,
-            'value' => '1',
+            'value' => 'test',
             'field' => SettingValueType::SELECT,
-            'option_value' => '{"yes":1,"no":0}',
-            'group_name' => SettingSubGroup::PAYMOB_SETTINGS,
+            'option_value' => '{"test":"test","production":"production"}',
+            'group_name' => SettingSubGroup::RAZOR_PAY_SETTINGS,
         ],
 
+        SettingSlug::RAZOR_PAY_TEST_API_KEY => [
+            'category'=>SettingCategory::INSTALLATION,
+            'value' => 'rzp_test_L58xOhOjEMu6wF',
+            'field' => SettingValueType::TEXT,
+            'option_value' => null,
+            'group_name' => SettingSubGroup::RAZOR_PAY_SETTINGS,
+        ],
+        SettingSlug::RAZOR_PAY_LIVE_API_KEY => [
+            'category'=>SettingCategory::INSTALLATION,
+            'value' => 'rzp_test_L58xOhOjEMu6wF',
+            'field' => SettingValueType::TEXT,
+            'option_value' => null,
+            'group_name' => SettingSubGroup::RAZOR_PAY_SETTINGS,
+        ],
         SettingSlug::REFERRAL_COMMISION_FOR_USER => [
             'category'=>SettingCategory::REFERRAL,
             'value' => 30,
@@ -463,6 +485,42 @@ class SettingsSeeder extends Seeder
             'value' => 'your-firebase-measurement-id',
             'field' => SettingValueType::TEXT,
             'option_value' => null,
+            'group_name' => null,
+        ],
+        SettingSlug::CURRENCY => [
+            'category'=>SettingCategory::GENERAL,
+            'value' => 'INR',
+            'field' => SettingValueType::TEXT,
+            'option_value' => null,
+            'group_name' => null,
+        ],
+        SettingSlug::CURRENCY_SYMBOL => [
+            'category'=>SettingCategory::GENERAL,
+            'value' => '₹',
+            'field' => SettingValueType::TEXT,
+            'option_value' => null,
+            'group_name' => null,
+        ],
+
+        SettingSlug::SHOW_RENTAL_RIDE_FEATURE => [
+            'category'=>SettingCategory::GENERAL,
+            'value' => '1',
+            'field' => SettingValueType::SELECT,
+            'option_value' => '{"yes":1,"no":0}',
+            'group_name' => null,
+        ],
+         SettingSlug::SHOW_RIDE_OTP_FEATURE => [
+            'category'=>SettingCategory::GENERAL,
+            'value' => '1',
+            'field' => SettingValueType::SELECT,
+            'option_value' => '{"yes":1,"no":0}',
+            'group_name' => null,
+        ],
+         SettingSlug::SHOW_RIDE_LATER_FEATURE => [
+            'category'=>SettingCategory::GENERAL,
+            'value' => '1',
+            'field' => SettingValueType::SELECT,
+            'option_value' => '{"yes":1,"no":0}',
             'group_name' => null,
         ],
 
