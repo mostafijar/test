@@ -170,12 +170,11 @@
                         <div class="display-4 fs-4 mb-2 font-weight-normal font-sans-serif text-warning"
                             data-countup="{&quot;endValue&quot;:58.386,&quot;decimalPlaces&quot;:2,&quot;suffix&quot;:&quot;k&quot;}">
                             {{ $total_drivers[0]['decline'] }}</div><a class="font-weight-semi-bold fs--1 text-nowrap"
-                            href="{{url('/drivers/waiting-for-approval')}}">See all<span class="fa fa-angle-right ml-1" data-fa-transform="down-1"></span></a>
+                            href="{{url('drivers')}}">See all<span class="fa fa-angle-right ml-1" data-fa-transform="down-1"></span></a>
                     </div>
                 </div>
             </div>
 
-            @if(!auth()->user()->hasRole('owner'))
             <div class="col-sm-6 col-md-3">
                 <div class="card overflow-hidden" style="min-width: 12rem">
                     <div class="bg-holder bg-card"
@@ -192,7 +191,6 @@
                     </div>
                 </div>
             </div>
-            @endif
         </div>
 
         @if(!auth()->user()->hasRole('owner'))
@@ -218,7 +216,7 @@
                                             <h4 class="text-center" style="color:#333;font-size:25px;">NO DATA FOUND</h4>
                                         </p>
                                     </include-fragment>
-                                </div>                                
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -569,15 +567,15 @@
 
             var barData = JSON.parse('<?php echo json_encode($data); ?>');
             var tripData = JSON.parse('<?php echo json_encode($trips); ?>');
-            barData = Object.values(barData);
 
-            var barChartData = barData[0]
-            var overallEarning = barData[1]
+            var barChartData = barData?.cancel;
+            var overallEarning = barData?.earnings;
+            let cancelValues = [];
 
             var bar = new Morris.Bar({
                 element: 'bar-chart',
                 resize: true,
-                data: [barChartData],
+                data: barChartData,
                 barColors: ['#1e88e5', '#26c6da', '#fc4b6c'],
                 barSizeRatio: 0.5,
                 barGap: 5,
@@ -587,6 +585,7 @@
                 hideHover: 'auto',
                 color: '#666666'
             });
+            // console.log(barChartData,bar);
 
             if ($('#chart_1').length > 0) {
                 var ctx1 = document.getElementById("chart_1").getContext("2d");
@@ -600,7 +599,7 @@
                             pointHighlightStroke: "#26c6da",
                             data: overallEarning['values']
                         },
-                       
+
 
                     ]
                 };
