@@ -17,7 +17,7 @@ class DashboardController extends BaseController
     public function dashboard()
     {
         Session::put('applocale', 'en');
-        
+
         $ownerId = null;
         if (auth()->user()->hasRole('owner')) {
             $ownerId = auth()->user()->owner->id;
@@ -28,7 +28,7 @@ class DashboardController extends BaseController
         $sub_menu = null;
 
         $today = date('Y-m-d');
-    
+
         $total_drivers = Driver::selectRaw('
                                         IFNULL(SUM(CASE WHEN approve=1 THEN 1 ELSE 0 END),0) AS approved,
                                         IFNULL((SUM(CASE WHEN approve=1 THEN 1 ELSE 0 END) / count(*)),0) * 100 AS approve_percentage,
@@ -43,7 +43,7 @@ class DashboardController extends BaseController
         if($ownerId != null){
             $total_drivers = $total_drivers->whereOwnerId($ownerId);
         }
-        
+
         $total_drivers = $total_drivers->get();
 
         $total_users = User::belongsToRole('user')->companyKey()->count();
@@ -89,7 +89,7 @@ class DashboardController extends BaseController
         $adminCommissionQuery = "IFNULL(SUM(request_bills.admin_commision_with_tax),0)";
         $driverCommissionQuery = "IFNULL(SUM(request_bills.driver_commision),0)";
         $totalEarningsQuery = "$cardEarningsQuery + $cashEarningsQuery + $walletEarningsQuery";
-        
+
         // Today earnings
         $todayEarnings = Request::leftJoin('request_bills','requests.id','request_bills.request_id')
                                         ->selectRaw("
@@ -171,72 +171,34 @@ class DashboardController extends BaseController
 
         }
         //cancellation chart
-        $to = Carbon::now()->month; //Get current month
-        $from = Carbon::now()->subMonths(5)->month;
-        $data=[];
-        foreach (range($from, $to) as $month) {
-            $shortName = Carbon::now()->month($month)->shortEnglishMonth;
-            $monthName = Carbon::now()->month($month)->monthName;
-            $data['cancel'][$month]['y'] = $shortName;
+            $startDate = Carbon::now()->startOfMonth()->subMonths(6);
+             $endDate = Carbon::now();
+             $data=[];
+    while ($startDate->lte($endDate)){
 
-            $data['cancel'][$month]['a'] = Request::companyKey()->whereMonth('created_at', $month)->where('cancel_method','0')->whereIsCancelled(true)->count();
-            if($ownerId !=null){
-                $data['cancel'][$month]['a'] = Request::companyKey()->whereHas('driverDetail',function($query)use($ownerId){
-                                        $query->where('owner_id','==',$ownerId);
-                                })->whereMonth('created_at', $month)->where('cancel_method','0')->whereIsCancelled(true)->count();
-
-            }
-
-
-            $data['cancel'][$month]['u'] = Request::companyKey()->whereMonth('created_at', $month)->where('cancel_method','1')->whereIsCancelled(true)->count();
-
-            if($ownerId !=null){
-
-                $data['cancel'][$month]['u'] = Request::companyKey()->whereHas('driverDetail',function($query)use($ownerId){
-                                        $query->where('owner_id','==',$ownerId);
-                                })->whereMonth('created_at', $month)->where('cancel_method','1')->whereIsCancelled(true)->count();
-
-
-            }
-
-
-
-            $data['cancel'][$month]['d'] = Request::companyKey()->whereMonth('created_at', $month)->where('cancel_method','2')->whereIsCancelled(true)->count();
-
-            if($ownerId !=null){
-                $data['cancel'][$month]['d'] = Request::companyKey()->whereHas('driverDetail',function($query)use($ownerId){
-                                        $query->where('owner_id','==',$ownerId);
-                                })->whereMonth('created_at', $month)->where('cancel_method','2')->whereIsCancelled(true)->count();
-                
-            }
-
+    $from = Carbon::parse($startDate)->startOfMonth();
+    $to = Carbon::parse($startDate)->endOfMonth();
+    $shortName = $startDate->shortEnglishMonth;
+            $monthName = $startDate->monthName;
+            $data['cancel'][] = [
+                'y' => $shortName,
+                'a' => Request::companyKey()->whereBetween('created_at', [$from,$to])->where('cancel_method','0')->whereIsCancelled(true)->count(),
+                'u' => Request::companyKey()->whereBetween('created_at', [$from,$to])->where('cancel_method','1')->whereIsCancelled(true)->count(),
+                'd' => Request::companyKey()->whereBetween('created_at', [$from,$to])->where('cancel_method','2')->whereIsCancelled(true)->count()
+            ];
             $data['earnings']['months'][] = $monthName;
-
-
-            $data['earnings']['values'][] = RequestBill::whereHas('requestDetail', function ($query) use ($month) {
-                                                        $query->companyKey()->whereMonth('trip_start_time', $month)->whereIsCompleted(true);
+            $data['earnings']['values'][] = RequestBill::whereHas('requestDetail', function ($query) use ($from,$to) {
+                                                        $query->companyKey()->whereBetween('trip_start_time', [$from,$to])->whereIsCompleted(true);
                                                     })->sum('total_amount');
 
-            if($ownerId !=null){
-
-                $data['earnings']['values'][] = RequestBill::whereHas('requestDetail', function ($query) use ($month) {
-                                                        $query->companyKey()->whereMonth('trip_start_time', $month)->whereIsCompleted(true);
-                                                    })->whereHas('requestDetail.driverDetail',function($query)use($ownerId){
-                                        $query->where('owner_id','==',$ownerId);
-                                })->sum('total_amount');
-
-
+              $startDate->addMonth();
             }
+
+        if (auth()->user()->countryDetail) {
+            $currency = auth()->user()->countryDetail->currency_symbol;
+        } else {
+            $currency = env('SYSTEM_DEFAULT_CURRENCY');
         }
-
-        // $currency = auth()->user()->countryDetail->currency_code ?: env('SYSTEM_DEFAULT_CURRENCY');
-        // if (auth()->user()->countryDetail) {
-        //     $currency = get_settings(Settings::CURRENCY_SYMBOL);
-        // } else {
-        //     $currency = env('SYSTEM_DEFAULT_CURRENCY');
-        // }
-
-        $currency = get_settings(Settings::CURRENCY_SYMBOL);
 
         return view('admin.dashboard', compact('page', 'main_menu','currency', 'sub_menu','total_drivers','total_users','trips','todayEarnings','overallEarnings','data'));
     }
