@@ -230,7 +230,10 @@ class EtaTransformer extends Transformer
 
         $distance_in_unit = ($distance_in_unit - $type_prices->base_distance);
         
-        $distance_in_unit = $distance_in_unit>0?:0;
+        if($distance_in_unit < 0 ){
+
+            $distance_in_unit = 0;
+        }  
 
         $price_per_distance = $type_prices->price_per_distance;
 
