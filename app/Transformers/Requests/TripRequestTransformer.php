@@ -12,7 +12,7 @@ use Carbon\Carbon;
 use App\Base\Constants\Masters\PaymentType;
 use App\Transformers\Requests\RequestStopsTransformer;
 use App\Transformers\Requests\RequestProofsTransformer;
-
+use App\Base\Constants\Setting\Settings;
 
 class TripRequestTransformer extends Transformer
 {
