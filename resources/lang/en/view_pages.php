@@ -50,7 +50,7 @@ return array(
   'notification' => 'Notification',
   'trip_settings' => 'Trip Settings',
   'sms' => 'Sms',
-  'general' => 'General',
+  'general' => 'App Settings',
   'installation' => 'Instalation',
   'service_tax' => 'Service Tax',
   'admin_commission_type' => 'Admin Commision Type',
@@ -488,5 +488,11 @@ return array(
     'razor_pay_test_api_key'=>'Razor Pay Test Api Key',
     'razor_pay_live_api_key'=>'Razor Pay Live Api Key',
     'razor_pay_environment'=>'Razor Pay Environment',
-    'enable-cashfree'=>'Enable Cashfree'
+    'enable-cashfree'=>'Enable Cashfree',
+    'show_rental_ride_feature' => 'Show Rental Ride Feature',
+    'show_ride_otp_feature' => 'Show Rental Ride Feature',
+    'show_ride_later_feature' => 'Show Ride Later Feature',
+    'enable_shipment_load_feature' => 'Enable Shipment Load Feature',
+    'enable_shipment_unload_feature' => 'Enable Shipment Unload Feature',
+    'enable_digital_signature' => 'Enable Digital Signature',
 );

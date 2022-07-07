@@ -122,6 +122,27 @@ class SettingsSeeder extends Seeder
             'option_value' => null,
             'group_name' => null,
         ],
+         SettingSlug::ENABLE_SHIPMENT_LOAD_FEATURE => [
+            'category'=>SettingCategory::GENERAL,
+            'value' => '1',
+            'field' => SettingValueType::SELECT,
+            'option_value' => '{"yes":1,"no":0}',
+            'group_name' => null,
+        ],
+        SettingSlug::ENABLE_SHIPMENT_UNLOAD_FEATURE => [
+            'category'=>SettingCategory::GENERAL,
+            'value' => '1',
+            'field' => SettingValueType::SELECT,
+            'option_value' => '{"yes":1,"no":0}',
+            'group_name' => null,
+        ],
+        SettingSlug::ENABLE_DIGITAL_SIGNATURE => [
+            'category'=>SettingCategory::GENERAL,
+            'value' => '1',
+            'field' => SettingValueType::SELECT,
+            'option_value' => '{"yes":1,"no":0}',
+            'group_name' => null,
+        ],
         SettingSlug::DRIVER_WALLET_MINIMUM_AMOUNT_TO_GET_ORDER => [
             'category'=>SettingCategory::WALLET,
             'value' => 1000,

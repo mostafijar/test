@@ -94,5 +94,10 @@ class Settings
     const SHOW_RIDE_OTP_FEATURE='show_ride_otp_feature';
     const SHOW_RIDE_LATER_FEATURE='show_ride_later_feature';
     const GOOGLE_MAP_KEY_FOR_DISTANCE_MATRIX='google_map_key_for_distance_matrix';
+
+    const ENABLE_SHIPMENT_LOAD_FEATURE='enable_shipment_load_feature';
+    const ENABLE_SHIPMENT_UNLOAD_FEATURE='enable_shipment_unload_feature';
+    const ENABLE_DIGITAL_SIGNATURE='enable_digital_signature';
+
     
 }

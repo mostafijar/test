@@ -74,8 +74,8 @@
                                     <div class="form-group">
                                         <label for="title">
                                             {{trans('view_pages.'.$setting_name['name'])}}
-                                            <span class="text-danger">*</span>
-                                        </label>
+<!--                                             <span class="text-danger">*</span>
+ -->                                        </label>
 
                                         <?php
                       /*select box*/    if ($setting_name['field']=="select") { ?>
