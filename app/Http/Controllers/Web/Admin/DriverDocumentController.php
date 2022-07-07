@@ -17,6 +17,7 @@ use App\Jobs\Notifications\AndroidPushNotification;
 use App\Base\Constants\Masters\DriverDocumentStatus;
 use App\Base\Services\ImageUploader\ImageUploaderContract;
 use App\Http\Requests\Admin\Driver\DriverDocumentUploadRequest;
+use Kreait\Firebase\Database;
 
 class DriverDocumentController extends BaseController
 {
@@ -34,9 +35,10 @@ class DriverDocumentController extends BaseController
      *
      * @param \App\Models\Admin\Driver $driver
      */
-    public function __construct(ImageUploaderContract $imageUploader)
+    public function __construct(ImageUploaderContract $imageUploader,Database $database)
     {
         $this->imageUploader = $imageUploader;
+        $this->database = $database;
     }
 
     public function index(Driver $driver)
@@ -122,6 +124,9 @@ class DriverDocumentController extends BaseController
     public function toggleApprove(Driver $driver, $status)
     {
         $status = $status == true ? 1 : 0;
+
+        $this->database->getReference('drivers/'.$driver->id)->update(['approve'=>(int)$status,'updated_at'=> Database::SERVER_TIMESTAMP]);
+        
         $driver->update([
             'approve' => $status
         ]);

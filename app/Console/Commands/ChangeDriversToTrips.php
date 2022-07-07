@@ -10,6 +10,7 @@ use App\Models\Request\RequestMeta;
 use Illuminate\Support\Facades\Log;
 use App\Jobs\NoDriverFoundNotifyJob;
 use App\Jobs\SendRequestToNextDriversJob;
+use Kreait\Firebase\Database;
 
 class ChangeDriversToTrips extends Command
 {
@@ -32,9 +33,10 @@ class ChangeDriversToTrips extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Database $database)
     {
         parent::__construct();
+        $this->database = $database;
     }
 
     /**
@@ -63,6 +65,10 @@ class ChangeDriversToTrips extends Command
                 $driver = $request_meta_detable->driver;
                 $driver->available = true;
                 $driver->save();
+                // Delete Meta Driver From Firebase
+                 $this->database->getReference('request-meta/'.$request_meta_detable->request_id)->set(['driver_id'=>'','request_id'=>$request_meta_detable->request_id,'user_id'=>$request_meta_detable->user_id,'active'=>1,'updated_at'=> Database::SERVER_TIMESTAMP]);
+
+                // Delete Driver data from Mysql Request Meta
                 $request_meta_detable->delete();
             }
             // RequestMeta::whereIn('id', $meta_ids)->delete();

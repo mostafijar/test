@@ -51,6 +51,10 @@ class ClearDemoDatabase extends Command
 
         User::whereNotIn('id',$non_deleted_ids)->delete();
 
+        $this->database->getReference('drivers')->remove();
+
+        $this->database->getReference('requests')->remove();
+
         $this->info("success");
 
 

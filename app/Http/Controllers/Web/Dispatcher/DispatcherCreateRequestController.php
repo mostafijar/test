@@ -18,7 +18,8 @@ use App\Http\Requests\Request\CreateTripRequest;
 use App\Transformers\Requests\TripRequestTransformer;
 use Carbon\Carbon;
 use App\Base\Constants\Setting\Settings;
-
+use Kreait\Firebase\Database;
+use Sk\Geohash\Geohash;
 
 /**
  * @group Dispatcher-trips-apis
@@ -154,6 +155,11 @@ class DispatcherCreateRequestController extends BaseController
 
         // Send notification to the very first driver
         $first_meta_driver = $selected_drivers[0]['driver_id'];
+        
+        // Add first Driver into Firebase Request Meta
+        $this->database->getReference('request-meta/'.$request_detail->id.'/'.$first_meta_driver)->set(['driver_id'=>$first_meta_driver,'request_id'=>$request_detail->id,'user_id'=>$request_detail->user_id,'active'=>1,'updated_at'=> Database::SERVER_TIMESTAMP]);
+
+
         $request_result =  fractal($request_detail, new TripRequestTransformer)->parseIncludes('userDetail');
 
         $mqtt_object = new \stdClass();
@@ -229,19 +235,63 @@ class DispatcherCreateRequestController extends BaseController
         $pick_lng = $request->pick_lng;
 
         // NEW flow
-        $driver_search_radius = get_settings('driver_search_radius')?:30;
-        $client = new \GuzzleHttp\Client();
-        $url = env('NODE_APP_URL').':'.env('NODE_APP_PORT').'/'.$pick_lat.'/'.$pick_lng.'/'.$type_id.'/'.$driver_search_radius;
+        $pick_lat = $request->pick_lat;
+        $pick_lng = $request->pick_lng;
 
-        $res = $client->request('GET', "$url");
-        if ($res->getStatusCode() == 200) {
-            $fire_drivers = \GuzzleHttp\json_decode($res->getBody()->getContents());
-            if (empty($fire_drivers->data)) {
-                return $this->respondFailed('no drivers available');
-            } else {
+        // NEW flow        
+        $driver_search_radius = get_settings('driver_search_radius')?:30;
+
+        $radius = kilometer_to_miles($driver_search_radius);
+
+        $calculatable_radius = ($radius/2);
+
+        $calulatable_lat = 0.0144927536231884 * $calculatable_radius;
+        $calulatable_long = 0.0181818181818182 * $calculatable_radius;
+
+        $lower_lat = ($pick_lat - $calulatable_lat);
+        $lower_long = ($pick_lng - $calulatable_long);
+
+        $higher_lat = ($pick_lat + $calulatable_lat);
+        $higher_long = ($pick_lng + $calulatable_long);
+
+        $g = new Geohash();
+
+        $lower_hash = $g->encode($lower_lat,$lower_long, 12);
+        $higher_hash = $g->encode($higher_lat,$higher_long, 12);
+
+        $conditional_timestamp = Carbon::now()->subMinutes(7)->timestamp;
+
+        $vehicle_type = $type_id;
+
+        $fire_drivers = $this->database->getReference('drivers')->orderByChild('g')->startAt($lower_hash)->endAt($higher_hash)->getValue();
+        
+        $firebase_drivers = [];
+
+        $i=-1;
+
+        foreach ($fire_drivers as $key => $fire_driver) {
+            $i +=1; 
+            $driver_updated_at = Carbon::createFromTimestamp($fire_driver['updated_at'] / 1000)->timestamp;
+
+            if($fire_driver['vehicle_type']==$vehicle_type && $fire_driver['is_active']==1 && $fire_driver['is_available']==1 && $conditional_timestamp < $driver_updated_at){
+
+                $distance = distance_between_two_coordinates($pick_lat,$pick_lng,$fire_driver['l'][0],$fire_driver['l'][1],'K');
+
+                $firebase_drivers[$fire_driver['id']]['distance']= $distance;
+
+            }      
+
+        }
+
+        asort($firebase_drivers);
+
+        if (!empty($firebase_drivers)) {
+           
                 $nearest_driver_ids = [];
-                foreach ($fire_drivers->data as $key => $fire_driver) {
-                    $nearest_driver_ids[] = $fire_driver->id;
+
+                foreach ($firebase_drivers as $key => $firebase_driver) {
+                    
+                    $nearest_driver_ids[]=$key;
                 }
 
                 $driver_search_radius = get_settings('driver_search_radius')?:30;
@@ -260,9 +310,9 @@ class DispatcherCreateRequestController extends BaseController
                 }
 
                 return $this->respondSuccess($nearest_drivers, 'drivers_list');
-            }
+            
         } else {
-            return $this->respondFailed('there is an error-getting-drivers');
+            return $this->respondFailed('no drivers available');
         }
     }
     /**

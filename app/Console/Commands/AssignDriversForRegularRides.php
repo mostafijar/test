@@ -16,6 +16,8 @@ use App\Jobs\Notifications\AndroidPushNotification;
 use App\Transformers\Requests\TripRequestTransformer;
 use App\Transformers\Requests\CronTripRequestTransformer;
 use App\Models\Request\DriverRejectedRequest;
+use Sk\Geohash\Geohash;
+use Kreait\Firebase\Database;
 
 class AssignDriversForRegularRides extends Command
 {
@@ -38,8 +40,9 @@ class AssignDriversForRegularRides extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Database $database)
     {
+        $this->database = $database;
         parent::__construct();
     }
 
@@ -87,28 +90,60 @@ class AssignDriversForRegularRides extends Command
             })->pluck('driver_id')->toArray();
 
             // NEW flow
-            $client = new \GuzzleHttp\Client();
-            $url = env('NODE_APP_URL').':'.env('NODE_APP_PORT').'/'.$pick_lat.'/'.$pick_lng.'/'.$type_id.'/'.$driver_search_radius;
+            $driver_search_radius = get_settings('driver_search_radius')?:30;
 
-            $res = $client->request('GET', "$url");
+        $radius = kilometer_to_miles($driver_search_radius);
 
-            if ($res->getStatusCode() == 200) {
-                $fire_drivers = \GuzzleHttp\json_decode($res->getBody()->getContents());
-                if (empty($fire_drivers->data)) {
-                    $this->info('no-drivers-available');
-                    // @TODO Update attempt to the requests
-                    $request->attempt_for_schedule += 1;
-                    $request->save();
-                    if ($request->attempt_for_schedule>5) {
-                        $no_driver_request_ids = [];
-                        $no_driver_request_ids[0] = $request->id;
-                        dispatch(new NoDriverFoundNotifyJob($no_driver_request_ids));
-                    }
-                } else {
-                    $nearest_driver_ids = [];
-                    foreach ($fire_drivers->data as $key => $fire_driver) {
-                        $nearest_driver_ids[] = $fire_driver->id;
-                    }
+        $calculatable_radius = ($radius/2);
+
+        $calulatable_lat = 0.0144927536231884 * $calculatable_radius;
+        $calulatable_long = 0.0181818181818182 * $calculatable_radius;
+
+        $lower_lat = ($pick_lat - $calulatable_lat);
+        $lower_long = ($pick_lng - $calulatable_long);
+
+        $higher_lat = ($pick_lat + $calulatable_lat);
+        $higher_long = ($pick_lng + $calulatable_long);
+
+        $g = new Geohash();
+
+        $lower_hash = $g->encode($lower_lat,$lower_long, 12);
+        $higher_hash = $g->encode($higher_lat,$higher_long, 12);
+
+        $conditional_timestamp = Carbon::now()->subMinutes(7)->timestamp;
+
+        $vehicle_type = $type_id;
+
+        $fire_drivers = $this->database->getReference('drivers')->orderByChild('g')->startAt($lower_hash)->endAt($higher_hash)->getValue();
+        
+        $firebase_drivers = [];
+
+        $i=-1;
+
+        foreach ($fire_drivers as $key => $fire_driver) {
+            $i +=1; 
+            $driver_updated_at = Carbon::createFromTimestamp($fire_driver['updated_at'] / 1000)->timestamp;
+
+            if($fire_driver['vehicle_type']==$vehicle_type && $fire_driver['is_active']==1 && $fire_driver['is_available']==1 && $conditional_timestamp < $driver_updated_at){
+
+                $distance = distance_between_two_coordinates($pick_lat,$pick_lng,$fire_driver['l'][0],$fire_driver['l'][1],'K');
+
+                $firebase_drivers[$fire_driver['id']]['distance']= $distance;
+
+            }      
+
+        }
+
+        asort($firebase_drivers);
+
+            if (!empty($firebase_drivers)) {
+               
+                $nearest_driver_ids = [];
+
+                foreach ($firebase_drivers as $key => $firebase_driver) {
+                    
+                    $nearest_driver_ids[]=$key;
+                }
 
                     // Already rejected drivers
                     $rejected_drivers = DriverRejectedRequest::where('request_id',$request->id)->pluck('driver_id')->toArray();
@@ -140,6 +175,10 @@ class AssignDriversForRegularRides extends Command
 
                         // Send notification to the very first driver
                         $first_meta_driver = $selected_drivers[0]['driver_id'];
+                        
+                        // Add first Driver into Firebase Request Meta
+                        $this->database->getReference('request-meta/'.$request->id)->set(['driver_id'=>$first_meta_driver,'request_id'=>$request->id,'user_id'=>$request->user_id,'active'=>1,'updated_at'=> Database::SERVER_TIMESTAMP]);
+
                         $request_result =  fractal($request, new CronTripRequestTransformer)->parseIncludes('userDetail');
                         $pus_request_detail = $request_result->toJson();
                         $push_data = ['notification_enum'=>PushEnums::REQUEST_CREATED,'result'=>(string)$pus_request_detail];
@@ -156,20 +195,23 @@ class AssignDriversForRegularRides extends Command
                         $notifable_driver = $driver->user;
                         $notifable_driver->notify(new AndroidPushNotification($title, $body));
 
-                        // Form a socket sturcture using users'id and message with event name
-                        // $socket_message = structure_for_socket($driver->id, 'driver', $socket_data, 'create_request');
-
-                        // dispatch(new NotifyViaSocket('transfer_msg', $socket_message));
-
+                    
                         dispatch(new NotifyViaMqtt('delivery_create_request_'.$driver->id, json_encode($socket_data), $driver->id));
 
                         foreach ($selected_drivers as $key => $selected_driver) {
                             $request->requestMeta()->create($selected_driver);
                         }
                     }
-                }
+                
             } else {
-                $this->info('there is an error-getting-drivers');
+                $this->info('no-drivers-available');
+                    $request->attempt_for_schedule += 1;
+                    $request->save();
+                    if ($request->attempt_for_schedule>5) {
+                        $no_driver_request_ids = [];
+                        $no_driver_request_ids[0] = $request->id;
+                        dispatch(new NoDriverFoundNotifyJob($no_driver_request_ids));
+                    }
             }
         }
 

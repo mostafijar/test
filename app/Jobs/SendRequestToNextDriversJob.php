@@ -13,6 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\Jobs\Notifications\AndroidPushNotification;
 use App\Transformers\Requests\TripRequestTransformer;
 use App\Transformers\Requests\CronTripRequestTransformer;
+use Kreait\Firebase\Database;
 
 class SendRequestToNextDriversJob implements ShouldQueue
 {
@@ -25,9 +26,10 @@ class SendRequestToNextDriversJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($request_meta_ids)
+    public function __construct($request_meta_ids,Database $database)
     {
         $this->request_meta_ids = $request_meta_ids;
+        $this->database = $database;
     }
 
     /**
@@ -40,6 +42,9 @@ class SendRequestToNextDriversJob implements ShouldQueue
         foreach ($this->request_meta_ids as $key => $request_meta_id) {
             $request_meta_detail = RequestMeta::find($request_meta_id);
 
+            // Add Meta Driver into Firebase Request Meta
+            $this->database->getReference('request-meta/'.$request_meta_detail->request_id.'/'.$request_meta_detail->driver_id)->set(['driver_id'=>$request_meta_detail->driver_id,'request_id'=>$request_meta_detail->request_id,'user_id'=>$request_meta_detail->user_id,'active'=>1,'updated_at'=> Database::SERVER_TIMESTAMP]);
+            
             $request_result =  fractal($request_meta_detail->request, new CronTripRequestTransformer)->parseIncludes('userDetail');
 
             $pus_request_detail = $request_result->toJson();
