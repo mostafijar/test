@@ -93,5 +93,6 @@ class Settings
     const SHOW_RENTAL_RIDE_FEATURE='show_rental_ride_feature';
     const SHOW_RIDE_OTP_FEATURE='show_ride_otp_feature';
     const SHOW_RIDE_LATER_FEATURE='show_ride_later_feature';
-
+    const GOOGLE_MAP_KEY_FOR_DISTANCE_MATRIX='google_map_key_for_distance_matrix';
+    
 }
