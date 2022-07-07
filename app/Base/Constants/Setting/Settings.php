@@ -99,5 +99,10 @@ class Settings
     const ENABLE_SHIPMENT_UNLOAD_FEATURE='enable_shipment_unload_feature';
     const ENABLE_DIGITAL_SIGNATURE='enable_digital_signature';
 
+    const USER_CAN_MAKE_A_RIDE_AFTER_X_MINIUTES='user_can_make_a_ride_after_x_miniutes';
+    const TRIP_ACCEPT_REJECT_DURATION_FOR_DRIVER='trip_accept_reject_duration_for_driver';
+    const MAXIMUM_TIME_FOR_FIND_DRIVERS_FOR_REGULAR_RIDE='maximum_time_for_find_drivers_for_regular_ride';
+
+
     
 }
