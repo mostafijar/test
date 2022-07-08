@@ -244,7 +244,7 @@ background: #000000;
 </div>
 <div id="request-lists-target">
 <include-fragment src="{{ url('fetch/request_lists') }}">
-<span style="text-align: center;font-weight: bold;"> Loading...</span>
+<span style="text-align: center;font-weight: bold;">@lang('view_pages.loading')</span>
 </include-fragment>
 </div>
 </div>
@@ -404,7 +404,7 @@ statusTxt = statusTxt.replace('<<status>>', 'In Progress')
 statusTxt = statusTxt.replace('<<loader>>',
 `<div class="spinner-border text-dark"
 style="width: 1rem;height: 1rem;" role="status">
-<span class="sr-only">Loading...</span>
+<span class="sr-only">@lang('view_pages.loading')</span>
 </div>`
 )
 

@@ -117,7 +117,7 @@
 
                     <div id="js-drivers-partial-target">
                         <include-fragment src="drivers/fetch/approved">
-                            <span style="text-align: center;font-weight: bold;"> Loading...</span>
+                            <span style="text-align: center;font-weight: bold;"> @lang('view_pages.loading')</span>
                         </include-fragment>
                     </div>
                 </div>

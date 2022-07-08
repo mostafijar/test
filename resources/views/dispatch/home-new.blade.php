@@ -244,7 +244,7 @@
                                 </div>
                                 <div id="request-lists-target">
                                     <include-fragment src="{{ url('fetch/request_lists') }}">
-                                        <span style="text-align: center;font-weight: bold;"> Loading...</span>
+                                        <span style="text-align: center;font-weight: bold;"> @lang('view_pages.loading')</span>
                                     </include-fragment>
                                 </div>
                             </div>

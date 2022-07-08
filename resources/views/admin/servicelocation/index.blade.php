@@ -48,7 +48,7 @@
 
                     <div id="js-service_location-partial-target">
                         <include-fragment src="service_location/fetch">
-                            <span style="text-align: center;font-weight: bold;"> Loading...</span>
+                            <span style="text-align: center;font-weight: bold;"> @lang('view_pages.loading')</span>
                         </include-fragment>
                     </div>
 

@@ -708,6 +708,8 @@ return array(
     'default_country_code_for_mobile_app' => 'Default Country Code For Mobile App (eg: Country name: India,  as  IN )',
    'user_can_make_a_ride_after_x_miniutes' => 'User Can Schedule A Ride After "X" miniutes',
    'trip_accept_reject_duration_for_driver' => 'Trip Accept/Reject Duration For Driver in Seconds',
-
-        
+   'sos_request' => 'SOS Request',
+   'toggle_navigation' => 'Toggle navigation',
+         'loading' => 'Loading...',
+  
    );

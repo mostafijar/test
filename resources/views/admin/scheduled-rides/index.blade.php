@@ -139,7 +139,7 @@
 
                     <div id="js-request-partial-target" class="table-responsive">
                         <include-fragment src="scheduled-rides/fetch">
-                            <span style="text-align: center;font-weight: bold;"> Loading...</span>
+                            <span style="text-align: center;font-weight: bold;"> @lang('view_pages.loading')</span>
                         </include-fragment>
                     </div>
 

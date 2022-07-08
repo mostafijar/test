@@ -46,7 +46,7 @@
 
     <div id="js-project-partial-target">
         <include-fragment src="fetch/{{$area->id}}">
-            <span style="text-align: center;font-weight: bold;"> Loading...</span>
+            <span style="text-align: center;font-weight: bold;">@lang('view_pages.loading')</span>
         </include-fragment>
     </div>
 

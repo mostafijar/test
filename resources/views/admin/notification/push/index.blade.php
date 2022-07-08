@@ -31,7 +31,7 @@
 
         <div id="js-pushnotification-partial-target">
             <include-fragment src="push/fetch">
-                <span style="text-align: center;font-weight: bold;"> Loading...</span>
+                <span style="text-align: center;font-weight: bold;"> @lang('view_pages.loading')</span>
             </include-fragment>
         </div>
 

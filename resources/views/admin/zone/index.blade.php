@@ -47,7 +47,7 @@
 
                     <div id="js-zone-partial-target">
                         <include-fragment src="zone/fetch">
-                            <span style="text-align: center;font-weight: bold;"> Loading...</span>
+                            <span style="text-align: center;font-weight: bold;"> @lang('view_pages.loading')</span>
                         </include-fragment>
                     </div>
 
