@@ -44,9 +44,9 @@
     <td>{{$result->poc_name}}</td>
     <td>{{$result->poc_email}}</td>
     @if($result->active)
-    <td><span class="label label-success">Active</span></td>
+    <td><span class="label label-success"> @lang('view_pages.active')</span></td>
     @else
-    <td><span class="label label-danger">InActive</span></td>
+    <td><span class="label label-danger"> @lang('view_pages.inactive')</span></td>
     @endif
     <td>
 

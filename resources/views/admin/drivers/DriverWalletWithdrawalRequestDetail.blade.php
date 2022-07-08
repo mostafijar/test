@@ -27,7 +27,7 @@
  <div class="content">
 
         <div class="row">
-<h5>Withdrawal Requests History</h5>
+<h5> @lang('view_pages.withdrawal_requests_history')</h5>
             <div class="col-12">
         <div class="box">            
             <table class="table table-hover">
@@ -54,11 +54,11 @@
             <td>{{$result->driverDetail->mobile }}</td>
             <td> {{$result->requested_currency}} {{$result->requested_amount}}</td>
             @if ($result->status == 0)
-                <td><button class="btn btn-warning btn-sm">Requested</button></td>
+                <td><button class="btn btn-warning btn-sm">@lang('view_pages.requested')</button></td>
             @elseif($result->status==1)
-                 <td><button class="btn btn-success btn-sm">Approved</button></td>
+                 <td><button class="btn btn-success btn-sm">@lang('view_pages.approved')</button></td>
             @else
-                 <td><button class="btn btn-danger btn-sm">Declined</button></td>
+                 <td><button class="btn btn-danger btn-sm">@lang('view_pages.declined')</button></td>
             @endif
             <td>
                 <div class="dropdown">

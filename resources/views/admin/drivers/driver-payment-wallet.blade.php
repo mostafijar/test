@@ -77,7 +77,7 @@
  <div class="content">
 
         <div class="row">
-<h5>Wallet History</h5>
+<h5>@lang('view_pages.wallet_history')</h5>
             <div class="col-12">
         <div class="box">            
             <table class="table table-hover">

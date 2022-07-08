@@ -55,14 +55,10 @@
  -->
                         <div class="col-12">
                             <div id="floating-panel">
-                                <button class="btn btn-sm btn-danger mt-1 mt-md-0" onclick="toggleHeatmap()">Toggle
-                                    Heatmap</button>
-                                <button class="btn btn-sm btn-danger mt-1 mt-md-0" onclick="changeGradient()">Change
-                                    gradient</button>
-                                <button class="btn btn-sm btn-danger mt-1 mt-md-0" onclick="changeRadius()">Change
-                                    radius</button>
-                                <button class="btn btn-sm btn-danger mt-1 mt-md-0" onclick="changeOpacity()">Change
-                                    opacity</button>
+                                <button class="btn btn-sm btn-danger mt-1 mt-md-0" onclick="toggleHeatmap()">@lang('view_pages.toggle_heatmap')</button>
+                                <button class="btn btn-sm btn-danger mt-1 mt-md-0" onclick="changeGradient()">@lang('view_pages.change_gradient')</button>
+                                <button class="btn btn-sm btn-danger mt-1 mt-md-0" onclick="changeRadius()">@lang('view_pages.change_radius')</button>
+                                <button class="btn btn-sm btn-danger mt-1 mt-md-0" onclick="changeOpacity()">@lang('view_pages.change_opacity')</button>
                             </div>
 
                             <div id="map"></div>

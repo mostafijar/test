@@ -301,18 +301,18 @@ body {
           <ul class="nav nav-tabs justify-content-center" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" data-toggle="tab" href="#home" role="tab">
-                <i class="now-ui-icons objects_umbrella-13"></i> CITY TAXI
+                <i class="now-ui-icons objects_umbrella-13"></i> @lang('view_pages.city_taxi')
               </a>
             </li>
           
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#rentals" role="tab">
-                <i class="now-ui-icons shopping_shop"></i> RENTALS
+                <i class="now-ui-icons shopping_shop"></i> @lang('view_pages.rentals')
               </a>
             </li>
               <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#outstation" role="tab">
-                <i class="now-ui-icons shopping_cart-simple"></i> OUTSTATION
+                <i class="now-ui-icons shopping_cart-simple"></i>@lang('view_pages.outstation') 
               </a>
             </li>
           </ul>
@@ -325,14 +325,14 @@ body {
         <div class="radio_book">
           <input class="form-check-input" type="radio" name="book" id="booklater" value="booklater" >
           <label class="form-check-label" for="booklater">
-            Book Later
+             @lang('view_pages.book_later')
           </label>
           <input class="form-check-input" type="radio" name="book" id="booknow" value="booknow">
-          <label class="form-check-label" for="booknow"> Book Now
+          <label class="form-check-label" for="booknow"> @lang('view_pages.book_now')
           </label>
         </div>
      
-       <p class="box-title txtInput">User Details</p>
+       <p class="box-title txtInput">@lang('view_pages.user_details')</p>
 			<div class="input-group mar1rm">
                   <input class="form-control w-100 required_for_valid" type="text"
                       placeholder="Name" name="name" id="name" aria-label="Username"
@@ -344,7 +344,7 @@ body {
 					placeholder="Phone Number"  id="phone" aria-label="phone" aria-describedby="basic-addon1">
               </div>
 			
-			  <p class="box-title txtInput">Location Details</p>
+			  <p class="box-title txtInput">@lang('view_pages.location_details')</p>
                                                 <div class="input-group mar1rm">
                                                     <input class="form-control w-100 required_for_valid" type="text"
                                                         placeholder="Pickup Location" name="pickup" id="pickup"
@@ -359,7 +359,7 @@ body {
                                                 </div>
 
                                                 <div class="text-left">
-                                                     <p class="box-title txtInput">Start Date</p>
+                                                     <p class="box-title txtInput">@lang('view_pages.start_date')</p>
                                                 <input class="form-control datetimepicker required_for_valid"
                                                     name="date" id="datepicker" type="text" required placeholder="d/m/y"
                                                     data-options='{"disableMobile":true}' />
@@ -367,19 +367,20 @@ body {
                                                     id="error-date">{{ $errors->first('date') }}</span> -->
                                             </div>
                                             <div class="text-left">
-                                                <p class="box-title txtInput">Start Time</p>
+                                                <p class="box-title txtInput">
+                                                @lang('view_pages.start_time')</p>
                                                 <input class="form-control datetimepicker required_for_valid"
                                                     name="time" id="timepicker" type="text" required placeholder="H:i"
                                                     data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true}' />
                                               <!--   <span class="text-danger"
                                                     id="error-time">{{ $errors->first('time') }}</span> -->
                                             </div>
-												<p class="box-title txtInput">Payment Method</p>
+												<p class="box-title txtInput"> @lang('view_pages.payment_method')</p>
 												<div class="text-left chq-radio">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" id="cash" type="radio" name="payment_opt" value="1">
                                                     <label class="form-check-label book" for="cash">
-                                                        &nbsp; Cash
+                                                        &nbsp; @lang('view_pages.cash')
                                                     </label>
                                                 </div>
                                             </div>
@@ -387,7 +388,7 @@ body {
                                         <button type="button"
                                             class="btn btn-primary btn-md turned-button form-submit mr-auto appbtn"
                                             style="float: right">
-                                            Book Cabs
+                                            @lang('view_pages.book_cabs')
                                         </button>
                                     </div>
                                           
@@ -396,13 +397,13 @@ body {
              <div class="radio_book">
           <input class="form-check-input" type="radio" name="rentalbook" id="rentalbooklater" value="rentalbooklater">
           <label class="form-check-label" for="rentalbooklater">
-            Book Later
+           @lang('view_pages.book_later')
           </label>
           <input class="form-check-input" type="radio" name="rentalbook" id="rentalbooknow" value="rentalbooknow" >
-          <label class="form-check-label" for="rentalbooknow"> Book Now
+          <label class="form-check-label" for="rentalbooknow">@lang('view_pages.book_now')
           </label>
         </div>
-              <p class="box-title txtInput">Location Details</p>
+              <p class="box-title txtInput">@lang('view_pages.location_details')</p>
                                                 <div class="input-group mar1rm">
                                                 
                                                     <input class="form-control w-100 required_for_valid" type="text"
@@ -411,23 +412,23 @@ body {
                                                   
                                                 </div>
                                                 <div class="text-left">
-                                                     <p class="box-title txtInput">Start Date</p>
+                                                     <p class="box-title txtInput">@lang('view_pages.start_date')</p>
                                                 <input class="form-control datetimepicker required_for_valid"
                                                     name="date" id="datepicker" type="text" required placeholder="d/m/y"
                                                     data-options='{"disableMobile":true}' />
                                             </div>
                                             <div class="text-left">
-                                                <p class="box-title txtInput">Start Time</p>
+                                                <p class="box-title txtInput"> @lang('view_pages.start_time')</p>
                                                 <input class="form-control datetimepicker required_for_valid"
                                                     name="time" id="timepicker" type="text" required placeholder="H:i"
                                                     data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true}' />
                                             </div>
-                                                <p class="box-title txtInput">Payment Method</p>
+                                                <p class="box-title txtInput">@lang('view_pages.payment_method')</p>
                                                 <div class="text-left chq-radio">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" id="cash" type="radio" name="payment_opt" value="1">
                                                     <label class="form-check-label book" for="cash">
-                                                        &nbsp; Cash
+                                                        &nbsp; @lang('view_pages.cash')
                                                     </label>
                                                 </div>
                                             </div>
@@ -435,7 +436,7 @@ body {
                                         <button type="button"
                                             class="btn btn-primary btn-md turned-button form-submit mr-auto appbtn"
                                             style="float: right">
-                                            Book Rentals Cabs
+                                           @lang('view_pages.book_rental_cabs)
                                         </button>
                                     </div>
             </div>
@@ -443,14 +444,14 @@ body {
 			 <div class="radio_book">
           <input class="form-check-input" type="radio" name="outstationbook" id="outstationbooklater" value="outstationbooklater" >
           <label class="form-check-label" for="outstationbooklater">
-            Book Later
+            @lang('view_pages.book_later')
           </label>
           <input class="form-check-input" type="radio" name="outstationbook" id="outstationbooknow" value="outstationbooknow" >
-          <label class="form-check-label" for="outstationbooknow"> Book Now
+          <label class="form-check-label" for="outstationbooknow"> @lang('view_pages.book_now')
           </label>
         </div>
             
-              <p class="box-title txtInput">Location Details</p>
+              <p class="box-title txtInput">@lang('view_pages.location_details')</p>
                                                 <div class="input-group mar1rm">
                                                 
                                                     <input class="form-control w-100 required_for_valid" type="text"
@@ -464,12 +465,12 @@ body {
                                                         aria-label="Username" aria-describedby="basic-addon1">
                                                   
                                                 </div>
-                                                <p class="box-title txtInput">Payment Method</p>
+                                                <p class="box-title txtInput">@lang('view_pages.payment_method')</p>
                                                 <div class="text-left chq-radio">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" id="cash" type="radio" name="payment_opt" value="1">
                                                     <label class="form-check-label book" for="cash">
-                                                        &nbsp; Cash
+                                                        &nbsp; @lang('view_pages.cash')
                                                     </label>
                                                 </div>
                                             </div>
@@ -477,7 +478,7 @@ body {
                                         <button type="button"
                                             class="btn btn-primary btn-md turned-button form-submit mr-auto appbtn"
                                             style="float: right">
-                                            Book Outstation Cabs
+                                            @lang('view_pages.book_outstation_cabs')
                                         </button>
                                     </div>
             </div>

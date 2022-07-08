@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return array (
   'dashboard' => 'Dashboard',
   'roles' => 'Privileges',
   'add_role' => 'Add Role',
@@ -60,11 +60,10 @@ return array(
   'promo_codes' => 'Promo Code',
   'notifications' => 'Custom Notification',
   'push_notification' => 'Push Notification',
-  'map_view' => "God's Eye",
-  'driver_duties_report'=>'Driver Duties Report',
+  'map_view' => 'God\'s Eye',
+  'driver_duties_report' => 'Driver Duties Report',
   'user_complaints' => 'User Complaint',
   'driver_complaints' => 'Driver Complaint',
-
   'master' => 'Master Data',
   'carmake' => 'Car Make',
   'carmodel' => 'Car Model',
@@ -77,7 +76,7 @@ return array(
   'edit_zone_type_package_price' => 'Edit zone Type Package Prices',
   'owners' => 'Manage Owners',
   'manage_owners' => 'Manage Owner',
-   'add-owner' => 'Add Owner',
+  'add-owner' => 'Add Owner',
   'edit-owner' => 'Edit Owner',
   'delete-owner' => 'Delete Owner',
 );

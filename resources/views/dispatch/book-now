@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">
-                    Book Now
+                     @lang('view_pages.book_now')
                 </h4>
                 <button type="button" class="close btn btn-danger" data-bs-dismiss="modal">X</button>
             </div>
@@ -18,7 +18,7 @@
                                     <div class="card p-3 mb-3 book">
     <div class="row">
         <div class="col-12">
-            <h6 class="box-title">Sender Details</h6>
+            <h6 class="box-title">@lang('view_pages.sender_details')</h6>
         </div>
 
         <input id="dialcodes" name="dialcodes" type="hidden">
@@ -58,7 +58,7 @@
 <div class="card p-3 mb-3 book">
     <div class="row">
         <div class="col-md-6">
-            <h6 class="box-title">Receiver Details</h6>
+            <h6 class="box-title">@lang('view_pages.receiver_details')</h6>
         </div>
 
         <input id="receiverDialCode" name="receiverDialCode" type="hidden">
@@ -104,7 +104,7 @@
                                     <div class="card p-3 mb-3 book">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h6 class="box-title">Location Details</h6>
+                                                <h6 class="box-title">@lang('view_pages.location_details')</h6>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="input-group mb-3">
@@ -140,30 +140,30 @@
                                         <div class="row">
                                             {{-- <div class="col-12" id="vehicle-body">
                                     <div class="box-header with-border text-left">
-                                        <h6 class="box-title">Truck Type</h6>
+                                        <h6 class="box-title">@lang('view_pages.truck_type')</h6>
                                     </div>
                                     <div class="box-body py-0">
                                         <div class="row">
                                             <div class="col-md-4 m-auto truckType">
                                                 <ul class="body-type">
-                                                    <li data-id="1">Open</li>
+                                                    <li data-id="1">@lang('view_pages.open')</li>
                                                 </ul>
                                             </div>
                                             <div class="col-md-4 m-auto truckType">
                                                 <ul class="body-type">
-                                                    <li data-id="0">Closed</li>
+                                                    <li data-id="0">@lang('view_pages.closed')</li>
                                                 </ul>
                                             </div>
                                             <div class="col-md-4 m-auto truckType">
                                                 <ul class="body-type">
-                                                    <li data-id="2">Any</li>
+                                                    <li data-id="2">@lang('view_pages.any')</li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div> --}}
                                             <div class="col-12">
-                                                <h6 class="box-title">Vehicle Type</h6>
+                                                <h6 class="box-title">@lang('view_pages.type')</h6>
                                             </div>
                                             <div class="col-12">
                                                 <div class="row">
@@ -183,7 +183,7 @@
                                                     <div class="collapse text-center" id="collapseExample">
                                                         <hr>
                                                         <h4>
-                                                            Packages
+                                                          @lang('view_pages.packages')  
                                                         </h4>
                                                         <div class="packages" id="packageList">
 
@@ -199,7 +199,7 @@
     <div class="row">
 
         <div class="col-12">
-            <h6 class="box-title">Goods Type</h6>
+            <h6 class="box-title">@lang('view_pages.goods_type')</h6>
         </div>
         <div class="col-md-12">
             <select class="form-select form-select-sm required_for_valid"
@@ -216,7 +216,7 @@
                                     <div class="card p-3 mb-3 book date-option d-none">
                                         <div class="row">
                                             <div class="mb-3">
-                                                <label class="form-label" for="datepicker">Start Date</label>
+                                                <label class="form-label" for="datepicker">@lang('view_pages.start_date')</label>
                                                 <input class="form-control datetimepicker required_for_valid"
                                                     name="date" id="datepicker" type="text" required placeholder="d/m/y"
                                                     data-options='{"disableMobile":true}' />
@@ -224,7 +224,7 @@
                                                     id="error-date">{{ $errors->first('date') }}</span>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label" for="timepicker">Start Time</label>
+                                                <label class="form-label" for="timepicker">@lang('view_pages.start_time')</p></label>
                                                 <input class="form-control datetimepicker required_for_valid"
                                                     name="time" id="timepicker" type="text" required placeholder="H:i"
                                                     data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true}' />
@@ -237,7 +237,7 @@
                                     <div class="card p-3 mb-3 book">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h6 class="box-title">Payment Method</h6>
+                                                <h6 class="box-title">@lang('view_pages.payment_method')</h6>
                                             </div>
                                             <div class="col-md-12 chq-radio">
                                                 <div class="form-check form-check-inline">
@@ -414,7 +414,7 @@
                                                                 </linearGradient>
                                                             </defs>
                                                         </svg>
-                                                        &nbsp; Cash
+                                                        &nbsp; @lang('view_pages.cash')
                                                     </label>
                                                 </div>
                                                 <span class="text-danger"
@@ -433,7 +433,7 @@
                                         <button type="button"
                                             class="btn btn-primary btn-md turned-button form-submit mr-auto"
                                             style="float: right">
-                                            Book
+                                           @lang('view_pages.book')
                                         </button>
                                     </div>
                             </div>

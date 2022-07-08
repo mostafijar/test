@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Admin login</title>
+    <title>@lang('view_pages.admin_login')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -68,7 +68,7 @@
                             <ul class="error-style"></ul>
                         </div>
                         <img src="assets/images/favicon.png" alt="">
-                        <h3 class="text-center">Dispatch Panel</h3>
+                        <h3 class="text-center">@lang('view_pages.dispatch_panel')</h3>
                         <p class="login-box-msg"></p>
                         <!-- action="{{ url('api/spa/login') }}" method="post" -->
                         <form class="login_form" id="form" enctype="multipart/form-data">
@@ -103,14 +103,14 @@
                                 <div class="col-6">
                                     <div class="checkbox">
                                         <input type="checkbox" id="basic_checkbox_1">
-                                        <label for="basic_checkbox_1">Remember Me</label>
+                                        <label for="basic_checkbox_1">@lang('view_pages.remember_me')</label>
                                     </div>
                                 </div>
 
                                 <!-- /.col -->
                                 <div class="col-12 text-center login-btn">
                                     <button class="btn btn-info btn-block margin-top-10 submit_button"
-                                        type="submit">Sign In</button>
+                                        type="submit">@lang('view_pages.sign_in')/button>
                                 </div>
                                 <!-- /.col -->
                             </div>

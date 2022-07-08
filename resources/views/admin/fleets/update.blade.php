@@ -5,12 +5,12 @@
 <div class="row p-0 m-0">
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-            <h4 class="mb-0 font-size-18">Edit Fleet</h4>
+            <h4 class="mb-0 font-size-18">@lang('view_pages.edit_fleet')</h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="{{url('fleets') }}">Manage Fleet</a></li>
-                    <li class="breadcrumb-item active">Edit Fleet</li>
+                    <li class="breadcrumb-item"><a href="{{url('fleets') }}">@lang('view_pages.manage_fleet')</a></li>
+                    <li class="breadcrumb-item active">@lang('view_pages.edit_fleet')</li>
                 </ol>
             </div>
         </div>
@@ -105,7 +105,7 @@
                                     <div class="col-md-12 float-left input-group p-0">
                                         <span class="input-group-btn">
                                             <span class="btn btn-default btn-file">
-                                                Browse… <input type="file" class="imgInp" name="registration_certificate">
+                                                 @lang('view_pages.browse')… <input type="file" class="imgInp" name="registration_certificate">
                                             </span>
                                         </span>
                                         <input type="text" class="form-control" readonly>

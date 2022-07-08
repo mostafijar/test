@@ -16,13 +16,13 @@ flex-direction: row-reverse;
 <div class="row p-0 m-0">
 <div class="col-12">
 <div class="page-title-box d-flex align-items-center justify-content-between">
-<h4 class="mb-0 font-size-18">Add Owner</h4>
+<h4 class="mb-0 font-size-18">@lang('view_pages.add_owner')</h4>
 
 <div class="page-title-right">
 <ol class="breadcrumb m-0">
-<li class="breadcrumb-item"><a href="{{ url('owners/by_area',$area->id) }}">Manage Owner</a>
+<li class="breadcrumb-item"><a href="{{ url('owners/by_area',$area->id) }}">@lang('view_pages.manage_owner')</a>
 </li>
-<li class="breadcrumb-item active">Add Owner</li>
+<li class="breadcrumb-item active">@lang('view_pages.add_owner')</li>
 </ol>
 </div>
 </div>
@@ -409,7 +409,7 @@ placeholder="@lang('view_pages.enter') @lang('view_pages.account_no')">
 <div class="col-md-12 float-left input-group p-0">
 <span class="input-group-btn">
 <span class="btn btn-default btn-file">
-Browse… <input type="file" class="imgInp" name="business_license" required>
+@lang('view_pages.browse')… <input type="file" class="imgInp" name="business_license" required>
 </span>
 </span>
 <input type="text" class="form-control" readonly>
@@ -431,8 +431,8 @@ Browse… <input type="file" class="imgInp" name="business_license" required>
 </div>
 <ul
 class="pager wizard twitter-bs-wizard-pager-link">
-<li class="previous"><a href="#">Previous</a></li>
-<li class="next"><a href="#">Next</a></li>
+<li class="previous"><a href="#">@lang('view_pages.previous')</a></li>
+<li class="next"><a href="#">@lang('view_pages.next')</a></li>
 </ul>
 </div>
 </div>

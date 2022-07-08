@@ -3,8 +3,8 @@
         <tr>
             <th> @lang('view_pages.s_no')</th>
             <th> @lang('view_pages.request_id')</th>
-            <th> Trip Start Time</th>
-            <th> Trip End Time</th>
+            <th> @lang('view_pages.trip_start_time')</th>
+            <th> @lang('view_pages.trip_end_time')</th>
             <th> @lang('view_pages.user_name')</th>
             <th> @lang('view_pages.driver_name')</th>
             <th> @lang('view_pages.trip_status')</th>
@@ -73,17 +73,17 @@
              @if($later == 0)
 
                 @if(($later == 0) &&  ($rental == 0))           
-                <td><span class="label label-success"> Regular-Instant </span> </td>
+                <td><span class="label label-success"> @lang('view_pages.regular_instant') </span> </td>
                 @else(($later == 0) &&  ($rental == 1)) 
-                <td><span class="label label-success"> Rental-Instant </span> </td>
+                <td><span class="label label-success"> @lang('view_pages.rental_instant') </span> </td>
                 @endif
 
             @else($later == 1)
                
                 @if(($later == 1) &&  ($rental == 0))           
-                <td><span class="label label-success"> Regular-Scheduled </span></td>
+                <td><span class="label label-success">  @lang('view_pages.regular_scheduled')</span></td>
                 @else(($later == 1) &&  ($rental == 1 )) 
-                <td><span class="label label-success"> Rental-Scheduled </span></td>
+                <td><span class="label label-success"> @lang('view_pages.rental_scheduled')</span></td>
                 @endif
                
             @endif

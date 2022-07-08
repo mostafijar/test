@@ -157,7 +157,7 @@
                                     <div class="col-md-12 float-left input-group p-0">
                                         <span class="input-group-btn">
                                             <span class="btn btn-default btn-file">
-                                                Browse… <input type="file" class="imgInp" name="registration_certificate" id="registration_certificate" required>
+                                                @lang('view_pages.browse')... <input type="file" class="imgInp" name="registration_certificate" id="registration_certificate" required>
                                             </span>
                                         </span>
                                         <input type="text" class="form-control" readonly>
@@ -176,7 +176,7 @@
                                     <div class="col-md-12 float-left input-group p-0">
                                         <span class="input-group-btn">
                                     <span class="btn btn-default btn-file">
-                                        Browse… <input type="file" class="imgInp" name="vehicle_back_side" id="vehicle_back_side" required>
+                                        @lang('view_pages.browse')… <input type="file" class="imgInp" name="vehicle_back_side" id="vehicle_back_side" required>
                                     </span>
                                         </span>
                                         <input type="text" class="form-control" readonly>

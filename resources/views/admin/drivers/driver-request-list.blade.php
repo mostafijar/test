@@ -113,7 +113,7 @@
                             <div class="col-5 col-md-1 text-left">
                                 <button class="btn btn-outline btn-sm btn-danger py-2" type="button" data-toggle="modal"
                                     data-target="#request-modal">
-                                    Filter
+                                     @lang('view_pages.filter')
                                 </button>
                             </div>
 
@@ -172,11 +172,11 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" data-dismiss="modal"
-                                            class="btn btn-success btn-sm float-right filter">Apply Filters</button>
+                                            class="btn btn-success btn-sm float-right filter">@lang('view_pages.apply_filters')</button>
 
                                         <button type="button" data-dismiss="modal"
-                                            class="btn btn-danger btn-sm resetfilter float-right mr-2">Reset
-                                            Filters</button>
+                                            class="btn btn-danger btn-sm resetfilter float-right mr-2">
+                                            @lang('view_pages.reset_filters')</button>
                                     </div>
                                 </div>
                                 <!-- /.modal-content -->

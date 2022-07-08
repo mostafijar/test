@@ -120,8 +120,8 @@ margin: 5px;
 <label for="zone_admin" class="">@lang('view_pages.select_unit') <sup>*</sup></label>
 <select name="unit" id="unit" class="form-control" required>
 <option value="" selected disabled>@lang('view_pages.select_unit')</option>
-<option value="1">Kilo-Meter</option>
-<option value="2">Miles</option>
+<option value="1">@lang('view_pages.kilo_meter')</option>
+<option value="2">@lang('view_pages.miles')</option>
 </select>
 </div>
 </div>

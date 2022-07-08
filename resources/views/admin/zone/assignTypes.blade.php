@@ -99,7 +99,7 @@ Export</a> --}}
 <div class="col-12">
     <div class="box box-solid box-info">
         <div class="box-header with-border">
-        <h4 class="box-title">Ride Now</h4>
+        <h4 class="box-title">@lang('view_pages.ride_now')</h4>
         </div>
 
         <div class="box-body">
@@ -174,7 +174,7 @@ Export</a> --}}
     <div class="col-12">
         <div class="box box-solid box-info">
         <div class="box-header with-border">
-        <h4 class="box-title">Ride Later</h4>
+        <h4 class="box-title">@lang('view_pages.ride_later')</h4>
         </div>
 
         <div class="box-body">

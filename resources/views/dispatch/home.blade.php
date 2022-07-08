@@ -234,7 +234,7 @@ background: #000000;
 <div id="map"></div>
 
 <div id="legend">
-<h5>Legend</h5>
+<h5>@lang('view_pages.legend')</h5>
 </div>
 
 {{-- List requests --}}

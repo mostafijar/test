@@ -97,8 +97,8 @@ margin: 5px;
 <label for="zone_admin" class="">@lang('view_pages.select_unit')<sup>*</sup></label>
 <select name="unit" id="unit" class="form-control" required>
 <option value="" selected disabled>@lang('view_pages.select_unit')</option>
-<option value="1" {{ 1 == $zone->unit ? 'selected' : '' }}>Kilo-Meter</option>
-<option value="2" {{ 2 == $zone->unit ? 'selected' : '' }}>Miles</option>
+<option value="1" {{ 1 == $zone->unit ? 'selected' : '' }}>@lang('view_pages.kilo_meter')</option>
+<option value="2" {{ 2 == $zone->unit ? 'selected' : '' }}>@lang('view_pages.miles')</option>
 </select>
 </div>
 </div>

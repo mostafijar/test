@@ -109,7 +109,7 @@
 
                 <div class="box">
                     <div class="box-header with-border">
-                        <h4 class="box-title">Map View</h4>
+                        <h4 class="box-title">@lang('view_pages.map_view')</h4>
                 <div id="map"></div>
                 <div id="legend"><h3>@lang('view_pages.legend')</h3></div>
                 </div>
@@ -121,7 +121,7 @@
             <div class="col-12 col-lg-6">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h4 class="box-title">Trip Overview</h4>
+                        <h4 class="box-title">@lang('view_pages.trip_verview')</h4>
                         <ul class="box-controls pull-right">
                             <li><a class="box-btn-slide" href="#"></a></li>
                             <li><a class="box-btn-fullscreen" href="#"></a></li>
@@ -138,7 +138,7 @@
             <div class="col-12 col-lg-6">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h4 class="box-title">Earnings Overview</h4>
+                        <h4 class="box-title">@lang('view_pages.earnings_overview')</h4>
                         <ul class="box-controls pull-right">
                             <li><a class="box-btn-slide" href="#"></a></li>
                             <li><a class="box-btn-fullscreen" href="#"></a></li>

@@ -32,7 +32,7 @@
         <div class="col-sm-6">
                 <div class="togglebutton">
                     <input type="checkbox" id="exisiting_client" name="exisiting_client"  >
-                    <label for="exisiting_client">To Scelect Exisiting Client</label>
+                    <label for="exisiting_client">@lang('view_pages.to_scelect_exisiting_client')</label>
                 </div>
                 </div>
 </div>

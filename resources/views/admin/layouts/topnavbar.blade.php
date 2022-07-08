@@ -81,12 +81,12 @@
                              <div class="row no-gutters">
                                  <div class="col-12 text-left">
                                      <a href="{{ url('admins/profile', auth()->user()->id) }}"><i
-                                             class="ion ion-person"></i> My Profile</a>
+                                             class="ion ion-person"></i> @lang('pages_names.my_profile')</a>
                                  </div>
                                  <div role="separator" class="divider col-12"></div>
                                  <div class="col-12 text-left">
                                      <a href="{{ url('api/spa/logout') }}" class="logout"><i
-                                             class="fa fa-power-off"></i> Logout</a>
+                                             class="fa fa-power-off"></i> @lang('pages_names.logout')</a>
                                  </div>
                              </div>
                              <!-- /.row -->

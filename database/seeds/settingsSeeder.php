@@ -170,6 +170,13 @@ class SettingsSeeder extends Seeder
             'option_value' => null,
             'group_name' => null,
         ],
+        SettingSlug::DEFAULT_COUNTRY_CODE_FOR_MOBILE_APP => [
+            'category'=>SettingCategory::GENERAL,
+            'value' => 'IN',
+            'field' => SettingValueType::TEXT,
+            'option_value' => null,
+            'group_name' => null,
+        ],
         // Installation settings
         SettingSlug::GOOGLE_BROWSER_KEY => [
             'category'=>SettingCategory::INSTALLATION,

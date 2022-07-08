@@ -25,7 +25,7 @@
                 </button>
             </a>
 
-            <span class="text-danger">NOTE : Please Update to save changes</span>
+            <span class="text-danger">@lang('view_pages.note') : @lang('view_pages.please_update_to_save_changes')</span>
         </div>
 
         <div class="col-sm-12">
