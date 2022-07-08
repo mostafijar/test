@@ -75,9 +75,9 @@
 
     </td>
     @if($result->user->active)
-    <td><button class="btn btn-success btn-sm">Active</button></td>
+    <td><button class="btn btn-success btn-sm">@lang('view_pages.active')</button></td>
     @else
-    <td><button class="btn btn-danger btn-sm">InActive</button></td>
+    <td><button class="btn btn-danger btn-sm">@lang('view_pages.inactive')</button></td>
     @endif
     <td>
     @if(env('APP_FOR')!='demo')

@@ -46,7 +46,7 @@
     </span>
     </th>
 
-    <th> Flavour
+    <th> @lang('view_pages.flavour')
     <span style="float: right;">
     </span>
     </th>

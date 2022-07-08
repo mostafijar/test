@@ -185,9 +185,9 @@
                                         <input type="file" id="icon" onchange="readURL(this)" name="icon"
                                             style="display:none">
                                         <button class="btn btn-primary btn-sm" type="button" onclick="$('#icon').click()"
-                                            id="upload">Browse</button>
+                                            id="upload">@lang('view_pages.browse')</button>
                                         <button class="btn btn-danger btn-sm" type="button" id="remove_img"
-                                            style="display: none;">Remove</button><br>
+                                            style="display: none;">@lang('view_pages.remove')</button><br>
                                         <span class="text-danger">{{ $errors->first('icon') }}</span>
                                     </div>
                                 </div>

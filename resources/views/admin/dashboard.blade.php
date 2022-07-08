@@ -132,12 +132,11 @@
                     </div>
                     <!--/.bg-holder-->
                     <div class="card-body position-relative">
-                        <h6>Drivers registered
+                        <h6>@lang('view_pages.drivers_registered')
                         </h6>
                         <div class="display-4 fs-4 mb-2 font-weight-normal font-sans-serif text-warning"
                             data-countup="{&quot;endValue&quot;:58.386,&quot;decimalPlaces&quot;:2,&quot;suffix&quot;:&quot;k&quot;}">
-                            {{ $total_drivers[0]['total'] }}</div><a class="font-weight-semi-bold fs--1 text-nowrap" href="{{url('drivers')}}">See
-                            all<span class="fa fa-angle-right ml-1" data-fa-transform="down-1"></span></a>
+                            {{ $total_drivers[0]['total'] }}</div><a class="font-weight-semi-bold fs--1 text-nowrap" href="{{url('drivers')}}">@lang('view_pages.see_all')<span class="fa fa-angle-right ml-1" data-fa-transform="down-1"></span></a>
                     </div>
                 </div>
             </div>
@@ -148,12 +147,11 @@
                     </div>
                     <!--/.bg-holder-->
                     <div class="card-body position-relative">
-                        <h6>Drivers Approved<span class="badge badge-soft-success rounded-pill ml-2">{{number_format($total_drivers[0]['approve_percentage'],2)}}%</span>
+                        <h6>@lang('view_pages.drivers_approved')<span class="badge badge-soft-success rounded-pill ml-2">{{number_format($total_drivers[0]['approve_percentage'],2)}}%</span>
                         </h6>
                         <div class="display-4 fs-4 mb-2 font-weight-normal font-sans-serif text-success"
                             data-countup="{&quot;endValue&quot;:58.386,&quot;decimalPlaces&quot;:2,&quot;suffix&quot;:&quot;k&quot;}">
-                            {{ $total_drivers[0]['approved'] }}</div><a class="font-weight-semi-bold fs--1 text-nowrap" href="{{url('drivers')}}">See
-                            all<span class="fa fa-angle-right ml-1" data-fa-transform="down-1"></span></a>
+                            {{ $total_drivers[0]['approved'] }}</div><a class="font-weight-semi-bold fs--1 text-nowrap" href="{{url('drivers')}}">@lang('view_pages.see_all')<span class="fa fa-angle-right ml-1" data-fa-transform="down-1"></span></a>
                     </div>
                 </div>
             </div>
@@ -165,12 +163,12 @@
                     </div>
                     <!--/.bg-holder-->
                     <div class="card-body position-relative">
-                        <h6>Drivers waiting for approval<span class="badge badge-soft-success rounded-pill ml-2">{{number_format($total_drivers[0]['decline_percentage'],2)}}%</span>
+                        <h6>@lang('view_pages.drivers_waiting_for_approval')<span class="badge badge-soft-success rounded-pill ml-2">{{number_format($total_drivers[0]['decline_percentage'],2)}}%</span>
                         </h6>
                         <div class="display-4 fs-4 mb-2 font-weight-normal font-sans-serif text-warning"
                             data-countup="{&quot;endValue&quot;:58.386,&quot;decimalPlaces&quot;:2,&quot;suffix&quot;:&quot;k&quot;}">
                             {{ $total_drivers[0]['decline'] }}</div><a class="font-weight-semi-bold fs--1 text-nowrap"
-                            href="{{url('drivers')}}">See all<span class="fa fa-angle-right ml-1" data-fa-transform="down-1"></span></a>
+                            href="{{url('drivers')}}">@lang('view_pages.see_all')<span class="fa fa-angle-right ml-1" data-fa-transform="down-1"></span></a>
                     </div>
                 </div>
             </div>
@@ -182,12 +180,11 @@
                     </div>
                     <!--/.bg-holder-->
                     <div class="card-body position-relative">
-                        <h6>Users registered
+                        <h6> @lang('view_pages.users_registered')
                         </h6>
                         <div class="display-4 fs-4 mb-2 font-weight-normal font-sans-serif text-danger"
                             data-countup="{&quot;endValue&quot;:58.386,&quot;decimalPlaces&quot;:2,&quot;suffix&quot;:&quot;k&quot;}">
-                            {{ $total_users }}</div><a class="font-weight-semi-bold fs--1 text-nowrap" href="{{url('users')}}">See
-                            all<span class="fa fa-angle-right ml-1" data-fa-transform="down-1"></span></a>
+                            {{ $total_users }}</div><a class="font-weight-semi-bold fs--1 text-nowrap" href="{{url('users')}}">@lang('view_pages.see_all')<span class="fa fa-angle-right ml-1" data-fa-transform="down-1"></span></a>
                     </div>
                 </div>
             </div>
@@ -200,7 +197,7 @@
                     <div class="col-12">
                         <div class="box">
                             <div class="box-header with-border">
-                                <h3 class="font-weight-600">Notified SOS</h3>
+                                <h3 class="font-weight-600">@lang('view_pages.notified_sos')</h3>
                                 <ul class="box-controls pull-right">
                                     <li><a class="box-btn-close" href="#"></a></li>
                                     <li><a class="box-btn-slide" href="#"></a></li>
@@ -213,10 +210,10 @@
                                     <include-fragment>
                                         <p id="no_data" class="lead no-data text-center">
                                             <img src="{{asset('assets/img/dark-data.svg')}}" style="width:150px;margin-top:25px;margin-bottom:25px;" alt="">
-                                            <h4 class="text-center" style="color:#333;font-size:25px;">NO DATA FOUND</h4>
+                                            <h4 class="text-center" style="color:#333;font-size:25px;">@lang('view_pages.no_data_found')</h4>
                                         </p>
                                     </include-fragment>
-                                </div>
+                                </div>                                
                             </div>
                         </div>
                     </div>
@@ -231,7 +228,7 @@
                     <div class="col-12">
                         <div class="box">
                             <div class="box-header with-border">
-                                <h3 class="font-weight-600">Today's Trips</h3>
+                                <h3 class="font-weight-600">@lang('view_pages.todays_trips')</h3>
                                 <ul class="box-controls pull-right">
                                     <li><a class="box-btn-close" href="#"></a></li>
                                     <li><a class="box-btn-slide" href="#"></a></li>
@@ -255,7 +252,7 @@
                                                     <h4 class="font-weight-600">
                                                         {{$currency}} {{$todayEarnings[0]['total']}}
                                                         <br>
-                                                        Today Earnings
+                                                        @lang('view_pages.today_earnings')
                                                     </h4>
                                                 </div>
                                             </div>
@@ -271,7 +268,8 @@
                                                         {{$currency}} {{$todayEarnings[0]['cash']}}
 
                                                         <br>
-                                                        By Cash
+                                                        @lang('view_pages.by_cash')
+                                                        
                                                     </h4>
                                                 </div>
                                             </div>
@@ -287,7 +285,7 @@
                                                         {{$currency}} {{$todayEarnings[0]['wallet']}}
 
                                                         <br>
-                                                        By Wallet
+                                                        @lang('view_pages.by_wallet')
                                                     </h4>
                                                 </div>
                                             </div>
@@ -303,7 +301,7 @@
                                                         {{$currency}} {{$todayEarnings[0]['card']}}
 
                                                         <br>
-                                                        By Card/Online
+                                                        @lang('view_pages.by_card_online')
                                                     </h4>
                                                 </div>
                                             </div>
@@ -319,7 +317,7 @@
                                                         {{$currency}} {{$todayEarnings[0]['admin_commision']}}
 
                                                         <br>
-                                                        Admin Commision
+                                                        @lang('view_pages.admin_commision')
                                                     </h4>
                                                 </div>
                                             </div>
@@ -333,7 +331,7 @@
                                                     <h4 class="font-weight-600">
                                                         {{$currency}} {{$todayEarnings[0]['driver_commision']}}
                                                         <br>
-                                                        Driver Earnings
+                                                        @lang('view_pages.driver_earnings')
                                                     </h4>
                                                 </div>
                                             </div>
@@ -351,7 +349,7 @@
                 <div class="box">
                     <div class="box-header with-border pb-0 mb-20">
 
-                        <h3 class="font-weight-600">Overall Earnings</h3>
+                        <h3 class="font-weight-600">@lang('view_pages.overall_earnings')</h3>
                         <ul class="box-controls pull-right">
                             <li><a class="box-btn-close" href="#"></a></li>
                             <li><a class="box-btn-slide" href="#"></a></li>
@@ -377,7 +375,7 @@
 
                                                 {{$currency}} {{$overallEarnings[0]['total']}}
                                                 <br>
-                                                Overall Earnings
+                                                @lang('view_pages.overall_earnings')
                                             </h4>
                                         </div>
                                     </div>
@@ -386,7 +384,7 @@
                                 <div class="col-md-6">
                                     <div class="box box-body">
                                         <div class="font-size-18 flexbox align-items-center" style="color: #7460ee">
-                                            <span style="color: #455a80">By Cash</span>
+                                            <span style="color: #455a80"> @lang('view_pages.by_cash')</span>
                                             <span>{{$currency}} {{$overallEarnings[0]['cash']}}</span>
 
                                         </div>
@@ -406,7 +404,7 @@
                                 <div class="col-md-6">
                                     <div class="box box-body">
                                         <div class="font-size-18 flexbox align-items-center" style="color: #7460ee">
-                                            <span style="color: #455a80">By Wallet</span>
+                                            <span style="color: #455a80"> @lang('view_pages.by_wallet')</span>
                                             <span>{{$currency}} {{$overallEarnings[0]['wallet']}}</span>
                                         </div>
                                         <div class="progress progress-xxs mt-10 mb-0">
@@ -424,7 +422,7 @@
                                 <div class="col-md-6">
                                     <div class="box box-body">
                                         <div class="font-size-18 flexbox align-items-center" style="color: #7460ee">
-                                            <span style="color: #455a80">By Card/Online</span>
+                                            <span style="color: #455a80"> @lang('view_pages.by_card_online')</span>
                                             <span>{{$currency}} {{$overallEarnings[0]['card']}}</span>
                                         </div>
                                         <div class="progress progress-xxs mt-10 mb-0">
@@ -448,7 +446,7 @@
 
                                                 {{$currency}} {{$overallEarnings[0]['admin_commision']}}
                                                 <br>
-                                                Admin Commision
+                                                @lang('view_pages.admin_commision')
                                             </h4>
                                         </div>
                                     </div>
@@ -463,7 +461,7 @@
 
                                                 {{$currency}} {{$overallEarnings[0]['driver_commision']}}
                                                 <br>
-                                                Driver Earnings
+                                                @lang('view_pages.driver_earnings')
                                             </h4>
                                         </div>
                                     </div>
@@ -482,7 +480,7 @@
             <div class="col-12 col-lg-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="font-weight-600">Cancellation Chart</h3>
+                        <h3 class="font-weight-600">@lang('view_pages.cancellation_chart')</h3>
                         <ul class="box-controls pull-right">
                             <li><a class="box-btn-close" href="#"></a></li>
                             <li><a class="box-btn-slide" href="#"></a></li>
@@ -502,7 +500,7 @@
                                                 <span class="ion ion-ios-person-outline font-size-50"></span>
                                                 <span class="font-size-40 font-weight-200">{{$trips[0]['total_cancelled']}}</span>
                                             </div>
-                                            <div class="text-right">Total Request Cancelled</div>
+                                            <div class="text-right">@lang('view_pages.total_request_cancelled')</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -511,7 +509,7 @@
                                                 <span class="ion ion-ios-person-outline font-size-50"></span>
                                                 <span class="font-size-40 font-weight-200">{{$trips[0]['auto_cancelled']}}</span>
                                             </div>
-                                            <div class="text-right">Cancelled due to no Drivers</div>
+                                            <div class="text-right">@lang('view_pages.cancelled_due_to_no_drivers')</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -520,7 +518,7 @@
                                                 <span class="ion ion-ios-person-outline font-size-50"></span>
                                                 <span class="font-size-40 font-weight-200">{{$trips[0]['user_cancelled']}}</span>
                                             </div>
-                                            <div class="text-right">Cancelled by User</div>
+                                            <div class="text-right">@lang('view_pages.cancelled_by_user')</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -529,7 +527,7 @@
                                                 <span class="ion ion-ios-person-outline font-size-50"></span>
                                                 <span class="font-size-40 font-weight-200">{{$trips[0]['driver_cancelled']}}</span>
                                             </div>
-                                            <div class="text-right">Cancelled by Driver</div>
+                                            <div class="text-right">@lang('view_pages.cancelled_by_driver')</div>
                                         </div>
                                     </div>
                                 </div>
@@ -571,6 +569,9 @@
             var barChartData = barData?.cancel;
             var overallEarning = barData?.earnings;
             let cancelValues = [];
+            for(var value in barChartData){
+                // console.log(barChartData[value]);
+            }
 
             var bar = new Morris.Bar({
                 element: 'bar-chart',
@@ -580,12 +581,12 @@
                 barSizeRatio: 0.5,
                 barGap: 5,
                 xkey: 'y',
-                ykeys: ['a', 'u','d'],
+                ykeys: ['a', 'd','u'],
                 labels: ['Cancelled due to no Drivers', 'Cancelled by User', 'Cancelled by Driver'],
                 hideHover: 'auto',
                 color: '#666666'
             });
-            // console.log(barChartData,bar);
+            console.log(barChartData,bar);
 
             if ($('#chart_1').length > 0) {
                 var ctx1 = document.getElementById("chart_1").getContext("2d");
@@ -599,7 +600,7 @@
                             pointHighlightStroke: "#26c6da",
                             data: overallEarning['values']
                         },
-
+                       
 
                     ]
                 };

@@ -81,12 +81,12 @@
     <div class="col-md-11 mx-auto apk-download-main-div">
         <div class="apk-download col-12">
             <div class="col-6 col-md-6 float-left apk-download-left">
-                <p><b class="apk-name"> {{$result->build_number}}</b> <span><b class="version-apk">Version:</b> v{{$result->version}}</span> <span><b class="version-apk">Platform:</b> {{$result->team}}</span></p>
+                <p><b class="apk-name"> {{$result->build_number}}</b> <span><b class="version-apk">@lang('view_pages.version'):</b> v{{$result->version}}</span> <span><b class="version-apk">@lang('view_pages.platform'):</b> {{$result->team}}</span></p>
                 <p>{{$result->short_additional_comments}}</p>
             </div>
             <div class="col-6 col-md-6 float-left apk-download-right">
-            <p><span><b class="version-apk mobile-div">Date:</b> {{$result->created_at}}</span> <span><b class="version-apk mobile-div">File Size:</b> {{$result->file_size}}</span></p>
-               <a href="{{ $result->download_link}}">Download</a>
+            <p><span><b class="version-apk mobile-div">@lang('view_pages.date'):</b> {{$result->created_at}}</span> <span><b class="version-apk mobile-div">File Size:</b> {{$result->file_size}}</span></p>
+               <a href="{{ $result->download_link}}">@lang('view_pages.download')</a>
                <a data-toggle="modal" style="cursor:pointer;" data-target="#myModal{{$result->id}}" class="mr-0"><img src="../../../assets/img/eye.svg" width="20px" alt=""></a>
                @if(access()->hasRole('super-admin'))
                <a href="{{ url('builds/app/delete',$result->id) }}" class="mr-0 sweet-delete"><img src="../../assets/img/delete.svg" width="20px" alt=""></a>
@@ -108,13 +108,13 @@
 
         <!-- Modal body -->
         <div class="modal-body apk-download">
-          <p> <span class="model-apk">Version:</span> {{$result->version}}</p>
-          <p> <span class="model-apk">Platform:</span> {{$result->version}}</p>
-          <p><span class="model-apk">Uploaded By:</span> {{$result->uploaded_by}}</p>
-          <p><span class="model-apk">Uploaded On:</span> {{$result->created_at}}</p>
-          <p><span class="model-apk">File size: </span>{{$result->file_size}}</p>
-         <span class="model-apk"> <a style="color:#3d94de" href="{{ $result->download_link}}">Download</a></span>
-          <p><span class="model-apk">Description: </span></p>
+          <p> <span class="model-apk">@lang('view_pages.version'):</span> {{$result->version}}</p>
+          <p> <span class="model-apk">@lang('view_pages.platform'):</span> {{$result->version}}</p>
+          <p><span class="model-apk">@lang('view_pages.uploaded_by'):</span> {{$result->uploaded_by}}</p>
+          <p><span class="model-apk">@lang('view_pages.uploaded_on'):</span> {{$result->created_at}}</p>
+          <p><span class="model-apk">@lang('view_pages.file_size'): </span>{{$result->file_size}}</p>
+         <span class="model-apk"> <a style="color:#3d94de" href="{{ $result->download_link}}">@lang('view_pages.download')</a></span>
+          <p><span class="model-apk">@lang('view_pages.description'): </span></p>
           {{$result->additional_comments}}
         </div>
 
