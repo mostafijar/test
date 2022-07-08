@@ -489,13 +489,13 @@ return array(
     'razor_pay_live_api_key'=>'Razor Pay Live Api Key',
     'razor_pay_environment'=>'Razor Pay Environment',
     'enable-cashfree'=>'Enable Cashfree',
-    'show_rental_ride_feature' => 'Show Rental Ride Feature',
-    'show_ride_otp_feature' => 'Show Rental Ride Feature',
-    'show_ride_later_feature' => 'Show Ride Later Feature',
+    'show_rental_ride_feature' => 'Enable Rental Ride Feature',
+    'show_ride_otp_feature' => 'Enable Ride OTP Feature',
+    'show_ride_later_feature' => 'Enable Ride Later Feature',
     'enable_shipment_load_feature' => 'Enable Shipment Load Feature',
     'enable_shipment_unload_feature' => 'Enable Shipment Unload Feature',
-    'enable_digital_signature' => 'Enable Digital Signature',
-     'see_all' => 'See All',
+    'enable_digital_signature' => 'Enable Digital Signature at end of ride',
+    'see_all' => 'See All',
    'drivers_approved' => 'Drivers Approved',
    'drivers_waiting_for_approval' =>'Drivers Waiting For Approval',
    'users_registered' => 'Users Registered',
@@ -583,8 +583,4 @@ return array(
      'choose_type' => 'Choose Type',
      'route_details' => 'Route Details',
      'confirm_order' => 'Confirm Order',
-     'Cancel' => 'Cancel',
-
-
-
-);
+     'Cancel' => 'Cancel',);

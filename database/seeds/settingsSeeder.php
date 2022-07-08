@@ -78,8 +78,28 @@ class SettingsSeeder extends Seeder
             'field' => SettingValueType::TEXT,
             'option_value' => null,
             'group_name' => null,
+        ],SettingSlug::USER_CAN_MAKE_A_RIDE_AFTER_X_MINIUTES => [
+            'category'=>SettingCategory::TRIP_SETTINGS,
+            'value' => 30,
+            'field' => SettingValueType::TEXT,
+            'option_value' => null,
+            'group_name' => null,
         ],
          SettingSlug::MINIMUM_TIME_FOR_SEARCH_DRIVERS_FOR_SCHEDULE_RIDE => [
+            'category'=>SettingCategory::TRIP_SETTINGS,
+            'value' => 30,
+            'field' => SettingValueType::TEXT,
+            'option_value' => null,
+            'group_name' => null,
+        ],
+        SettingSlug::MAXIMUM_TIME_FOR_FIND_DRIVERS_FOR_REGULAR_RIDE => [
+            'category'=>SettingCategory::TRIP_SETTINGS,
+            'value' => 5,
+            'field' => SettingValueType::TEXT,
+            'option_value' => null,
+            'group_name' => null,
+        ],
+        SettingSlug::TRIP_ACCEPT_REJECT_DURATION_FOR_DRIVER => [
             'category'=>SettingCategory::TRIP_SETTINGS,
             'value' => 30,
             'field' => SettingValueType::TEXT,

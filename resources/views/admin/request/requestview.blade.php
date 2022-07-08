@@ -222,9 +222,9 @@ max-height: 200px;
                 </div>
 
                 <div class="box-body">
-
-                    <img class="max-h" src="{{ $item->requestProofs()->first()->proof_image }}" alt="">
-
+                    @foreach ($item->requestProofs as $key => $proof)
+                    <img class="max-h" src="{{ $proof->proof_image }}" alt="">
+                    @endforeach
                 </div>
 
             </div>

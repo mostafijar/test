@@ -10,7 +10,8 @@ use App\Transformers\Requests\TripRequestTransformer;
 use App\Models\Admin\Sos;
 use App\Transformers\Common\SosTransformer;
 use App\Transformers\User\FavouriteLocationsTransformer;
-
+use App\Base\Constants\Setting\Settings;
+use Carbon\Carbon;
 
 class UserTransformer extends Transformer
 {
@@ -20,7 +21,7 @@ class UserTransformer extends Transformer
      * @var array
      */
     protected $availableIncludes = [
-        'roles','onTripRequest','metaRequest','favouriteLocations'
+        'roles','onTripRequest','metaRequest','favouriteLocations','laterMetaRequest'
     ];
     /**
      * Resources that can be included default.
@@ -77,6 +78,11 @@ class UserTransformer extends Transformer
             $params['show_ride_later_feature'] = false;  
         }
 
+        $params['user_can_make_a_ride_after_x_miniutes'] = get_settings(Settings::USER_CAN_MAKE_A_RIDE_AFTER_X_MINIUTES);
+
+        $params['maximum_time_for_find_drivers_for_regular_ride'] = (get_settings(Settings::MAXIMUM_TIME_FOR_FIND_DRIVERS_FOR_REGULAR_RIDE) * 60);
+
+
         return $params;
     }
 
@@ -122,6 +128,32 @@ class UserTransformer extends Transformer
         ? $this->item($request, new TripRequestTransformer)
         : $this->null();
     }
+
+    /**
+    * Include the request meta of the user.
+    *
+    * @param User $user
+    * @return \League\Fractal\Resource\Collection|\League\Fractal\Resource\NullResource
+    */
+    public function includeLaterMetaRequest(User $user)
+    {
+        $current_date = Carbon::now()->format('Y-m-d H:i:s');
+
+        $findable_duration = get_settings('minimum_time_for_search_drivers_for_schedule_ride');
+        if(!$findable_duration){
+            $findable_duration = 45;
+        }
+        $add_45_min = Carbon::now()->addMinutes($findable_duration)->format('Y-m-d H:i:s');
+
+
+        $request = $user->requestDetail()->where('is_completed', false)->where('is_cancelled', false)->where('user_rated', false)->where('is_later',true)->where('driver_id', null)->where('is_later', 0)->where('trip_start_time', '<=', $add_45_min)
+                    ->where('trip_start_time', '>', $current_date)->first();
+
+        return $request
+        ? $this->item($request, new TripRequestTransformer)
+        : $this->null();
+    }
+
 
      /**
     * Include the request meta of the user.

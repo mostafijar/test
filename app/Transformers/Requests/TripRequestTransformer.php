@@ -12,7 +12,7 @@ use Carbon\Carbon;
 use App\Base\Constants\Masters\PaymentType;
 use App\Transformers\Requests\RequestStopsTransformer;
 use App\Transformers\Requests\RequestProofsTransformer;
-
+use App\Base\Constants\Setting\Settings;
 
 class TripRequestTransformer extends Transformer
 {
@@ -102,6 +102,26 @@ class TripRequestTransformer extends Transformer
             'goods_type_quantity'=>$request->goods_type_quantity
         ];
 
+
+        $maximum_time_for_find_drivers_for_regular_ride = (get_settings(Settings::MAXIMUM_TIME_FOR_FIND_DRIVERS_FOR_REGULAR_RIDE) * 60);
+
+        $current_time = $current_time = Carbon::now();
+
+        $trip_requested_time = Carbon::parse($request->created_at);
+
+        $difference_request_duration = $trip_requested_time->diffInMinutes($current_time);
+
+        $difference_request_duration = $difference_request_duration * 60;
+
+        $final_interval = ($maximum_time_for_find_drivers_for_regular_ride - $difference_request_duration);
+
+        if($final_interval<0){
+            $final_interval =1;
+        }
+        $params['maximum_time_for_find_drivers_for_regular_ride'] = $final_interval;
+
+
+
         if (!$request->is_later) {
             $ride_type = 1;
         } else {
@@ -168,6 +188,10 @@ class TripRequestTransformer extends Transformer
             }
 
         }
+
+        $params['enable_shipment_load_feature'] = get_settings(Settings::ENABLE_SHIPMENT_LOAD_FEATURE);
+        $params['enable_shipment_unload_feature'] = get_settings(Settings::ENABLE_SHIPMENT_UNLOAD_FEATURE);
+        $params['enable_digital_signature'] = get_settings(Settings::ENABLE_DIGITAL_SIGNATURE);
 
         return $params;
     }

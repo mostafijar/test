@@ -414,7 +414,7 @@ class CreateRequestController extends BaseController
             'trip_start_time'=>$trip_start_time,
             'zone_type_id'=>$request->vehicle_type,
             'payment_opt'=>$request->payment_opt,
-            'unit'=>$unit,
+            'unit'=>(string)$unit,
             'requested_currency_code'=>$currency_code,
             'service_location_id'=>$service_location->id,
             'ride_otp'=>rand(1111, 9999),
