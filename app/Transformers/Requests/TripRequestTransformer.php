@@ -136,9 +136,9 @@ class TripRequestTransformer extends Transformer
         
         if($request->requestRating()->exists()){
 
-            $params['ride_user_rating'] = $request->requestRating()->where('user_id',$request->user_id)->pluck('rating')->first();
+          $params['ride_user_rating'] = $request->requestRating()->where('user_rating',1)->pluck('rating')->first();
 
-            $params['ride_driver_rating'] = $request->requestRating()->where('driver_id',$request->driver_id)->pluck('rating')->first();
+            $params['ride_driver_rating'] = $request->requestRating()->where('driver_rating',1)->pluck('rating')->first();
         }
         if($request->if_dispatch){
 
