@@ -90,6 +90,8 @@ class Settings
     const CURRENCY = 'currency_code';
     const CURRENCY_SYMBOL='currency_symbol';
 
+    const DEFAULT_COUNTRY_CODE_FOR_MOBILE_APP='default_country_code_for_mobile_app';
+
     const SHOW_RENTAL_RIDE_FEATURE='show_rental_ride_feature';
     const SHOW_RIDE_OTP_FEATURE='show_ride_otp_feature';
     const SHOW_RIDE_LATER_FEATURE='show_ride_later_feature';

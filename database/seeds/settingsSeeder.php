@@ -550,6 +550,13 @@ class SettingsSeeder extends Seeder
             'group_name' => null,
         ],
 
+        SettingSlug::DEFAULT_COUNTRY_CODE_FOR_MOBILE_APP => [
+            'category'=>SettingCategory::GENERAL,
+            'value' => 'IN',
+            'field' => SettingValueType::TEXT,
+            'option_value' => null,
+            'group_name' => null,
+        ],
         SettingSlug::SHOW_RENTAL_RIDE_FEATURE => [
             'category'=>SettingCategory::GENERAL,
             'value' => '1',
