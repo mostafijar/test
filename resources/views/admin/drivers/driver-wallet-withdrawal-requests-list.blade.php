@@ -38,11 +38,11 @@
             <td> {{$result->requested_currency}} {{$result->requested_amount}}</td>
             <td>{{$result->driverDetail->driverWallet->amount_balance }}</td>
             @if ($result->status == 0)
-                <td><button class="btn btn-success btn-sm">Requested</button></td>
+                <td><button class="btn btn-success btn-sm">@lang('view_pages.requested')</button></td>
             @elseif($result->status==1)
-                 <td><button class="btn btn-danger btn-sm">Approved</button></td>
+                 <td><button class="btn btn-danger btn-sm">@lang('view_pages.approved')</button></td>
             @else
-                 <td><button class="btn btn-danger btn-sm">Declined</button></td>
+                 <td><button class="btn btn-danger btn-sm">@lang('view_pages.declined')</button></td>
             @endif
             <td>
                 <div class="dropdown">

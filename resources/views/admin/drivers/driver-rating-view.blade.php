@@ -132,7 +132,7 @@
 
                                                     <div class="activitytimeline">
                                                         <p>
-                                                            <b>Pickup Address:</b>
+                                                            <b>@lang('view_pages.pickup_address'):</b>
                                                             
                                                             <span class="text-gray">
                                                                 {{ $trip->requestDetail->requestPlace->pick_address }}

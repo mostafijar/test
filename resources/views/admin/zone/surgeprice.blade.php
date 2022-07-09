@@ -37,7 +37,7 @@
                     <th> @lang('view_pages.start_time') <span class="text-danger">*</span></th>
                     <th>@lang('view_pages.end_time') <span class="text-danger">*</span></th>
                     <th> @lang('view_pages.surge_price_in_percentage') <span class="text-danger">*</span></th>
-                    <th style="width:100px;">Action</th>
+                    <th style="width:100px;">@lang('view_pages.action')</th>
                 </thead>
                 <tbody class="append_row">
                     @if (!$zone->zoneSurge->isEmpty())
